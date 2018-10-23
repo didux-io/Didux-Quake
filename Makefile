@@ -516,13 +516,13 @@ endif
 ### Targets ###
 
 ifdef CONFIG_WINDOWS
-    TARG_s := q2proded.exe
-    TARG_c := q2pro.exe
-    TARG_g := game$(CPU).dll
+    TARG_s := output/q2proded.exe
+    TARG_c := output/q2pro.exe
+    TARG_g := output/game$(CPU).dll
 else
-    TARG_s := q2proded
-    TARG_c := q2pro
-    TARG_g := game$(CPU).so
+    TARG_s := output/q2proded
+    TARG_c := output/q2pro
+    TARG_g := output/game$(CPU).so
 endif
 
 all: $(TARG_s) $(TARG_c) $(TARG_g)
