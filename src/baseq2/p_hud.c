@@ -192,9 +192,7 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int endmessage)
 
     cl = &game.clients[sorted[0]];
 
-    Q_snprintf(entry, sizeof(entry),
-                "topscore %i %i %i %i %i %i ",
-                0, 0, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe) / 600);
+    Q_snprintf(entry, sizeof(entry), "topscore ");
 
     j = strlen(entry);
     strcpy(string + stringlength, entry);

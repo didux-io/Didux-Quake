@@ -73,11 +73,11 @@ typedef int qhandle_t;
 //
 #define MAX_CLIENTS         256     // absolute limit
 #define MAX_EDICTS          1024    // must change protocol to increase more
-#define MAX_LIGHTSTYLES     256
-#define MAX_MODELS          256     // these are sent over the net as bytes
-#define MAX_SOUNDS          256     // so they cannot be blindly increased
-#define MAX_IMAGES          256
-#define MAX_ITEMS           256
+#define MAX_LIGHTSTYLES     1024
+#define MAX_MODELS          1024     // these are sent over the net as bytes
+#define MAX_SOUNDS          1024     // so they cannot be blindly increased
+#define MAX_IMAGES          1024
+#define MAX_ITEMS           1024
 #define MAX_GENERAL         (MAX_CLIENTS * 2) // general config strings
 
 #define MAX_CLIENT_NAME     16

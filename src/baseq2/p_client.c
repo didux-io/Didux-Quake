@@ -1702,7 +1702,7 @@ void ClientBeginServerFrame(edict_t *ent)
 
     if (deathmatch->value &&
         client->pers.spectator != client->resp.spectator &&
-        (level.time - client->respawn_time) >= 5) {
+        (level.time - client->respawn_time) >= 0) {
         spectator_respawn(ent);
         return;
     }
