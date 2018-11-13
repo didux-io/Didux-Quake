@@ -1192,8 +1192,9 @@ void PutClientInServer(edict_t *ent)
         ent->client->ps.gunindex = 0;
         gi.linkentity(ent);
         return;
-    } else
+    } else {
         client->resp.spectator = false;
+    }
 
     if (!KillBox(ent)) {
         // could't spawn in?
@@ -1307,7 +1308,7 @@ The game can override any of the settings in place
 ============
 */
 void ClientUserinfoChanged(edict_t *ent, char *userinfo)
-{
+{   
     char    *s;
     int     playernum;
 
@@ -1445,8 +1446,6 @@ Will not be called between levels.
 */
 void ClientDisconnect(edict_t *ent)
 {
-    //int     playernum;
-
     if (!ent->client)
         return;
 
@@ -1702,7 +1701,7 @@ void ClientBeginServerFrame(edict_t *ent)
 
     if (deathmatch->value &&
         client->pers.spectator != client->resp.spectator &&
-        (level.time - client->respawn_time) >= 5) {
+        (level.time - client->respawn_time) >= 0) {
         spectator_respawn(ent);
         return;
     }
