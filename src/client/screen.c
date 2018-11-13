@@ -1693,11 +1693,6 @@ static void SCR_ExecuteLayoutString(const char *s)
             continue;
 		}
 
-        if (!strcmp(token, "playername")) {
-            Com_Printf("PLAYERNAME! \n");
-            continue;
-        }
-
         if (!strcmp(token, "topscore")) {
 
             x = (scr.hud_width - 256) / 2;
@@ -1754,11 +1749,6 @@ static void SCR_ExecuteLayoutString(const char *s)
             token = COM_Parse(&s);
             totalPlayers = atoi(token);
 
-            token = COM_Parse(&s);
-            int endmessage = atoi(token);
-
-            // Com_Printf("Endmessage: %d \n", endmessage);
-
             float winAmount = calculatePlayerWonAmount(atoi(place), totalPlayers, totalPlayers * 10);
             char winAmountString[1024];
             maxLength = 6;
@@ -1782,28 +1772,9 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             char scoreRow[1024];
             sprintf(scoreRow, "%s %s %s %d", place, winAmountString, name, score);
-            // Com_Printf("current_player_uid: %s \n", current_player_uid);
 
             // if current player UID then draw alt string
             HUD_DrawString(x, y, scoreRow); // otherwhise just normal string
-
-            if (endmessage == 0) {
-
-            }
-
-            // HUD_DrawAltString(x + 32, y, ci->name);
-            // HUD_DrawString(x + 32, y + CHAR_HEIGHT, "Score: ");
-            // Q_snprintf(buffer, sizeof(buffer), "%i", score);
-            // HUD_DrawAltString(x + 32 + 7 * CHAR_WIDTH, y + CHAR_HEIGHT, buffer);
-            // Q_snprintf(buffer, sizeof(buffer), "Ping:  %i", ping);
-            // HUD_DrawString(x + 32, y + 2 * CHAR_HEIGHT, buffer);
-            // Q_snprintf(buffer, sizeof(buffer), "Time:  %i", time);
-            // HUD_DrawString(x + 32, y + 3 * CHAR_HEIGHT, buffer);
-
-            // if (!ci->icon) {
-            //     ci = &cl.baseclientinfo;
-            // }
-            // R_DrawPic(x, y, ci->icon);
             continue;
         }
 
@@ -2045,25 +2016,6 @@ static void SCR_DrawPause(void)
     R_DrawPic(x, y, scr.pause_pic);
 }
 
-static void SCR_DrawLoading(void)
-{
-    int x, y;
-
-    if (!scr.draw_loading)
-        return;
-
-    scr.draw_loading = false;
-
-    R_SetScale(scr.hud_scale);
-
-    x = (r_config.width * scr.hud_scale - scr.loading_width) / 2;
-    y = (r_config.height * scr.hud_scale - scr.loading_height) / 2;
-
-    R_DrawPic(x, y, scr.loading_pic);
-
-    R_SetScale(1.0f);
-}
-
 static void SCR_DrawCrosshair(void)
 {
     int x, y;
@@ -2239,7 +2191,7 @@ void SCR_UpdateScreen(void)
     Con_DrawConsole();
 
     // draw loading plaque
-    SCR_DrawLoading();
+    // SCR_DrawLoading();
 
     R_EndFrame();
 

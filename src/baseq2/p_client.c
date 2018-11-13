@@ -1194,7 +1194,6 @@ void PutClientInServer(edict_t *ent)
         return;
     } else {
         client->resp.spectator = false;
-        // client->resp.spectator = true;
     }
 
     if (!KillBox(ent)) {
@@ -1702,7 +1701,7 @@ void ClientBeginServerFrame(edict_t *ent)
 
     if (deathmatch->value &&
         client->pers.spectator != client->resp.spectator &&
-        (level.time - client->respawn_time) >= 5) {
+        (level.time - client->respawn_time) >= 0) {
         spectator_respawn(ent);
         return;
     }
