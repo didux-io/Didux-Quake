@@ -185,11 +185,6 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int endmessage)
 
     stringlength = strlen(string);
 
-    // add the clients in sorted order
-    // if (total > 12) {
-    //     total = 12;
-    // }
-
     cl = &game.clients[sorted[0]];
 
     Q_snprintf(entry, sizeof(entry), "topscore ");
@@ -208,9 +203,6 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int endmessage)
         cl = &game.clients[sorted[i]];
         cl_ent = g_edicts + 1 + sorted[i];
 
-        // x = (i >= 6) ? 160 : 0;
-        // y = 32 + 32 * (i % 6);
-
         x = 56;
         y = 60 + (i * 10);
 
@@ -221,15 +213,6 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int endmessage)
             tag = "tag2";
         else
             tag = NULL;
-        if (tag) { // So yeah this is about the background of each player in the scoreboard
-            // Q_snprintf(entry, sizeof(entry),
-            //            "xv %i yv %i picn %s ", x + 32, y, tag);
-            // j = strlen(entry);
-            // if (stringlength + j > 1024)
-            //     break;
-            // strcpy(string + stringlength, entry);
-            // stringlength += j;
-        }
         char place[1024];
         sprintf(place, "%d", (i + 1));
         // send the layout

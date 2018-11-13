@@ -1772,24 +1772,9 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             char scoreRow[1024];
             sprintf(scoreRow, "%s %s %s %d", place, winAmountString, name, score);
-            // Com_Printf("current_player_uid: %s \n", current_player_uid);
 
             // if current player UID then draw alt string
             HUD_DrawString(x, y, scoreRow); // otherwhise just normal string
-
-            // HUD_DrawAltString(x + 32, y, ci->name);
-            // HUD_DrawString(x + 32, y + CHAR_HEIGHT, "Score: ");
-            // Q_snprintf(buffer, sizeof(buffer), "%i", score);
-            // HUD_DrawAltString(x + 32 + 7 * CHAR_WIDTH, y + CHAR_HEIGHT, buffer);
-            // Q_snprintf(buffer, sizeof(buffer), "Ping:  %i", ping);
-            // HUD_DrawString(x + 32, y + 2 * CHAR_HEIGHT, buffer);
-            // Q_snprintf(buffer, sizeof(buffer), "Time:  %i", time);
-            // HUD_DrawString(x + 32, y + 3 * CHAR_HEIGHT, buffer);
-
-            // if (!ci->icon) {
-            //     ci = &cl.baseclientinfo;
-            // }
-            // R_DrawPic(x, y, ci->icon);
             continue;
         }
 
@@ -2030,25 +2015,6 @@ static void SCR_DrawPause(void)
 
     R_DrawPic(x, y, scr.pause_pic);
 }
-
-// static void SCR_DrawLoading(void)
-// {
-//     int x, y;
-
-//     if (!scr.draw_loading)
-//         return;
-
-//     scr.draw_loading = false;
-
-//     R_SetScale(scr.hud_scale);
-
-//     x = (r_config.width * scr.hud_scale - scr.loading_width) / 2;
-//     y = (r_config.height * scr.hud_scale - scr.loading_height) / 2;
-
-//     R_DrawPic(x, y, scr.loading_pic);
-
-//     R_SetScale(1.0f);
-// }
 
 static void SCR_DrawCrosshair(void)
 {
