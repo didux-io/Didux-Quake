@@ -1812,7 +1812,6 @@ void Menu_Init(menuFrameWork_t *menu)
         frames = 0;
         amountOfPlayers = 1;
         amountOfSecondsForBet = 59;
-        // Cvar_Set("spectator", "1");
         playAmount = 10;
         simulatePlayers = false;
     }
