@@ -1194,7 +1194,6 @@ void PutClientInServer(edict_t *ent)
         return;
     } else {
         client->resp.spectator = false;
-        // client->resp.spectator = true;
     }
 
     if (!KillBox(ent)) {
