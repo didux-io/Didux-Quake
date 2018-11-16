@@ -2199,16 +2199,14 @@ void Menu_Draw(menuFrameWork_t *menu)
         frames = 0;
     }
     if (simulatePlayers) {
-        
         if (frames % 100 == 0) {
             amountOfPlayers++;
         } else if (frames == 50000) {
             amountOfPlayers = 0;
         }
     } else {
-        playAmount = 10;
-        if (frames % 2000 == 0) {
-            amountOfPlayers = CL_Smilo_Get_Validated_Player_Count() + 1;
+        if (frames == 1 || frames % 2000 == 0) {
+            amountOfPlayers = CL_Smilo_Get_Validated_Player_Count(cls.contract_address) + 1;
             Com_Printf("Refreshing player list: %d \n", amountOfPlayers);
         }
     }

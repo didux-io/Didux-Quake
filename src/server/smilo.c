@@ -3,8 +3,9 @@
 #include "../../inc/common/http.h"
 #include "../../inc/server/smilo.h"
 
-char confirmedPlayerUids[128];
+char confirmedPlayerPublickeys[128];
 int playeruidsIndex;
+int port = 8080;
 
 void
 SV_Smilo_StartMatch() {
@@ -12,7 +13,7 @@ SV_Smilo_StartMatch() {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", "v1/server/startround", 8080, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", "v1/server/startround", port, response, sizeof(response))) {
         printf("  Agent response: %s\n", response);
     }
     else {
@@ -26,12 +27,14 @@ SV_Smilo_EndMatch(char* score_list) {
 
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/server/endround?gameResults=%s";
+    char* urlTemplate = "v1/server/newRound?gameResults=%s";
     sprintf(url, urlTemplate, score_list);
+
+    printf("Newround url: %s \n", url);;
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, 8080, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", url, port, response, sizeof(response))) {
         printf("  Agent response: %s\n", response);
     }
     else {
@@ -39,21 +42,21 @@ SV_Smilo_EndMatch(char* score_list) {
     }
 }
 
-int SV_Smilo_BetConfirmed(int uniqueId) {
-    printf("Checking confirmed status for %i...\n", uniqueId);
+int SV_Smilo_BetConfirmed(char publickey[1024], char* contractaddress) {
+    printf("Checking confirmed status for %s...\n", publickey);
 
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/server/isvalidparticipant?uid=%i";
-    sprintf(url, urlTemplate, uniqueId);
+    char* urlTemplate = "v1/server/isvalidparticipant?publickey=%s&contractaddress=%s";
+    sprintf(url, urlTemplate, publickey, contractaddress);
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, 8080, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", url, port, response, sizeof(response))) {
         printf("  Agent response: %s\n", response);
         if (!strcmp(response, "true")) {
             printf("  (SV) BET CONFIRMED: 1! \n");
-            confirmedPlayerUids[playeruidsIndex] = uniqueId;
+            confirmedPlayerPublickeys[playeruidsIndex] = *publickey;
             playeruidsIndex++;
             return 1;
         } else {
@@ -72,7 +75,7 @@ int SV_Smilo_GetContractAddress(char* buffer, int bufferSize) {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", "v1/server/contractaddress", 8080, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", "v1/server/contractaddress", port, response, sizeof(response))) {
         printf("  Agent response: %s\n", response);
         
         // Copy response in buffer

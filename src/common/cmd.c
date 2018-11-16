@@ -1580,6 +1580,7 @@ int Cmd_ExecuteFile(const char *path, unsigned flags)
 
     len = FS_LoadFileEx(path, (void **)&f, flags, TAG_FILESYSTEM);
     if (!f) {
+        Com_Printf("Couldn't find file: %s \n", path);
         return len;
     }
 

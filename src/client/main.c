@@ -123,7 +123,7 @@ static request_t    clientRequests[MAX_REQUESTS];
 static unsigned     nextRequest;
 
 char contract_address[1024];
-char current_player_uid[1024];
+char current_player_publickey[1024];
 int balance = -1;
 bool participateCommandDefined = false;
 bool confirmedParticipate = false;
@@ -469,11 +469,18 @@ void CL_CheckForResend(void)
         cls.quakePort = net_qport->integer;
         break;
     }
-
+    char publickey[65];
+	CL_Smilo_GetPublicKey(publickey, sizeof(publickey) - 1);
+    Com_Printf("Retrieved publickey %s \n", publickey);
+    sprintf(current_player_publickey, "%s", publickey);
+    sprintf(cls.publickey, "%s", publickey);
     Cvar_BitInfo(userinfo, CVAR_USERINFO);
+    Com_Printf("CONNECT!! \n");
+    Com_Printf("CONNECT!! \n");
+    Com_Printf("CONNECT!! \n");
     Netchan_OutOfBand(NS_CLIENT, &cls.serverAddress,
-                      "connect %i %i %i \"%s\"%s\n", cls.serverProtocol, cls.quakePort,
-                      cls.challenge, userinfo, tail);
+                      "connect %i %i %i \"%s\"%s\"%s\n", cls.serverProtocol, cls.quakePort,
+                      cls.challenge, userinfo, tail, cls.publickey);
 }
 
 static void CL_RecentIP_g(genctx_t *ctx)
@@ -1400,12 +1407,12 @@ static void CL_ConnectionlessPacket(void)
 
     if(!strcmp(c, "client_smilo_id")) {
         // Store contract address
-		strncpy(current_player_uid, Cmd_Argv(1), sizeof(current_player_uid));
-		strncpy(contract_address, Cmd_Argv(2), sizeof(contract_address));
-
+		// strncpy(current_player_publickey, Cmd_Argv(1), sizeof(current_player_publickey));
+		strncpy(contract_address, Cmd_Argv(1), sizeof(contract_address));
 
 		cls.bet_confirmed = false;
 		cls.bet_check_count = 0;
+        sprintf(cls.contract_address, "%s", contract_address);
         confirmedParticipate = false;
         balance = -1;
 		cls.last_bet_check_time = 0;
@@ -3140,12 +3147,12 @@ void CL_UpdateFrameTimes(void)
 }
 
 void
-CL_GetBalance(char* uid) {
+CL_GetBalance(char* publickey) {
 	if(cls.balance_refreshed) {
 		return;
     }
 
-    balance = CL_Smilo_GetBalance(uid);
+    balance = CL_Smilo_GetBalance(publickey);
     Com_Printf("Balance refreshed!\n");
     cls.balance_refreshed = true;
 }
@@ -3157,7 +3164,7 @@ CL_GetBalance(char* uid) {
 	every second a message (count down) is posted.
 */
 void
-CL_CheckBetConfirmed(char* uid) {
+CL_CheckBetConfirmed(char* publickey, char* contractaddress) {
 	if(cls.bet_confirmed)
 		return;
 
@@ -3165,11 +3172,11 @@ CL_CheckBetConfirmed(char* uid) {
 	if(elapsed >= 2000) {
 		cls.last_bet_check_time = cls.realtime;
 		cls.bet_check_count++;
-        int betConfirmed = CL_Smilo_BetConfirmed(uid);
+        int betConfirmed = CL_Smilo_BetConfirmed(publickey, contractaddress);
 		if(betConfirmed) {
 			Com_Printf("Your bet has been confirmed by the Smilo Blockchain!\n");
 			cls.bet_confirmed = true;
-            CL_GetBalance(uid);
+            CL_GetBalance(publickey);
 		}
 		else {
 			Com_Printf("Your bet has NOT yet been confirmed...\n");
@@ -3182,7 +3189,7 @@ void CL_Smilo_ConfirmedParticipate(void)
     // Put out of spectator mode
     Cvar_Set("spectator", "0");
     confirmedParticipate = true;
-    CL_Smilo_Connected(current_player_uid, contract_address);
+    CL_Smilo_Connected(current_player_publickey, contract_address, 0);
     UI_PopMenu();
 }
 
@@ -3368,7 +3375,7 @@ run_fx:
     main_extra = 0;
 
     if (confirmedParticipate) {
-		CL_CheckBetConfirmed(current_player_uid);
+		CL_CheckBetConfirmed(current_player_publickey, contract_address);
     }
 
     if (!participateCommandDefined) {

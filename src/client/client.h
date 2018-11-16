@@ -395,6 +395,8 @@ typedef struct client_static_s {
 
     int         challenge;          // from the server to use for connecting
 
+    char        publickey[1024];
+
 #if USE_ICMP
     bool        errorReceived;      // got an ICMP error from server
 #endif
@@ -459,6 +461,7 @@ typedef struct client_static_s {
 	int bet_confirmed;
     int balance_refreshed;
 	int bet_check_count;
+    char contract_address[1024];
 } client_static_t;
 
 extern client_static_t    cls;

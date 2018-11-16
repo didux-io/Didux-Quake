@@ -1374,6 +1374,7 @@ loadgames will.
 */
 qboolean ClientConnect(edict_t *ent, char *userinfo)
 {
+    Com_Printf("CLIENT CONNECTED SERVER SIDE! \n");
     char    *value;
 
     // check to see if they are on the banned IP list

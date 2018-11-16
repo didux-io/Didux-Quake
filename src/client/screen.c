@@ -1682,13 +1682,17 @@ static void SCR_ExecuteLayoutString(const char *s)
             value = balance;
             int valueForDigits = value;
             int digitCount = 0;
-            while(valueForDigits != 0)
-            {
-                valueForDigits /= 10;
-                ++digitCount;
+            if (value == 0) {
+                digitCount = 1;
+                width = 1;
+            } else {
+                while(valueForDigits != 0)
+                {
+                    valueForDigits /= 10;
+                    ++digitCount;
+                }
+                width = digitCount;
             }
-            width = digitCount;
-
             HUD_DrawNumber(x, y, 0, width, value);
             continue;
 		}
@@ -1772,7 +1776,7 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             char scoreRow[1024];
             sprintf(scoreRow, "%s %s %s %d", place, winAmountString, name, score);
-            // Com_Printf("current_player_uid: %s \n", current_player_uid);
+            // Com_Printf("current_player_publickey: %c \n", current_player_publickey);
 
             // if current player UID then draw alt string
             HUD_DrawString(x, y, scoreRow); // otherwhise just normal string
