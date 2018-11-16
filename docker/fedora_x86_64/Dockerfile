@@ -19,5 +19,3 @@ COPY q2pro-mgw-sdk/checksum libs/
 COPY Makefile Makefile
 COPY inc inc
 COPY src src
-
-
