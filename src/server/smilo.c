@@ -5,7 +5,7 @@
 
 char confirmedPlayerPublickeys[128];
 int playeruidsIndex;
-int port = 8080;
+int port = 5380;
 
 void
 SV_Smilo_StartMatch() {

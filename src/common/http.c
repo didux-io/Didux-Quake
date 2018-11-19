@@ -43,6 +43,8 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
 
     sprintf(message, messageTemplate, host, portno, url);
 
+    printf("Sending HTTP request: %s \n", message);
+
     CURL* curl;
     CURLcode res;
 

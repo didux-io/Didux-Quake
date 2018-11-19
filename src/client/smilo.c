@@ -5,7 +5,7 @@
 #include "../../inc/common/http.h"
 #include "../../inc/client/smilo.h"
 
-int clientPort = 8090;
+int clientPort = 5390;
 
 void CL_Smilo_Connected(char* id, char* contractAddress, int playfee) {
     printf("Client connected! Notifying Smilo Client Agent...\n");
