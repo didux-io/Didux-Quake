@@ -3,7 +3,7 @@
     "version": "0.9.0",
     "title": "Smilo Quake",
     "subTitle": "Shoot, kill and earn SmiloPay",
-    "description": "The classic first person shooter Quake II now reimagined by the Smilo team! Play against strangers or your friends and earn SmiloPay",
+    "description": "The classic first person shooter Quake II now reimagined by the Smilo team!",
     "tags": ["shooter", "old school", "fps"],
     "thumbnailUrl": "gui/assets/images/games/quake2_thumbnail.jpg",
     "art": [
