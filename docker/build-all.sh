@@ -16,3 +16,6 @@ docker run --mount src="$(pwd)/output/fedora/x86_64",target=/q2pro/output,type=b
 # Build Windows x86_64
 mkdir -p ./output/windows/x86_64
 docker run --mount src="$(pwd)/output/windows/x86_64",target=/q2pro/output,type=bind -it q2pro-cc-windows-x86_64 /usr/bin/make
+
+# Build Darwin x86_64
+make all CONFIG_FILE=./config_darwin

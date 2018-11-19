@@ -31,3 +31,5 @@ JPG_LIBS=-ljpeg
 
 ZLIB_CFLAGS=
 ZLIB_LIBS=-lz
+
+OUTPUT_DIR=./output
