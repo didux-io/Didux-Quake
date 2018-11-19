@@ -1,0 +1,45 @@
+{
+    "id": "SmiloQuake",
+    "version": "0.9.0",
+    "title": "Smilo Quake",
+    "subTitle": "Shoot, kill and earn SmiloPay",
+    "description": "The classic first person shooter Quake II now reimagined by the Smilo team! Play against strangers or your friends and earn SmiloPay",
+    "tags": ["shooter", "old school", "fps"],
+    "thumbnailUrl": "gui/assets/images/games/quake2_thumbnail.jpg",
+    "art": [
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen1.png"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen2.jpeg"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen3.jpeg"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen4.jpeg"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen5.jpg"
+        }
+    ],
+    "platforms": [
+        {
+            "name": "darwin",
+            "downloadUrl": "http://localhost:8080/darwin/squake.tar.gz",
+            "baseDir": ".",
+            "binary": "./q2pro"
+        },
+        {
+            "name": "win32",
+            "downloadUrl": "http://localhost:8080/win32/squake.tar.gz",
+            "baseDir": ".",
+            "binary": "./q2pro.exe"
+        }
+    ]
+}
