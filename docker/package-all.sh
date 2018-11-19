@@ -1,6 +1,9 @@
 # Make sure all builds are run
 ./docker/build-all.sh
 
+# Remove previous packages
+rm ./output/*.tar.gz
+
 # Package Debian x86_64
 tar -cvzf ./output/debian_x86_64.tar.gz -C ./output/debian/x86_64 . -C ../../../assets .
 
