@@ -2205,7 +2205,7 @@ void Menu_Draw(menuFrameWork_t *menu)
             amountOfPlayers = 0;
         }
     } else {
-        if (frames == 1 || frames % 2000 == 0) {
+        if (frames % 2000 == 1) {
             amountOfPlayers = CL_Smilo_Get_Validated_Player_Count(cls.contract_address) + 1;
             Com_Printf("Refreshing player list: %d \n", amountOfPlayers);
         }

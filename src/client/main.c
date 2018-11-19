@@ -475,9 +475,6 @@ void CL_CheckForResend(void)
     sprintf(current_player_publickey, "%s", publickey);
     sprintf(cls.publickey, "%s", publickey);
     Cvar_BitInfo(userinfo, CVAR_USERINFO);
-    Com_Printf("CONNECT!! \n");
-    Com_Printf("CONNECT!! \n");
-    Com_Printf("CONNECT!! \n");
     Netchan_OutOfBand(NS_CLIENT, &cls.serverAddress,
                       "connect %i %i %i \"%s\"%s\"%s\n", cls.serverProtocol, cls.quakePort,
                       cls.challenge, userinfo, tail, cls.publickey);
@@ -1407,7 +1404,6 @@ static void CL_ConnectionlessPacket(void)
 
     if(!strcmp(c, "client_smilo_id")) {
         // Store contract address
-		// strncpy(current_player_publickey, Cmd_Argv(1), sizeof(current_player_publickey));
 		strncpy(contract_address, Cmd_Argv(1), sizeof(contract_address));
 
 		cls.bet_confirmed = false;

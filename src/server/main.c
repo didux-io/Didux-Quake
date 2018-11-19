@@ -1022,9 +1022,7 @@ static void send_connect_packet(client_t *newcl, int nctype)
 	// Ensure contract address is zero terminated.
 	contractAddress[sizeof(contractAddress) - 1] = 0;
 
-	/* send the special Smilo packet notifying the client of his/her special id and the contract address */
-	// char publickey = rand();
-	// newcl->publickey = publickey;
+	/* send the special Smilo packet notifying the client the contract address */
 	Netchan_OutOfBand(NS_SERVER, &net_from, "client_smilo_id %s", contractAddress);
 
     const char *ncstring    = "";
@@ -1072,9 +1070,6 @@ static void append_extra_userinfo(conn_params_t *params, char *userinfo)
 
 static void SVC_DirectConnect(void)
 {   
-    Com_Printf("SVC_DirectConnect!!! \n");
-    Com_Printf("SVC_DirectConnect!!! \n");
-    Com_Printf("SVC_DirectConnect!!! \n");
     char            userinfo[MAX_INFO_STRING * 2];
     conn_params_t   params;
     client_t        *newcl;
@@ -1121,8 +1116,6 @@ static void SVC_DirectConnect(void)
     newcl->challenge = params.challenge; // save challenge for checksumming
     newcl->protocol = params.protocol;
     newcl->version = params.version;
-    Com_Printf("PUBLIC KEY HERE \n");
-    Com_Printf("%s \n", params.publickey);
     sprintf(newcl->publickey, "%s", params.publickey);
     newcl->has_zlib = params.has_zlib;
     newcl->edict = EDICT_NUM(number + 1);
@@ -1147,7 +1140,6 @@ static void SVC_DirectConnect(void)
     // get the game a chance to reject this connection or modify the userinfo
     sv_client = newcl;
     sv_player = newcl->edict;
-    Com_Printf("ClientConnect server side \n");
     allow = ge->ClientConnect(newcl->edict, userinfo);
     sv_client = NULL;
     sv_player = NULL;

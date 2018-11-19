@@ -205,8 +205,6 @@ static void Pop(menuFrameWork_t *self)
 {
     char scratch[MAX_OSPATH];
 
-    // Cvar_SetEx("name", m_player.name.field.text, FROM_CONSOLE);
-
     Q_concat(scratch, sizeof(scratch),
              uis.pmi[m_player.model.curvalue].directory, "/",
              uis.pmi[m_player.model.curvalue].skindisplaynames[m_player.skin.curvalue], NULL);
@@ -324,11 +322,6 @@ void M_Menu_PlayerConfig(void)
     m_player.refdef.entities = m_player.entities;
     m_player.refdef.rdflags = RDF_NOWORLDMODEL;
 
-    // m_player.name.generic.type = MTYPE_FIELD;
-    // m_player.name.generic.flags = QMF_HASFOCUS;
-    // m_player.name.generic.name = "name";
-    // m_player.name.width = MAX_CLIENT_NAME - 1;
-
     m_player.model.generic.type = MTYPE_SPINCONTROL;
     m_player.model.generic.id = ID_MODEL;
     m_player.model.generic.name = "model";
@@ -343,7 +336,6 @@ void M_Menu_PlayerConfig(void)
     m_player.hand.generic.name = "handedness";
     m_player.hand.itemnames = (char **)handedness;
 
-    // Menu_AddItem(&m_player.menu, &m_player.name);
     Menu_AddItem(&m_player.menu, &m_player.model);
     Menu_AddItem(&m_player.menu, &m_player.skin);
     Menu_AddItem(&m_player.menu, &m_player.hand);
