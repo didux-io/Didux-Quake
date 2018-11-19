@@ -631,6 +631,7 @@ typedef struct {
     int         reserved;   // hidden client slots
     char        reconnect_var[16];
     char        reconnect_val[16];
+    char        publickey[1024];
 } conn_params_t;
 
 #define __reject(...) \
@@ -768,6 +769,8 @@ static bool parse_packet_length(conn_params_t *p)
 static bool parse_enhanced_params(conn_params_t *p)
 {
     char *s;
+
+    sprintf(p->publickey, "%s", Cmd_Argv(9));
 
     if (p->protocol == PROTOCOL_VERSION_R1Q2) {
         // set minor protocol version
@@ -1009,19 +1012,18 @@ static void init_pmove_and_es_flags(client_t *newcl)
     newcl->pmp.waterhack = sv_waterjump_hack->integer >= force ? true : false;
 }
 
+char contractAddress[65];
+
 static void send_connect_packet(client_t *newcl, int nctype)
 {
     /* Retrieve the Smart Contract address from the Server Game Agent */
-	char contractAddress[65];
 	SV_Smilo_GetContractAddress(contractAddress, sizeof(contractAddress) - 1);
 
 	// Ensure contract address is zero terminated.
 	contractAddress[sizeof(contractAddress) - 1] = 0;
 
-	/* send the special Smilo packet notifying the client of his/her special id and the contract address */
-	int randomId = rand();
-	newcl->uniqueId = randomId;
-	Netchan_OutOfBand(NS_SERVER, &net_from, "client_smilo_id %i %s", randomId, contractAddress);
+	/* send the special Smilo packet notifying the client the contract address */
+	Netchan_OutOfBand(NS_SERVER, &net_from, "client_smilo_id %s", contractAddress);
 
     const char *ncstring    = "";
     const char *acstring    = "";
@@ -1067,7 +1069,7 @@ static void append_extra_userinfo(conn_params_t *params, char *userinfo)
 }
 
 static void SVC_DirectConnect(void)
-{
+{   
     char            userinfo[MAX_INFO_STRING * 2];
     conn_params_t   params;
     client_t        *newcl;
@@ -1078,16 +1080,26 @@ static void SVC_DirectConnect(void)
     memset(&params, 0, sizeof(params));
 
     // parse and validate parameters
-    if (!parse_basic_params(&params))
+    if (!parse_basic_params(&params)) {
+        Com_Printf("%s \n", "parse_basic_params");
         return;
-    if (!permit_connection(&params))
+    }
+    if (!permit_connection(&params)) {
+        Com_Printf("%s \n", "permit_connection");
         return;
-    if (!parse_packet_length(&params))
+    }
+    if (!parse_packet_length(&params)) {
+        Com_Printf("%s \n", "parse_packet_length");
         return;
-    if (!parse_enhanced_params(&params))
+    }
+    if (!parse_enhanced_params(&params)) {
+        Com_Printf("%s \n", "parse_enhanced_params");
         return;
-    if (!parse_userinfo(&params, userinfo))
+    }
+    if (!parse_userinfo(&params, userinfo)) {
+        Com_Printf("%s \n", "parse_userinfo");
         return;
+    }
 
     // find a free client slot
     newcl = find_client_slot(&params);
@@ -1104,6 +1116,7 @@ static void SVC_DirectConnect(void)
     newcl->challenge = params.challenge; // save challenge for checksumming
     newcl->protocol = params.protocol;
     newcl->version = params.version;
+    sprintf(newcl->publickey, "%s", params.publickey);
     newcl->has_zlib = params.has_zlib;
     newcl->edict = EDICT_NUM(number + 1);
     newcl->gamedir = fs_game->string;
@@ -1736,7 +1749,7 @@ SV_Process_EndGame(void) {
 		if(found_client) {
 			// Create query parameter part
 			char query_param_part[1024];
-			sprintf(query_param_part, "%i%%3A%i%%3A%s%%5Cn", found_client->uniqueId, winner->kills, found_client->name);
+			sprintf(query_param_part, "%s%%3A%i%%3A%s%%5Cn", found_client->publickey, winner->kills, found_client->name);
 			
 			// Merge with total
 			for(int j = 0; j < 1024; j++) {
@@ -1894,7 +1907,7 @@ SV_KickNonBetting() {
 
 		if (!client->betConfirmed) {
 			// Bet was not yet confirmed
-			if (SV_Smilo_BetConfirmed(client->uniqueId)) {
+			if (SV_Smilo_BetConfirmed(client->publickey, contractAddress)) {
 				// Client was confirmed!
 				client->betConfirmed = 1;
 			} else {

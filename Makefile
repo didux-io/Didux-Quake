@@ -516,12 +516,12 @@ endif
 ### Targets ###
 
 ifdef CONFIG_WINDOWS
-    TARG_s := output/q2proded.exe
-    TARG_c := output/q2pro.exe
+    TARG_s := output/SmiloQuakeDedicated.exe
+    TARG_c := output/SmiloQuake.exe
     TARG_g := output/game$(CPU).dll
 else
-    TARG_s := output/q2proded
-    TARG_c := output/q2pro
+    TARG_s := output/SmiloQuakeDedicated
+    TARG_c := output/SmiloQuake
     TARG_g := output/game$(CPU).so
 endif
 

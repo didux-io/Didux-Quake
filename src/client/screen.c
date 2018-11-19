@@ -1682,13 +1682,14 @@ static void SCR_ExecuteLayoutString(const char *s)
             value = balance;
             int valueForDigits = value;
             int digitCount = 0;
-            while(valueForDigits != 0)
-            {
+            do {
                 valueForDigits /= 10;
-                ++digitCount;
+                digitCount++;
             }
+            while(valueForDigits != 0);
+            
             width = digitCount;
-
+            
             HUD_DrawNumber(x, y, 0, width, value);
             continue;
 		}
