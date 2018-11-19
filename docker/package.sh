@@ -1,5 +1,5 @@
 # Make sure all builds are run
-./docker/build-all.sh
+./docker/build.sh
 
 # Remove previous packages
 rm ./output/*.tar.gz
