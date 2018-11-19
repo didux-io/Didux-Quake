@@ -31,13 +31,13 @@
     "platforms": [
         {
             "name": "darwin",
-            "downloadUrl": "http://localhost:8080/darwin/squake.tar.gz",
+            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/darwin_x86_64.tar.gz",
             "baseDir": ".",
             "binary": "./q2pro"
         },
         {
             "name": "win32",
-            "downloadUrl": "http://localhost:8080/win32/squake.tar.gz",
+            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
             "baseDir": ".",
             "binary": "./q2pro.exe"
         }
