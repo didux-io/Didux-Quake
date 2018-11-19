@@ -146,7 +146,7 @@ SV_NotifyExistingClients(void) {
 		if(client->state != cs_connected && client->state != cs_spawned)
 			continue;
 
-		Netchan_OutOfBand(NS_SERVER, &client->netchan->remote_address, "client_smilo_id %i %s", client->uniqueId, contractAddress);
+		Netchan_OutOfBand(NS_SERVER, &client->netchan->remote_address, "client_smilo_id %s", contractAddress);
 
 		client->betConfirmed = 0;
 		client->joinTime = svs.realtime;

@@ -873,6 +873,7 @@ static void SV_CvarResult_f(void)
             sv_client->version_string = SV_CopyString(v);
         }
     } else if (!strcmp(c, "connect")) {
+        Com_Printf("SERVER CONNECT! \n");
         if (sv_client->reconnect_var[0]) {
             if (!strcmp(Cmd_Argv(2), sv_client->reconnect_val)) {
                 sv_client->reconnected = true;

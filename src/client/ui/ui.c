@@ -149,7 +149,6 @@ void UI_PopMenu(void)
     menu = uis.layers[--uis.menuDepth];
 
     if (strcmp(menu->name, "smilo") == 0) {
-        Com_Printf("RESET ALL! \n");
         frames = 0;
         amountOfPlayers = 1;
         amountOfSecondsForBet = 59;
