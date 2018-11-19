@@ -1,5 +1,5 @@
 # Make sure all builds are run
-# ./docker/build-all.sh
+./docker/build-all.sh
 
 # Package Debian x86_64
 tar -cvzf ./output/debian_x86_64.tar.gz -C ./output/debian/x86_64 . -C ../../../assets .
