@@ -33,13 +33,13 @@
             "name": "darwin",
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/darwin_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "./q2pro"
+            "binary": "./SmiloQuake"
         },
         {
             "name": "win32",
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "./q2pro.exe"
+            "binary": "./SmiloQuake.exe"
         }
     ]
 }
