@@ -5,21 +5,7 @@
 
 char confirmedPlayerPublickeys[128];
 int playeruidsIndex;
-int port = 5380;
-
-void
-SV_Smilo_StartMatch() {
-    printf("Match start! Notifying Smilo Server Agent...\n");
-
-    // Notify Smilo server agent
-    char response[4096];
-    if(HTTP_Get("127.0.0.1", "v1/server/startround", port, response, sizeof(response))) {
-        printf("  Agent response: %s\n", response);
-    }
-    else {
-        printf("Failed to do HTTP call...\n");
-    }
-}
+int port = 46280;
 
 void
 SV_Smilo_EndMatch(char* score_list) {

@@ -5,26 +5,25 @@
 #include "../../inc/common/http.h"
 #include "../../inc/client/smilo.h"
 
-int clientPort = 5390;
+int clientPort = 46290;
 
-void CL_Smilo_Connected(char* id, char* contractAddress, int playfee) {
+void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     printf("Client connected! Notifying Smilo Client Agent...\n");
-
-    printf("Playfee: %d \n", playfee);
 
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/client/participate?contractaddress=%s&playfee=%d";
-    sprintf(url, urlTemplate, contractAddress, playfee);
+    char* urlTemplate = "v1/client/participate?contractaddress=%s";
+    sprintf(url, urlTemplate, contractAddress);
 
     printf("URL: %s \n", url);
 
     char response[4096];
     if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
         printf("  Agent response: %s\n", response);
-    }
-    else {
-        printf("Failed to do HTTP call...\n");
+        strncpy(buffer, "1", bufferSize);
+    } else {
+        printf("Failed to do HTTP call. Error message: %s\n", response);
+        strncpy(buffer, response, bufferSize);
     }
 }
 
@@ -33,7 +32,7 @@ int CL_Smilo_GetBalance(char* publickey) {
 
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/client/balance?publickey=%s";
+    char* urlTemplate = "v1/client/balanceNonBigInt?publickey=%s";
     sprintf(url, urlTemplate, publickey);
 
     char response[4096];
@@ -94,73 +93,47 @@ int CL_Smilo_BetConfirmed(char* publickey, char* contractaddress) {
     }
 }
 
-int CL_Smilo_Get_Validated_Player_Count(char* contractaddress) {
+gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress) {
     printf("Get player count!\n");
 
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/client/validatedPlayersCount?contractaddress=%s";
+    char* urlTemplate = "v1/client/gameDetailsWelcomeMenu?contractaddress=%s";
     sprintf(url, urlTemplate, contractaddress);
 
     printf("Validated URL: %s \n", url);
 
     char response[4096];
+    gameDetails_t gamedetails;
+    gamedetails.deposit = -1;
+    gamedetails.firstReward = -1;
+    gamedetails.secondReward = -1;
+    gamedetails.thirdReward = 1;
+    gamedetails.playerCount = -1;
     if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
         printf("  Agent response: %s\n", response);
-        return atoi(response);
-    }
-    else {
-        printf("Failed to do HTTP call...\n");
-        return 0;
-    }
-}
-
-int CL_Smilo_GameInfo(smilo_game_info* output) {
-    printf("Retrieving game info...\n");
-
-    char response[4096];
-    if(HTTP_Get("127.0.0.1", "v1/client/gamedetails", 8090, response, sizeof(response))) {
-        printf("  Agent response: %s\n", response);
-
-        // Line formatting
-        // line 1: input amount
-        // line 2: validated contract ('true' or 'false')
-        // line 3, 4 and 5: first, second and third place rewards
-        int index = 0;
-        for(char* p = strtok(response, ","); p != NULL; p = strtok(NULL, ",")) {
-            printf("Read line: %s\n", p);
-            switch(index) {
-                case(0):
-                    output->input_amount = strtol(p, (char **)NULL, 10);
-                    break;
-                case(1):
-                    output->valid_smart_contract = strcmp(p, "true") ? 0 : 1;
-                    break;
-                case(2):
-                    output->payout_amounts[0] = strtol(p, (char **)NULL, 10);
-                    break;
-                case(3):
-                    output->payout_amounts[1] = strtol(p, (char **)NULL, 10);
-                    break;
-                case(4):
-                    output->payout_amounts[2] = strtol(p, (char **)NULL, 10);
-                    break;
+        int count = 0;
+        char *pt;
+        pt = strtok (response, ":");
+        while (pt != NULL) {
+            int value = atoi(pt);
+            if (count == 0) {
+                gamedetails.firstReward = value;
+            } else if (count == 1) {
+                gamedetails.secondReward = value;
+            } else if (count == 2) {
+                gamedetails.thirdReward = value;
+            } else if (count == 3) {
+                gamedetails.playerCount = value + 1;
+            } else if (count == 4) {
+                gamedetails.deposit = value;
             }
-
-            if(index == 5)
-                break;
-
-            index++;
+            pt = strtok (NULL, ":");
+            count++;
         }
-
-        // Incomplete response
-        if(index < 5)
-            return 0;
-
-        return 1;
-    }
-    else {
+        return gamedetails;
+    } else {
         printf("Failed to do HTTP call...\n");
-        return 0;
+        return gamedetails;
     }
 }

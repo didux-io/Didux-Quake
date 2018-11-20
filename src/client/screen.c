@@ -1579,6 +1579,8 @@ void appendSpaces(char *dest, int num_of_spaces) {
     dest[len + num_of_spaces] = '\0';
 }
 
+gameDetails_t gamedetails;
+
 static void SCR_ExecuteLayoutString(const char *s)
 {
     char    buffer[MAX_QPATH];
@@ -1711,7 +1713,7 @@ static void SCR_ExecuteLayoutString(const char *s)
 
         if (!strcmp(token, "client")) {
             // draw a deathmatch client block
-            int score, ping, time, totalPlayers;
+            int score, ping, time;
 
             token = COM_Parse(&s);
             x = scr.hud_width / 2 - 160 + atoi(token);
@@ -1734,6 +1736,11 @@ static void SCR_ExecuteLayoutString(const char *s)
             token = COM_Parse(&s);
             time = atoi(token);
 
+            if (frames % 2000 == 1) {
+                gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
+                Com_Printf("Refreshing gamedetails \n");
+            }
+
             char *place = COM_Parse(&s);
             if (atoi(place) > 3) {
                 // Just print the first 3 places
@@ -1747,19 +1754,7 @@ static void SCR_ExecuteLayoutString(const char *s)
                 appendSpaces(place, placesSpaces);
             }
 
-            token = COM_Parse(&s);
-            totalPlayers = atoi(token);
-
-            float winAmount = calculatePlayerWonAmount(atoi(place), totalPlayers, totalPlayers * 10);
-            char winAmountString[1024];
-            maxLength = 6;
-            gcvt(winAmount, maxLength, winAmountString);
-            int winSpaces = amountOfSpaces(maxLength, strlen(winAmountString));
-            if (winSpaces < 0) {
-                winAmountString[maxLength] = 0;
-            } else {
-                appendSpaces(winAmountString, winSpaces);
-            }
+            token = COM_Parse(&s);         
             
             char name[1024];
             sprintf(name, "%s", ci->name);
@@ -1772,6 +1767,22 @@ static void SCR_ExecuteLayoutString(const char *s)
             }
 
             char scoreRow[1024];
+            char winAmountString[1024];
+            if (atoi(place) == 1) {
+                sprintf(winAmountString, "%d", gamedetails.firstReward);
+            } else if (atoi(place) == 2) {
+                sprintf(winAmountString, "%d", gamedetails.secondReward);
+            } else if (atoi(place) == 3) {
+                sprintf(winAmountString, "%d", gamedetails.thirdReward);
+            } 
+            maxLength = 6;
+            // gcvt(winAmountString, maxLength, winAmountString);
+            int winSpaces = amountOfSpaces(maxLength, strlen(winAmountString));
+            if (winSpaces < 0) {
+                winAmountString[maxLength] = 0;
+            } else {
+                appendSpaces(winAmountString, winSpaces);
+            }
             sprintf(scoreRow, "%s %s %s %d", place, winAmountString, name, score);
 
             // if current player UID then draw alt string

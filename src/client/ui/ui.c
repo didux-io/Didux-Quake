@@ -150,10 +150,7 @@ void UI_PopMenu(void)
 
     if (strcmp(menu->name, "smilo") == 0) {
         frames = 0;
-        amountOfPlayers = 1;
         amountOfSecondsForBet = 59;
-        playAmount = 10;
-        simulatePlayers = false;
     } 
 
     if (menu->pop) {
@@ -618,29 +615,6 @@ static void UI_FreeMenus(void)
         }
     }
     List_Init(&ui_menus);
-}
-
-int calculatePlayerWonAmount(playerPlace, amountOfPlayers, totalDepositPool) {
-    double playerSmiloPayWon = 0;
-    double onePercentOfPool = (double) totalDepositPool / 100;
-    if (amountOfPlayers >= 3) {
-        if (playerPlace == 1) {
-            playerSmiloPayWon = onePercentOfPool * 55;
-        } else if (playerPlace == 2) {
-            playerSmiloPayWon = onePercentOfPool * 35;
-        } else if (playerPlace == 3) {
-            playerSmiloPayWon = onePercentOfPool * 10;
-        }
-    } else if (amountOfPlayers == 2) {
-        if (playerPlace == 1) {
-            playerSmiloPayWon = onePercentOfPool * 75;
-        } else if (playerPlace == 2) {
-            playerSmiloPayWon = onePercentOfPool * 25;
-        }
-    } else if (amountOfPlayers == 1 && playerPlace == 1) {
-        playerSmiloPayWon = onePercentOfPool * 100;
-    }
-    return playerSmiloPayWon;
 }
 
 
