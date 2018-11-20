@@ -1,0 +1,46 @@
+{
+    "id": "SmiloQuake",
+    "version": "0.9.4",
+    "title": "Smilo Quake",
+    "subTitle": "Shoot, kill and earn SmiloPay",
+    "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
+    "description": "The classic first person shooter Quake II now reimagined by the Smilo team! Win SmiloPay by playing against strangers or your friends. Compete in high stake matches to earn even more SmiloPay!",
+    "tags": ["shooter", "old school", "fps"],
+    "thumbnailUrl": "gui/assets/images/games/quake2_thumbnail.jpg",
+    "art": [
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen1.png"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen2.jpeg"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen3.jpeg"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen4.jpeg"
+        },
+        {
+            "type": "image",
+            "url": "gui/assets/images/games/quake2_screen5.jpg"
+        }
+    ],
+    "platforms": [
+        {
+            "name": "darwin",
+            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/darwin_x86_64.tar.gz",
+            "baseDir": ".",
+            "binary": "./SmiloQuake"
+        },
+        {
+            "name": "win32",
+            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
+            "baseDir": ".",
+            "binary": "./SmiloQuake.exe"
+        }
+    ]
+}
