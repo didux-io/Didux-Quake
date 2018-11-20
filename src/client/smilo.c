@@ -112,7 +112,6 @@ gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress) {
     gamedetails.playerCount = -1;
     if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
         printf("  Agent response: %s\n", response);
-
         int count = 0;
         char *pt;
         pt = strtok (response, ":");
@@ -120,21 +119,15 @@ gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress) {
             int value = atoi(pt);
             if (count == 0) {
                 gamedetails.firstReward = value;
-                printf("CL_Smilo_Get_Game_Details firstReward %d \n", value);
             } else if (count == 1) {
                 gamedetails.secondReward = value;
-                printf("CL_Smilo_Get_Game_Details secondReward %d \n", value);
             } else if (count == 2) {
                 gamedetails.thirdReward = value;
-                printf("CL_Smilo_Get_Game_Details thirdReward %d \n", value);
             } else if (count == 3) {
                 gamedetails.playerCount = value + 1;
-                printf("CL_Smilo_Get_Game_Details playerCount %d \n", value);
             } else if (count == 4) {
                 gamedetails.deposit = value;
-                printf("CL_Smilo_Get_Game_Details deposit %d \n", value);
             }
-            printf("%d\n", value);
             pt = strtok (NULL, ":");
             count++;
         }
