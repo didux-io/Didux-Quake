@@ -79,7 +79,7 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
         // Free used memory
         free(s.ptr);
 
-        if (response_code == 200) {
+        if (response_code >= 200 && response_code <= 299) {
             return 1;
         } else {
             return 0;
