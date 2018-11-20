@@ -1768,16 +1768,12 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             char scoreRow[1024];
             char winAmountString[1024];
-            Com_Printf("Place %s \n", place);
             if (atoi(place) == 1) {
                 sprintf(winAmountString, "%d", gamedetails.firstReward);
-                Com_Printf("First price: %s \n", winAmountString);
             } else if (atoi(place) == 2) {
                 sprintf(winAmountString, "%d", gamedetails.secondReward);
-                Com_Printf("Second price: %s \n", winAmountString);
             } else if (atoi(place) == 3) {
                 sprintf(winAmountString, "%d", gamedetails.thirdReward);
-                Com_Printf("Third price: %s \n", winAmountString);
             } 
             maxLength = 6;
             // gcvt(winAmountString, maxLength, winAmountString);
