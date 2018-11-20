@@ -79,10 +79,10 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
         // Free used memory
         free(s.ptr);
 
-        if (res != CURLE_OK || response_code == 422) {
-            return 0;
-        } else {
+        if (response_code == 200) {
             return 1;
+        } else {
+            return 0;
         }
     }
     else {
