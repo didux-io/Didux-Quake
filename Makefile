@@ -49,6 +49,8 @@ LDFLAGS_s :=
 LDFLAGS_c :=
 LDFLAGS_g := -shared
 
+OUTPUT_DIR ?= ./
+
 ifdef CONFIG_WINDOWS
     # Force i?86-netware calling convention on x86 Windows
     ifeq ($(CPU),x86)
@@ -516,13 +518,13 @@ endif
 ### Targets ###
 
 ifdef CONFIG_WINDOWS
-    TARG_s := SmiloQuakeDedicated.exe
-    TARG_c := SmiloQuake.exe
-    TARG_g := game$(CPU).dll
+    TARG_s := $(OUTPUT_DIR)/SmiloQuakeDedicated.exe
+    TARG_c := $(OUTPUT_DIR)/SmiloQuake.exe
+    TARG_g := $(OUTPUT_DIR)/baseq2/game$(CPU).dll
 else
-    TARG_s := SmiloQuakeDedicated
-    TARG_c := SmiloQuake
-    TARG_g := game$(CPU).so
+    TARG_s := $(OUTPUT_DIR)/SmiloQuakeDedicated
+    TARG_c := $(OUTPUT_DIR)/SmiloQuake
+    TARG_g := $(OUTPUT_DIR)/baseq2/game$(CPU).so
 endif
 
 all: $(TARG_s) $(TARG_c) $(TARG_g)

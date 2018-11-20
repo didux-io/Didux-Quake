@@ -1,0 +1,39 @@
+.:cr8_set
+.:texture wad
+.:::::: (Quake 1) 
+
+
+::::::::::::::
+:::::::::::::::
+::::::::::::::::::
+:::::::::::::::::::::::2003
+Autor: Speedy
+	 www.cr8.da.ru or planetquake.com/speedy
+	 speeds@bk.ru
+	 ICQ 68154481	
+
+
+-- Copyright / Permissions --
+
+This is NOT freeware. NOT public domain.
+Property and Copyright: Artist Known as Speedy/Speeds
+
+NON-commercial use only.
+They can be used by any individual or Mod/TC etc as long as its not to make money.
+This means you cant use them for anything that is made for money, going to be sold
+or enters a competition with money prize.
+If you have any plans for commersial use - you have to obtain my permission.
+If you modify any of the textures, they still remain my property. 
+
+In any case were these textures are being used please give a proper credit and 
+include a link (www.cr8.da.ru or planetquake.com/speedy)
+in any documentation accompanied with that project.
+
+
+If you dont agree with these conditions - dont use my textures.
+
+
+You MAY distribute this file through any electronic network (internet,
+local BBS etc.), provided you include txt and all files unmodified and leave the zip archive intact. 
+
+ 

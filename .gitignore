@@ -16,3 +16,5 @@
 /tags
 /TAGS
 /.vscode
+/output
+.DS_Store
