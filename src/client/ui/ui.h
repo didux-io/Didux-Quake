@@ -37,10 +37,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define MAX_MENU_ITEMS  250000000
 
 int frames;
-int amountOfPlayers;
 int amountOfSecondsForBet;
-int playAmount;
-bool simulatePlayers;
 
 typedef enum {
     MTYPE_BAD,
@@ -334,7 +331,6 @@ void        UI_LoadScript(void);
 menuFrameWork_t *UI_FindMenu(const char *name);
 
 void        Menu_Init(menuFrameWork_t *menu);
-int calculatePlayerWonAmount(int playerPlace, int amountOfPlayers, int totalDepositPool);
 void        Menu_Size(menuFrameWork_t *menu);
 void        Menu_Draw(menuFrameWork_t *menu);
 void        Menu_AddItem(menuFrameWork_t *menu, void *item);

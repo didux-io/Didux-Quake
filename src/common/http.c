@@ -63,22 +63,25 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
 
         res = curl_easy_perform(curl);
 
+        long response_code;
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+
+        printf("Status code: %ld \n", response_code);
+
         curl_easy_cleanup(curl);
 
-        if(res != CURLE_OK) {
-            printf("Failed to do http call...");
+        // Zero output buffer
+        memset(responseBuffer, 0, responseBufferSize);
+
+        // Copy data into output buffer
+        memcpy(responseBuffer, s.ptr, s.len);
+
+        // Free used memory
+        free(s.ptr);
+
+        if (res != CURLE_OK || response_code == 422) {
             return 0;
-        }
-        else {
-            // Zero output buffer
-            memset(responseBuffer, 0, responseBufferSize);
-
-            // Copy data into output buffer
-            memcpy(responseBuffer, s.ptr, s.len);
-
-            // Free used memory
-            free(s.ptr);
-
+        } else {
             return 1;
         }
     }

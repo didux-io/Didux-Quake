@@ -3185,7 +3185,12 @@ void CL_Smilo_ConfirmedParticipate(void)
     // Put out of spectator mode
     Cvar_Set("spectator", "0");
     confirmedParticipate = true;
-    CL_Smilo_Connected(current_player_publickey, contract_address, 0);
+    char buffer[1024];
+    CL_Smilo_Connected(contract_address, buffer, sizeof(buffer) - 1);
+    if (strcmp(buffer, "1") != 0) {
+        Com_Error(ERR_DROP, "%s \n", buffer);
+        CL_Disconnect(ERR_DROP);
+    }
     UI_PopMenu();
 }
 

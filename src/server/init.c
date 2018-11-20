@@ -170,8 +170,6 @@ void SV_SpawnServer(mapcmd_t *cmd)
 
     SCR_BeginLoadingPlaque();           // for local system
 
-    SV_Smilo_StartMatch();
-
     Com_Printf("------- Server Initialization -------\n");
     Com_Printf("SpawnServer: %s\n", cmd->server);
 

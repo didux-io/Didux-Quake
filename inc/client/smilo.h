@@ -1,16 +1,10 @@
-void CL_Smilo_Connected(char* id, char* contractAddress, int playfee);
-typedef struct {
-    unsigned int input_amount;
-    unsigned int payout_amounts[3];
-    int valid_smart_contract;
-} smilo_game_info;
+#include "../../src/client/gamedetails.h"
 
+void CL_Smilo_Connected(char* contractAddress, char* buffer, int buffersize);
 int CL_Smilo_GetBalance(char* uid);
 int CL_Smilo_GetBalance(char* uid);
 int CL_Smilo_BetConfirmed();
-int CL_Smilo_GetPublicKey();
-int CL_Smilo_Get_Validated_Player_Count();
+int CL_Smilo_GetPublicKey(char* buffer, int buffersize);
+gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress);
 
 extern char current_player_publickey[1024];
-
-int CL_Smilo_GameInfo(smilo_game_info* output);

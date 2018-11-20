@@ -176,7 +176,6 @@ begin gameflags
     toggle "allow armor" dmflags ~11
     toggle "spawn farthest" dmflags 9
     toggle "same map" dmflags 5
-    toggle "force respawn" dmflags 10
     toggle "infinite ammo" dmflags 13
     toggle "fixed FOV" dmflags 15
     toggle "quad drop" dmflags 14

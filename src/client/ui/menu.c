@@ -1810,10 +1810,7 @@ void Menu_Init(menuFrameWork_t *menu)
 
     if (strcmp(menu->name, "smilo") == 0) {
         frames = 0;
-        amountOfPlayers = 1;
         amountOfSecondsForBet = 59;
-        playAmount = 10;
-        simulatePlayers = false;
     }
 
     menu->y1 = 0;
@@ -2164,6 +2161,9 @@ static void Menu_DrawStatus(menuFrameWork_t *menu)
 
 int msec = 0;
 float pastTime = 0;
+int amountofplayers = 0;
+gameDetails_t gamedetails;
+
 
 /*
 =================
@@ -2191,24 +2191,13 @@ void Menu_Draw(menuFrameWork_t *menu)
         }
     }
 
-//
-// draw title bar
-//  
     frames++;
     if (frames == 50000) {
         frames = 0;
     }
-    if (simulatePlayers) {
-        if (frames % 100 == 0) {
-            amountOfPlayers++;
-        } else if (frames == 50000) {
-            amountOfPlayers = 0;
-        }
-    } else {
-        if (frames % 2000 == 1) {
-            amountOfPlayers = CL_Smilo_Get_Validated_Player_Count(cls.contract_address) + 1;
-            Com_Printf("Refreshing player list: %d \n", amountOfPlayers);
-        }
+    if (frames % 2000 == 1) {
+        gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
+        Com_Printf("Refreshing gamedetails \n");
     }
     // Main title
     if (menu->title1) {
@@ -2219,11 +2208,11 @@ void Menu_Draw(menuFrameWork_t *menu)
     if (menu->title2) {
         char* draw = menu->title2;
         if (strcmp(menu->title2, "1st price") == 0) {
-            if (amountOfPlayers < 1) {
+            if (gamedetails.playerCount < 1) {
                 draw = "";
             } else {
                 char * result = NULL;
-                asprintf(&result, "%s %d Smilo", menu->title2, calculatePlayerWonAmount(1, amountOfPlayers, amountOfPlayers * playAmount));
+                asprintf(&result, "%s %d Smilo", menu->title2, gamedetails.firstReward);
                 draw = result;
             }
         } 
@@ -2235,11 +2224,11 @@ void Menu_Draw(menuFrameWork_t *menu)
     if (menu->title3) {
         char* draw = menu->title3;
         if (strcmp(menu->title3, "2nd price") == 0) {
-            if (amountOfPlayers < 2) {
+            if (gamedetails.playerCount < 2) {
                 draw = "";
             } else {
                 char * result = NULL;
-                asprintf(&result, "%s %d Smilo", menu->title3, calculatePlayerWonAmount(2, amountOfPlayers, amountOfPlayers * playAmount));
+                asprintf(&result, "%s %d Smilo", menu->title3, gamedetails.secondReward);
                 draw = result;
             }
         } 
@@ -2252,11 +2241,11 @@ void Menu_Draw(menuFrameWork_t *menu)
     if (menu->title4) {
         char* draw = menu->title4;
         if (strcmp(menu->title4, "3rd price") == 0) {
-            if (amountOfPlayers < 3) {
+            if (gamedetails.playerCount < 3) {
                 draw = "";
             } else {
                 char * result = NULL;
-                asprintf(&result, "%s %d Smilo", menu->title4, calculatePlayerWonAmount(3, amountOfPlayers, amountOfPlayers * playAmount));
+                asprintf(&result, "%s %d Smilo", menu->title4, gamedetails.thirdReward);
                 draw = result;
             }
         } 
@@ -2337,7 +2326,7 @@ void Menu_Draw(menuFrameWork_t *menu)
         char* draw = menu->title6;
         if (strcmp(menu->title6, "amountofplayers") == 0) {
             char * result = NULL;
-            asprintf(&result, "Players (including you): %d", amountOfPlayers);
+            asprintf(&result, "Players (including you): %d", gamedetails.playerCount);
             draw = result;
         } 
         UI_DrawString(uis.width / 2, menu->y1 + 110,
@@ -2347,7 +2336,7 @@ void Menu_Draw(menuFrameWork_t *menu)
         char* draw = menu->title7;
         if (strcmp(menu->title7, "playamount") == 0) {
             char * result = NULL;
-            asprintf(&result, "Transaction (to play): %d Smilo", playAmount);
+            asprintf(&result, "Transaction (to play): %d SmiloPay", gamedetails.deposit);
             draw = result;
         } 
         UI_DrawString(uis.width / 2, menu->y1 + 120,

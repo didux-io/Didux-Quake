@@ -1722,7 +1722,7 @@ void ClientBeginServerFrame(edict_t *ent)
                 buttonMask = -1;
 
             if ((client->latched_buttons & buttonMask) ||
-                (deathmatch->value && ((int)dmflags->value & DF_FORCE_RESPAWN))) {
+                (deathmatch->value)) {
                 respawn(ent);
                 client->latched_buttons = 0;
             }
