@@ -94,8 +94,6 @@ int CL_Smilo_BetConfirmed(char* publickey, char* contractaddress) {
 }
 
 gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress) {
-    printf("Get player count!\n");
-
     // Format url to contain query parameter
     char url[1024];
     char* urlTemplate = "v1/client/gameDetailsWelcomeMenu?contractaddress=%s";
