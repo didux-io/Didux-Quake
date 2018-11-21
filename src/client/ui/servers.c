@@ -285,6 +285,10 @@ void UI_StatusEvent(const serverStatus_t *status)
         if (!value[0])
             strcpy(value, "<MISSING VALUE>");
 
+        if (strcmp(key, "version") == 0) {
+            sprintf(value, "%s", "Smilo Quake Edition");
+        }    
+
         slot->rules[slot->numRules++] =
             UI_FormatColumns(0, key, value, NULL);
     }
