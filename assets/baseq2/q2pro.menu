@@ -199,7 +199,6 @@ begin multiplayer
     banner m_banner_multiplayer
     action "browse official Smilo servers" pushmenu servers "favorites://" "file:///servers.lst" "broadcast://"
     action "browse other servers" pushmenu servers "+http://q2servers.com/?raw=2"
-    action "start own server" pushmenu startserver
 end
 
 begin loadgame
