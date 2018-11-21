@@ -1,6 +1,6 @@
 {
     "id": "SmiloQuake",
-    "version": "0.9.5",
+    "version": "0.9.8",
     "title": "Smilo Quake",
     "subTitle": "Shoot, kill and earn SmiloPay",
     "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
@@ -40,7 +40,11 @@
             "name": "win32",
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "./SmiloQuake.exe"
+            "binary": "SmiloQuake.exe"
         }
+    ],
+    "retainWhenUpdating": [
+        "baseq2/config.cfg",
+        "baseq2/q2config.cfg"
     ]
 }
