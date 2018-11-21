@@ -2196,8 +2196,10 @@ void Menu_Draw(menuFrameWork_t *menu)
         frames = 0;
     }
     if (frames % 2000 == 1) {
-        gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
-        Com_Printf("Refreshing gamedetails \n");
+        if (strcmp(menu->name, "smilo") == 0) {
+            Com_Printf("Refreshing gamedetails \n");
+            gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
+        }
     }
     // Main title
     if (menu->title1) {
