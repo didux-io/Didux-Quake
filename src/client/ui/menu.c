@@ -2257,23 +2257,28 @@ void Menu_Draw(menuFrameWork_t *menu)
     // Timer
     if (menu->title5) {
         char * result = NULL;
-        float remainingtime = cl.frame.ps.stats[STAT_LEVEL_TIMER];
+        int remainingtime = cl.frame.ps.stats[STAT_LEVEL_TIMER];
         int timelimit = cl.frame.ps.stats[STAT_TIME_LIMIT];
         if (remainingtime != pastTime) {
             pastTime = remainingtime;
             amountOfSecondsForBet--;
         }
-        int second = (int) remainingtime % HOUR;
+        if (remainingtime < 0) {
+            UI_PopMenu();
+        }
+        int second = remainingtime % HOUR;
         if (timelimit == 0) {
-            asprintf(&result, "Time limit: %s", "No limit");
+            asprintf(&result, "Time left: %s", "No limit");
         } else if (remainingtime > 0) {
             int minute = second / MIN;
             second %= MIN;
             char timeRemainingText[128];
             sprintf(timeRemainingText, "%.2d:%.2d", minute, second);
-            asprintf(&result, "Time limit: %s", timeRemainingText);
+            asprintf(&result, "Time left: %s", timeRemainingText);
+        } else if (remainingtime == 0) {
+            asprintf(&result, "Time left: %s", "00:00");
         } else {
-            asprintf(&result, "Time limit: %s", "Loading...");
+            asprintf(&result, "Time left: %s", "Loading...");
         }
 
         menu->title5 = result;
