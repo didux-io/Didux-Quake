@@ -1749,7 +1749,7 @@ SV_Process_EndGame(void) {
 		if(found_client) {
 			// Create query parameter part
 			char query_param_part[1024];
-			sprintf(query_param_part, "%s%%3A%i%%3A%s%%5Cn", found_client->publickey, winner->kills, found_client->name);
+			sprintf(query_param_part, "%s%%3A%i%%5Cn", found_client->publickey, winner->kills);
 			
 			// Merge with total
 			for(int j = 0; j < 1024; j++) {
