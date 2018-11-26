@@ -1810,6 +1810,8 @@ void Menu_Init(menuFrameWork_t *menu)
 
     if (strcmp(menu->name, "smilo") == 0) {
         frames = 0;
+        topFraggerAmount = 0;
+        showScoreboardUI = 0;
         amountOfSecondsForBet = 59;
     }
 
@@ -2164,7 +2166,6 @@ float pastTime = 0;
 int amountofplayers = 0;
 gameDetails_t gamedetails;
 
-
 /*
 =================
 Menu_Draw
@@ -2288,8 +2289,9 @@ void Menu_Draw(menuFrameWork_t *menu)
     }
     if (menu->title10) {
         char * result = NULL;
-        asprintf(&result, "#1 Frags amount: %s", "0");
+        asprintf(&result, "#1 Frags amount: %d", topFraggerAmount);
         menu->title10 = result;
+        CL_ClientCommand("score");
         UI_DrawString(uis.width / 2, menu->y1 + 80,
                     UI_CENTER | menu->color.u32, menu->title10);
     }

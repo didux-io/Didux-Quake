@@ -1580,6 +1580,8 @@ void appendSpaces(char *dest, int num_of_spaces) {
 }
 
 gameDetails_t gamedetails;
+int topFraggerAmount;
+int totalAmountOfPlayers;
 
 static void SCR_ExecuteLayoutString(const char *s)
 {
@@ -1696,8 +1698,7 @@ static void SCR_ExecuteLayoutString(const char *s)
             continue;
 		}
 
-        if (!strcmp(token, "topscore")) {
-
+        if (!strcmp(token, "topscore") && showScoreboardUI == 1) {
             x = (scr.hud_width - 256) / 2;
             y = (scr.hud_height - 240) / 2;
             R_DrawPic(x, y + 8, scr.inven_pic);
@@ -1708,6 +1709,11 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             HUD_DrawString(x, y, "-  ------ ---------- -----");
             y += CHAR_HEIGHT;
+
+            char totalAmountOfPlayersString[1024];
+            sprintf(totalAmountOfPlayersString, "Total: %d", totalAmountOfPlayers);
+            y+= 124;
+            HUD_DrawString(x, y, totalAmountOfPlayersString);
             continue;
         }
 
@@ -1726,7 +1732,6 @@ static void SCR_ExecuteLayoutString(const char *s)
                 Com_Error(ERR_DROP, "%s: invalid client index", __func__);
             }
             ci = &cl.clientinfo[value];
-
             token = COM_Parse(&s); // 4. Score
             score = atoi(token);
 
@@ -1742,10 +1747,7 @@ static void SCR_ExecuteLayoutString(const char *s)
             }
 
             char *place = COM_Parse(&s); // 7. Place
-            if (atoi(place) > 3) {
-                // Just print the first 3 places
-                continue;
-            }
+            totalAmountOfPlayers = atoi(COM_Parse(&s)); // 8. Totalplayers
             int maxLength = 2;
             int placesSpaces = amountOfSpaces(maxLength, strlen(place));
             if (placesSpaces < 0) {
@@ -1768,11 +1770,14 @@ static void SCR_ExecuteLayoutString(const char *s)
             char winAmountString[1024];
             if (atoi(place) == 1) {
                 sprintf(winAmountString, "%d", gamedetails.firstReward);
+                topFraggerAmount = score;
             } else if (atoi(place) == 2) {
                 sprintf(winAmountString, "%d", gamedetails.secondReward);
             } else if (atoi(place) == 3) {
                 sprintf(winAmountString, "%d", gamedetails.thirdReward);
-            } 
+            } else {
+                sprintf(winAmountString, "%d", 0);
+            }
             maxLength = 6;
             int winSpaces = amountOfSpaces(maxLength, strlen(winAmountString));
             if (winSpaces < 0) {
@@ -1781,9 +1786,9 @@ static void SCR_ExecuteLayoutString(const char *s)
                 appendSpaces(winAmountString, winSpaces);
             }
             sprintf(scoreRow, "%s %s %s %d", place, winAmountString, name, score);
-
-            // if current player UID then draw alt string
-            HUD_DrawString(x, y, scoreRow); // otherwhise just normal string
+            if (showScoreboardUI == 1) {
+                HUD_DrawString(x, y, scoreRow);
+            }
             continue;
         }
 
@@ -2070,11 +2075,15 @@ draw:
 
 static void SCR_Draw2D(void)
 {
-    if (scr_draw2d->integer <= 0)
+    if (scr_draw2d->integer <= 0) {
+        Com_Printf("RETURN 1st \n");
         return;     // turn off for screenshots
+    }
 
-    if (cls.key_dest & KEY_MENU)
-        return;
+    // if (cls.key_dest & KEY_MENU) {
+    //     Com_Printf("RETURN 2nd \n");
+    //     return;
+    // }
 
     R_SetScale(scr.hud_scale);
 

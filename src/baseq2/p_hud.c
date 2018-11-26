@@ -195,8 +195,8 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer)
 
     int amountToCheck = total;
 
-    if (amountToCheck > 3) {
-        amountToCheck = 3;
+    if (amountToCheck > 12) {
+        amountToCheck = 12;
     }
 
     for (i = 0 ; i < amountToCheck ; i++) {
@@ -216,10 +216,9 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer)
         char place[1024];
         sprintf(place, "%d", (i + 1));
         // send the layout
-        
         Q_snprintf(entry, sizeof(entry),
-                   "client %i %i %i %i %i %i %s ",
-                   x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe) / 600, place);
+                   "client %i %i %i %i %i %i %s %d ",
+                   x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe) / 600, place, total);
         j = strlen(entry);
         if (stringlength + j > 1024)
             break;
