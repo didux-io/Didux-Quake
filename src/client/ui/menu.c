@@ -1810,6 +1810,8 @@ void Menu_Init(menuFrameWork_t *menu)
 
     if (strcmp(menu->name, "smilo") == 0) {
         frames = 0;
+        topFraggerAmount = 0;
+        showScoreboardUI = 0;
         amountOfSecondsForBet = 59;
     }
 
@@ -2164,7 +2166,6 @@ float pastTime = 0;
 int amountofplayers = 0;
 gameDetails_t gamedetails;
 
-
 /*
 =================
 Menu_Draw
@@ -2286,6 +2287,14 @@ void Menu_Draw(menuFrameWork_t *menu)
         UI_DrawString(uis.width / 2, menu->y1 + 60,
                       UI_CENTER | menu->color.u32, menu->title5);
     }
+    if (menu->title10) {
+        char * result = NULL;
+        asprintf(&result, "#1 Frags amount: %d", topFraggerAmount);
+        menu->title10 = result;
+        CL_ClientCommand("score");
+        UI_DrawString(uis.width / 2, menu->y1 + 80,
+                    UI_CENTER | menu->color.u32, menu->title10);
+    }
     if (menu->title8) {
         char* draw = menu->title8;
         if (strcmp(menu->title8, "bettimeremaining") == 0) {
@@ -2307,10 +2316,10 @@ void Menu_Draw(menuFrameWork_t *menu)
             draw = result;
         } 
         if (amountOfSecondsForBet % 2 == 0) {
-            UI_DrawString(uis.width / 2, menu->y1 + 90,
+            UI_DrawString(uis.width / 2, menu->y1 + 100,
                     UI_CENTER | UI_ALTCOLOR, draw);
         } else {
-            UI_DrawString(uis.width / 2, menu->y1 + 90,
+            UI_DrawString(uis.width / 2, menu->y1 + 100,
                     UI_CENTER | menu->color.u32, draw);
         }
     }
@@ -2336,7 +2345,7 @@ void Menu_Draw(menuFrameWork_t *menu)
             asprintf(&result, "Players (including you): %d", gamedetails.playerCount);
             draw = result;
         } 
-        UI_DrawString(uis.width / 2, menu->y1 + 110,
+        UI_DrawString(uis.width / 2, menu->y1 + 120,
                     UI_CENTER | menu->color.u32, draw);
     }
     if (menu->title7) {
@@ -2346,7 +2355,7 @@ void Menu_Draw(menuFrameWork_t *menu)
             asprintf(&result, "Transaction (to play): %d SmiloPay", gamedetails.deposit);
             draw = result;
         } 
-        UI_DrawString(uis.width / 2, menu->y1 + 120,
+        UI_DrawString(uis.width / 2, menu->y1 + 130,
                     UI_CENTER | menu->color.u32, draw);
     }
 
@@ -2774,6 +2783,7 @@ void Menu_Free(menuFrameWork_t *menu)
     Z_Free(menu->title7);
     Z_Free(menu->title8);
     Z_Free(menu->title9);
+    Z_Free(menu->title10);
     Z_Free(menu->name);
     Z_Free(menu);
 }

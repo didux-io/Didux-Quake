@@ -1580,6 +1580,8 @@ void appendSpaces(char *dest, int num_of_spaces) {
 }
 
 gameDetails_t gamedetails;
+int topFraggerAmount;
+int totalAmountOfPlayers;
 
 static void SCR_ExecuteLayoutString(const char *s)
 {
@@ -1696,8 +1698,7 @@ static void SCR_ExecuteLayoutString(const char *s)
             continue;
 		}
 
-        if (!strcmp(token, "topscore")) {
-
+        if (!strcmp(token, "topscore") && showScoreboardUI == 1) {
             x = (scr.hud_width - 256) / 2;
             y = (scr.hud_height - 240) / 2;
             R_DrawPic(x, y + 8, scr.inven_pic);
@@ -1708,6 +1709,11 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             HUD_DrawString(x, y, "-  ------ ---------- -----");
             y += CHAR_HEIGHT;
+
+            char totalAmountOfPlayersString[1024];
+            sprintf(totalAmountOfPlayersString, "Total: %d", totalAmountOfPlayers);
+            y+= 124;
+            HUD_DrawString(x, y, totalAmountOfPlayersString);
             continue;
         }
 
@@ -1715,25 +1721,24 @@ static void SCR_ExecuteLayoutString(const char *s)
             // draw a deathmatch client block
             int score, ping, time;
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 1. X Position
             x = scr.hud_width / 2 - 160 + atoi(token);
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 2. Y Position
             y = scr.hud_height / 2 - 120 + atoi(token);
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 3. Player index
             value = atoi(token);
             if (value < 0 || value >= MAX_CLIENTS) {
                 Com_Error(ERR_DROP, "%s: invalid client index", __func__);
             }
             ci = &cl.clientinfo[value];
-
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 4. Score
             score = atoi(token);
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 5. Ping
             ping = atoi(token);
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 6. Frames
             time = atoi(token);
 
             if (frames % 2000 == 1) {
@@ -1741,20 +1746,15 @@ static void SCR_ExecuteLayoutString(const char *s)
                 Com_Printf("Refreshing gamedetails \n");
             }
 
-            char *place = COM_Parse(&s);
-            if (atoi(place) > 3) {
-                // Just print the first 3 places
-                continue;
-            }
+            char *place = COM_Parse(&s); // 7. Place
+            totalAmountOfPlayers = atoi(COM_Parse(&s)); // 8. Totalplayers
             int maxLength = 2;
             int placesSpaces = amountOfSpaces(maxLength, strlen(place));
             if (placesSpaces < 0) {
                 place[maxLength] = 0;
             } else {
                 appendSpaces(place, placesSpaces);
-            }
-
-            token = COM_Parse(&s);         
+            }    
             
             char name[1024];
             sprintf(name, "%s", ci->name);
@@ -1770,13 +1770,15 @@ static void SCR_ExecuteLayoutString(const char *s)
             char winAmountString[1024];
             if (atoi(place) == 1) {
                 sprintf(winAmountString, "%d", gamedetails.firstReward);
+                topFraggerAmount = score;
             } else if (atoi(place) == 2) {
                 sprintf(winAmountString, "%d", gamedetails.secondReward);
             } else if (atoi(place) == 3) {
                 sprintf(winAmountString, "%d", gamedetails.thirdReward);
-            } 
+            } else {
+                sprintf(winAmountString, "%d", 0);
+            }
             maxLength = 6;
-            // gcvt(winAmountString, maxLength, winAmountString);
             int winSpaces = amountOfSpaces(maxLength, strlen(winAmountString));
             if (winSpaces < 0) {
                 winAmountString[maxLength] = 0;
@@ -1784,9 +1786,9 @@ static void SCR_ExecuteLayoutString(const char *s)
                 appendSpaces(winAmountString, winSpaces);
             }
             sprintf(scoreRow, "%s %s %s %d", place, winAmountString, name, score);
-
-            // if current player UID then draw alt string
-            HUD_DrawString(x, y, scoreRow); // otherwhise just normal string
+            if (showScoreboardUI == 1) {
+                HUD_DrawString(x, y, scoreRow);
+            }
             continue;
         }
 
@@ -2073,11 +2075,9 @@ draw:
 
 static void SCR_Draw2D(void)
 {
-    if (scr_draw2d->integer <= 0)
+    if (scr_draw2d->integer <= 0) {
         return;     // turn off for screenshots
-
-    if (cls.key_dest & KEY_MENU)
-        return;
+    }
 
     R_SetScale(scr.hud_scale);
 

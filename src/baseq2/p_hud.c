@@ -61,7 +61,7 @@ void MoveClientToIntermission(edict_t *ent)
     // add the layout
 
     if (deathmatch->value || coop->value) {
-        DeathmatchScoreboardMessage(ent, NULL, 1);
+        DeathmatchScoreboardMessage(ent, NULL);
         gi.unicast(ent, true);
     }
 
@@ -146,7 +146,7 @@ DeathmatchScoreboardMessage
 
 ==================
 */
-void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int endmessage)
+void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer)
 {
     char    entry[1024];
     char    string[1400];
@@ -195,8 +195,8 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int endmessage)
 
     int amountToCheck = total;
 
-    if (amountToCheck > 3) {
-        amountToCheck = 3;
+    if (amountToCheck > 12) {
+        amountToCheck = 12;
     }
 
     for (i = 0 ; i < amountToCheck ; i++) {
@@ -216,10 +216,9 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int endmessage)
         char place[1024];
         sprintf(place, "%d", (i + 1));
         // send the layout
-        
         Q_snprintf(entry, sizeof(entry),
-                   "client %i %i %i %i %i %i %s %d %d ",
-                   x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe) / 600, place, total, endmessage);
+                   "client %i %i %i %i %i %i %s %d ",
+                   x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe) / 600, place, total);
         j = strlen(entry);
         if (stringlength + j > 1024)
             break;
@@ -242,7 +241,7 @@ Note that it isn't that hard to overflow the 1400 byte message limit!
 */
 void DeathmatchScoreboard(edict_t *ent)
 {
-    DeathmatchScoreboardMessage(ent, ent->enemy, 0);
+    DeathmatchScoreboardMessage(ent, ent->enemy);
     gi.unicast(ent, true);
 }
 

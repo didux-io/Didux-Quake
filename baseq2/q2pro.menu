@@ -252,7 +252,6 @@ begin game
     background #0000ff20
     style --compact
     action "browse official Smilo servers" pushmenu servers "favorites://" "file:///servers.lst" "broadcast://"
-    action "browse other servers" pushmenu servers "+http://q2servers.com/?raw=2"
     action "options" pushmenu options
     action "disconnect" disconnect
     action "quit" quit
@@ -303,6 +302,8 @@ begin smilo
     title8 "bettimeremaining"
     blank
     title9 "fraglimit"
+    blank
+    title10 "topfragamount"
     blank
     blank
     title5 "timeremaining"

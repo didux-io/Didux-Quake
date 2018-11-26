@@ -304,6 +304,8 @@ begin smilo
     blank
     title9 "fraglimit"
     blank
+    title10 "topfragamount"
+    blank
     blank
     title5 "timeremaining"
     blank
