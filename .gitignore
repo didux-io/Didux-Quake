@@ -10,8 +10,8 @@
 /q2proded
 /q2proded.exe
 /*.dlldevelopment
-/game*.so
-/game*.dll
+game*.so
+game*.dll
 /tags
 /TAGS
 /.vscode
