@@ -95,7 +95,7 @@ typedef void (*confirmAction_t)(bool);
 typedef struct menuFrameWork_s {
     list_t  entry;
 
-    char    *name, *title1, *title2, *title3, *title4, *title5, *title6, *title7, *title8, *title9, *status;
+    char    *name, *title1, *title2, *title3, *title4, *title5, *title6, *title7, *title8, *title9, *title10, *status;
 
     void    **items;
     int     nitems;

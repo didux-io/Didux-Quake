@@ -1715,25 +1715,25 @@ static void SCR_ExecuteLayoutString(const char *s)
             // draw a deathmatch client block
             int score, ping, time;
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 1. X Position
             x = scr.hud_width / 2 - 160 + atoi(token);
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 2. Y Position
             y = scr.hud_height / 2 - 120 + atoi(token);
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 3. Player index
             value = atoi(token);
             if (value < 0 || value >= MAX_CLIENTS) {
                 Com_Error(ERR_DROP, "%s: invalid client index", __func__);
             }
             ci = &cl.clientinfo[value];
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 4. Score
             score = atoi(token);
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 5. Ping
             ping = atoi(token);
 
-            token = COM_Parse(&s);
+            token = COM_Parse(&s); // 6. Frames
             time = atoi(token);
 
             if (frames % 2000 == 1) {
@@ -1741,7 +1741,7 @@ static void SCR_ExecuteLayoutString(const char *s)
                 Com_Printf("Refreshing gamedetails \n");
             }
 
-            char *place = COM_Parse(&s);
+            char *place = COM_Parse(&s); // 7. Place
             if (atoi(place) > 3) {
                 // Just print the first 3 places
                 continue;
@@ -1752,9 +1752,7 @@ static void SCR_ExecuteLayoutString(const char *s)
                 place[maxLength] = 0;
             } else {
                 appendSpaces(place, placesSpaces);
-            }
-
-            token = COM_Parse(&s);         
+            }    
             
             char name[1024];
             sprintf(name, "%s", ci->name);
@@ -1776,7 +1774,6 @@ static void SCR_ExecuteLayoutString(const char *s)
                 sprintf(winAmountString, "%d", gamedetails.thirdReward);
             } 
             maxLength = 6;
-            // gcvt(winAmountString, maxLength, winAmountString);
             int winSpaces = amountOfSpaces(maxLength, strlen(winAmountString));
             if (winSpaces < 0) {
                 winAmountString[maxLength] = 0;
