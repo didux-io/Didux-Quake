@@ -2076,14 +2076,8 @@ draw:
 static void SCR_Draw2D(void)
 {
     if (scr_draw2d->integer <= 0) {
-        Com_Printf("RETURN 1st \n");
         return;     // turn off for screenshots
     }
-
-    // if (cls.key_dest & KEY_MENU) {
-    //     Com_Printf("RETURN 2nd \n");
-    //     return;
-    // }
 
     R_SetScale(scr.hud_scale);
 
