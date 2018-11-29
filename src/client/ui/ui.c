@@ -611,7 +611,7 @@ static void UI_FreeMenus(void)
 
     LIST_FOR_EACH_SAFE(menuFrameWork_t, menu, next, &ui_menus, entry) {
         if (menu->free) {
-            menu->free(menu);
+            // menu->free(menu);
         }
     }
     List_Init(&ui_menus);
