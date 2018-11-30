@@ -561,6 +561,8 @@ DEPS_g := $(OBJS_g:.o=.d)
 -include $(DEPS_g)
 
 clean:
+	$(E) $(CFLAGS_c)
+	$(E) $(LIBS_c)
 	$(E) [CLEAN]
 	$(Q)$(RM) $(TARG_s) $(TARG_c) $(TARG_g)
 	$(Q)$(RMDIR) $(BUILD_s) $(BUILD_c) $(BUILD_g)
