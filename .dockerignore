@@ -1,4 +1,5 @@
 baseq2
 docker
-output
 .git
+output
+!output/debian_*.tar.gz
