@@ -13,9 +13,7 @@ WORKDIR /q2pro
 # layers as possible
 COPY version.sh version.sh
 COPY config_linux64 .config
-COPY q2pro-mgw-sdk/Makefile libs/
-COPY q2pro-mgw-sdk/inc libs/inc
-COPY q2pro-mgw-sdk/checksum libs/
+COPY static static
 COPY Makefile Makefile
 COPY inc inc
 COPY src src
