@@ -6,23 +6,23 @@ CONFIG_ANTICHEAT_SERVER=y
 CONFIG_MVD_SERVER=y
 CONFIG_MVD_CLIENT=y
 
-CPU=x86_64
-SYS=Darwin
-
 CC=gcc
 STRIP=strip
 WINDRES=windres
 
-CURL_CFLAGS=-DCURL_STATICLIB
+INCLUDES=-I./static/inc
+LIBS=-L./static/lib-darwin
+
+CURL_CFLAGS=
 CURL_LIBS=-lcurl
 
-PNG_CFLAGS=$(shell libpng-config --cflags)
-PNG_LIBS=$(shell libpng-config --libdir)/libpng16.a
+PNG_CFLAGS=
+PNG_LIBS=-lpng
 
 JPG_CFLAGS=
-JPG_LIBS=/usr/local/Cellar/jpeg/9c/lib/libjpeg.a
+JPG_LIBS=-ljpeg
 
 ZLIB_CFLAGS=
-ZLIB_LIBS=/usr/local/Cellar/zlib/1.2.11/lib/libz.a
+ZLIB_LIBS=-lz
 
-OUTPUT_DIR=./output/darwin/x86_64
+OUTPUT_DIR=.
