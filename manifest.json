@@ -1,6 +1,6 @@
 {
     "id": "SmiloQuake",
-    "version": "0.9.13",
+    "version": "0.9.15",
     "title": "Smilo Quake",
     "subTitle": "Shoot, kill and earn SmiloPay",
     "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
@@ -34,13 +34,13 @@
             "name": "darwin",
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/darwin_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "./SmiloQuake"
+            "binary": "./SmiloQuake +set name ${PROFILE_NAME}"
         },
         {
             "name": "win32",
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "SmiloQuake.exe"
+            "binary": "SmiloQuake.exe +set name ${PROFILE_NAME}"
         }
     ],
     "retainWhenUpdating": [
