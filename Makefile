@@ -471,7 +471,7 @@ ifdef CONFIG_WINDOWS
     LIBS_c += -lws2_32 -lwinmm
 else
     SDL_CFLAGS ?= $(shell sdl2-config --cflags)
-    SDL_LIBS ?= $(shell sdl2-config --libs)
+    SDL_LIBS ?= $(shell sdl2-config --static-libs | cut -d " " -f2-)
     CFLAGS_c += -DUSE_SDL=2 $(SDL_CFLAGS)
     LIBS_c += $(SDL_LIBS)
     OBJS_c += src/unix/video.o

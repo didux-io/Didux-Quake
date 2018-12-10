@@ -17,8 +17,8 @@ CC=x86_64-w64-mingw32-gcc
 STRIP=x86_64-w64-mingw32-strip
 WINDRES=x86_64-w64-mingw32-windres
 
-INCLUDES=-I./q2pro-mgw-sdk/inc -DUSE_PACKETDUP=1
-LIBS=-L./q2pro-mgw-sdk/lib64
+INCLUDES=-I./static/inc -DUSE_PACKETDUP=1
+LIBS=-L./static/lib-win64
 
 CURL_CFLAGS=-DCURL_STATICLIB
 CURL_LIBS=-lcurl
