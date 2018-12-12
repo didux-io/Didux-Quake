@@ -794,6 +794,12 @@ void Cvar_WriteVariables(qhandle_t f, int mask, bool modified)
             continue;
 
         a = !modified && (var->flags & CVAR_ARCHIVE) ? "a" : "";
+        if (strncmp(var->name, "adr", 3) == 0) {
+            continue;
+        }
+        if (strncmp(var->name, "name", 4) == 0) {
+            continue;
+        }
         FS_FPrintf(f, "set%s %s \"%s\"\n", a, var->name, s);
     }
 }
