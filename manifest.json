@@ -35,14 +35,14 @@
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/darwin_x86_64.tar.gz",
             "baseDir": ".",
             "binary": "./SmiloQuake",
-            "args": " +set name ${PROFILE_NAME} ${GAME_SERVERS}"
+            "args": "+set name ${PROFILE_NAME} ${GAME_SERVERS}"
         },
         {
             "name": "win32",
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
             "baseDir": ".",
             "binary": "SmiloQuake.exe",
-            "args": " +set name ${PROFILE_NAME} ${GAME_SERVERS}"
+            "args": "+set name ${PROFILE_NAME} ${GAME_SERVERS}"
         }
     ],
     "retainWhenUpdating": [
@@ -50,6 +50,8 @@
         "baseq2/q2config.cfg"
     ],
     "params": {
-        "gameServersDownloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/servers.lst"
+        "GAME_SERVERS": {
+            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/servers.lst"
+        }
     }
 }
