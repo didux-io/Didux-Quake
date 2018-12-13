@@ -53,5 +53,65 @@
         "GAME_SERVERS": {
             "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/servers.lst"
         }
-    }
+    },
+    "copyright": [
+        {
+            "name": "id Software",
+            "description": "creating Quake II and releasing the source code",
+            "links": [
+                "https://www.idsoftware.com",
+                "https://github.com/id-Software/Quake-2",
+                "https://www.gnu.org/copyleft/gpl.html"
+            ]
+        },
+        {
+            "name": "Skullernet and the q2pro team",
+            "description": "improving and expanding the original Quake II source",
+            "links": [
+                "http://skuller.net/q2pro/",
+                "https://github.com/skullernet/q2pro",
+                "https://github.com/skullernet/q2pro/blob/master/LICENSE"
+            ]
+        },
+        {
+            "name": "jorickhoofd",
+            "description": "in game sounds",
+            "links": [
+                "https://freesound.org/people/jorickhoofd/sounds/170737/",
+                "https://creativecommons.org/licenses/by/3.0/legalcode"
+            ]
+        },
+        {
+            "name": "vizoman",
+            "description": "in game sounds",
+            "links": [
+                "https://freesound.org/people/viznoman/sounds/267305/",
+                "https://creativecommons.org/licenses/by/3.0/legalcode"
+            ]
+        },
+        {
+            "name": "dersuperanton",
+            "description": "in game sounds",
+            "links": [
+                "https://freesound.org/people/dersuperanton/sounds/433717/",
+                "https://creativecommons.org/licenses/by/3.0/legalcode"
+            ]
+        },
+        {
+            "name": "qubodup",
+            "description": "in game sounds",
+            "links": [
+                "https://freesound.org/people/qubodup/sounds/211997/",
+                "https://creativecommons.org/licenses/by/3.0/legalcode"
+            ]
+        },
+        {
+            "name": "Robinhood76",
+            "description": "in game sounds",
+            "links": [
+                "https://freesound.org/people/Robinhood76/sounds/338906/",
+                "https://creativecommons.org/licenses/by-nc/3.0/legalcode"
+            ]
+        }
+    ]
 }
