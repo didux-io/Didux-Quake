@@ -112,6 +112,14 @@
                 "https://freesound.org/people/Robinhood76/sounds/338906/",
                 "https://creativecommons.org/licenses/by-nc/3.0/legalcode"
             ]
+        },
+        {
+            "name": "Dave Johnston",
+            "description": "creating the excellent de_dust map",
+            "links": [
+                "http://www.johnsto.co.uk/",
+                "http://www.johnsto.co.uk/design/making-dust/"
+            ]
         }
     ]
 }
