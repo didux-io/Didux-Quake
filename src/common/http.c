@@ -38,12 +38,12 @@ size_t writefunc(void *ptr, size_t size, size_t nmemb, struct string *s) {
 
 int
 HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int responseBufferSize) {
-    char *messageTemplate = "http://%s:%i/%s";
+    char *messageTemplate = "https://%s:%i/%s";
     char message[1024];
 
     sprintf(message, messageTemplate, host, portno, url);
 
-    printf("Sending HTTP request: %s \n", message);
+    printf("Sending HTTPS request: %s \n", message);
 
     CURL* curl;
     CURLcode res;
@@ -60,6 +60,10 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
 
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
+
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 
         res = curl_easy_perform(curl);
 
@@ -82,6 +86,7 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
         if (response_code >= 200 && response_code <= 299) {
             return 1;
         } else {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
             return 0;
         }
     }
