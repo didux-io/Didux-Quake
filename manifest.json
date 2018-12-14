@@ -115,10 +115,21 @@
         },
         {
             "name": "Dave Johnston",
-            "description": "creating the excellent de_dust map",
+            "description": "creating the de_dust map",
             "links": [
                 "http://www.johnsto.co.uk/",
                 "http://www.johnsto.co.uk/design/making-dust/"
+            ]
+        },
+        {
+            "name": "Jester",
+            "description": "creating the jstress map"
+        },
+        {
+            "name": "Tastyspleen team",
+            "description": "hosting the dark_rail map",
+            "links": [
+                "http://tastyspleen.net/"
             ]
         }
     ]
