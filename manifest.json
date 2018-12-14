@@ -1,6 +1,6 @@
 {
     "id": "SmiloQuake",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "title": "Smilo Quake",
     "subTitle": "Shoot, kill and earn SmiloPay",
     "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
@@ -27,6 +27,22 @@
         {
             "type": "image",
             "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen5.png"
+        },
+        {
+            "type": "image",
+            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen6.png"
+        },
+        {
+            "type": "image",
+            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen7.png"
+        },
+        {
+            "type": "image",
+            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen8.png"
+        },
+        {
+            "type": "image",
+            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen9.png"
         }
     ],
     "platforms": [
