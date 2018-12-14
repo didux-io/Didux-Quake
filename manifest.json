@@ -75,6 +75,13 @@
             ]
         },
         {
+            "name": "freesound.org",
+            "description": "hosting an awesome collection of free sounds",
+            "links": [
+                "https://freesound.org"
+            ]
+        },
+        {
             "name": "jorickhoofd",
             "description": "in game sounds",
             "links": [
@@ -128,7 +135,14 @@
         },
         {
             "name": "Tastyspleen team",
-            "description": "hosting the dark_rail map",
+            "description": "hosting a large amount of Quake II models, maps and textures",
+            "links": [
+                "http://tastyspleen.net/"
+            ]
+        },
+        {
+            "name": "Rayl",
+            "description": "creating the Ryla player model",
             "links": [
                 "http://tastyspleen.net/"
             ]
