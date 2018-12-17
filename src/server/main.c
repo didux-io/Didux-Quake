@@ -2216,13 +2216,13 @@ void SV_Init(void)
     sv_timeout = Cvar_Get("timeout", "90", 0);
     sv_timeout->changed = sv_sec_timeout_changed;
     sv_timeout->changed(sv_timeout);
-    sv_zombietime = Cvar_Get("zombietime", "1", 0);
+    sv_zombietime = Cvar_Get("zombietime", "5", 0);
     sv_zombietime->changed = sv_sec_timeout_changed;
     sv_zombietime->changed(sv_zombietime);
     sv_ghostime = Cvar_Get("sv_ghostime", "6", 0);
     sv_ghostime->changed = sv_sec_timeout_changed;
     sv_ghostime->changed(sv_ghostime);
-    sv_idlekick = Cvar_Get("sv_idlekick", "60", 0);
+    sv_idlekick = Cvar_Get("sv_idlekick", "300", 0);
     sv_idlekick->changed = sv_sec_timeout_changed;
     sv_idlekick->changed(sv_idlekick);
     sv_enforcetime = Cvar_Get("sv_enforcetime", "1", 0);
