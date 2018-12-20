@@ -1,6 +1,6 @@
 {
     "id": "SmiloQuake",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "title": "Smilo Quake",
     "subTitle": "Shoot, kill and earn SmiloPay",
     "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
@@ -58,6 +58,13 @@
             "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
             "baseDir": ".",
             "binary": "SmiloQuake.exe",
+            "args": "+set name ${PROFILE_NAME} ${GAME_SERVERS}"
+        },
+        {
+            "name": "linux",
+            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/linux_x86_64.tar.gz",
+            "baseDir": ".",
+            "binary": "./SmiloQuake",
             "args": "+set name ${PROFILE_NAME} ${GAME_SERVERS}"
         }
     ],
@@ -161,6 +168,44 @@
             "description": "creating the Ryla player model",
             "links": [
                 "http://tastyspleen.net/"
+            ]
+        },
+        {
+            "name": "libcurl",
+            "description": "easy http/https calls",
+            "links": [
+                "https://curl.haxx.se/libcurl/",
+                "https://curl.haxx.se/docs/copyright.html"
+            ]
+        },
+        {
+            "name": "libpng",
+            "description": "loading and displaying png textures",
+            "links": [
+                "http://www.libpng.org/pub/png/libpng.html",
+                "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"
+            ]
+        },
+        {
+            "name": "libjpeg",
+            "description": "loading and displaying jpeg textures",
+            "links": [
+                "http://libjpeg.sourceforge.net/"
+            ]
+        },
+        {
+            "name": "zlib",
+            "description": "awesome compression",
+            "links": [
+                "https://zlib.net/"
+            ]
+        },
+        {
+            "name": "SDL2",
+            "description": "an awesome graphics, audio and input library",
+            "links": [
+                "https://www.libsdl.org/index.php",
+                "https://www.libsdl.org/license.php"
             ]
         }
     ]
