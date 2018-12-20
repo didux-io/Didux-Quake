@@ -6,22 +6,10 @@ PLATFORM=${1:-all}
 # Clean previous build output
 rm -rf ./output/*/
 
-if [ $PLATFORM = debian64 ] || [ $PLATFORM = all ] ; then
-    # Build Debian x86_64
-    mkdir -p ./output/debian/x86_64
-    docker run --mount src="$(pwd)/output/debian/x86_64",target=/q2pro/output,type=bind -it q2pro-cc-debian-x86_64 //usr/bin/make
-fi
-
-if [ $PLATFORM = ubuntu64 ] || [ $PLATFORM = all ] ; then
-    # Build Ubuntu x86_64
-    mkdir -p ./output/ubuntu/x86_64
-    docker run --mount src="$(pwd)/output/ubuntu/x86_64",target=/q2pro/output,type=bind -it q2pro-cc-ubuntu-x86_64 //usr/bin/make
-fi
-
-if [ $PLATFORM = fedora64 ] || [ $PLATFORM = all ] ; then
-    # Build Fedora x86_64
-    mkdir -p ./output/fedora/x86_64
-    docker run --mount src="$(pwd)/output/fedora/x86_64",target=/q2pro/output,type=bind -it q2pro-cc-fedora-x86_64 //usr/bin/make
+if [ $PLATFORM = linux64 ] || [ $PLATFORM = all ] ; then
+    # Build Linux x86_64
+    mkdir -p ./output/linux/x86_64
+    docker run --mount src="$(pwd)/output/linux/x86_64",target=/q2pro/output,type=bind -it q2pro-cc-linux-x86_64 //usr/bin/make
 fi
 
 if [ $PLATFORM = win64 ] || [ $PLATFORM = all ] ; then
