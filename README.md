@@ -2,7 +2,7 @@ Smilo Quake
 =====
 
 Smilo Quake is an enhanced, multiplayer oriented Quake 2 client and server.
-Players are able to mine, earn and lose Smilo .
+Players are able to mine, earn and lose Smilo.
 
 Features include:
 
