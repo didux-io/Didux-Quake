@@ -2,9 +2,9 @@
     "id": "SmiloQuake",
     "version": "1.0.6",
     "title": "Smilo Quake",
-    "subTitle": "Shoot, kill and earn SmiloPay",
+    "subTitle": "Shoot, kill and earn Smilo",
     "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
-    "description": "The classic first person shooter Quake II now reimagined by the Smilo team! Win SmiloPay by playing against strangers or your friends. Compete in high stake matches to earn even more SmiloPay!",
+    "description": "The classic first person shooter Quake II now reimagined by the Smilo team! Win Smilo by playing against strangers or your friends. Compete in high stake matches to earn even more Smilo!",
     "tags": ["shooter", "old school", "fps"],
     "thumbnailUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/thumbnail.png",
     "art": [
