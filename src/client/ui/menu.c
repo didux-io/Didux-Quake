@@ -2352,7 +2352,7 @@ void Menu_Draw(menuFrameWork_t *menu)
         char* draw = menu->title7;
         if (strcmp(menu->title7, "playamount") == 0) {
             char * result = NULL;
-            asprintf(&result, "Transaction (to play): %d SmiloPay", gamedetails.deposit);
+            asprintf(&result, "Transaction (to play): %d Smilo", gamedetails.deposit);
             draw = result;
         } 
         UI_DrawString(uis.width / 2, menu->y1 + 130,
