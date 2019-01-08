@@ -21,7 +21,7 @@ INCLUDES=-I./static/inc -DUSE_PACKETDUP=1
 LIBS=-L./static/lib-win64
 
 CURL_CFLAGS=-DCURL_STATICLIB
-CURL_LIBS=-lcurl
+CURL_LIBS=-lcurl -lcrypt32
 
 PNG_CFLAGS=
 PNG_LIBS=-lpng
