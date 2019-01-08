@@ -48,8 +48,6 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
 
     sprintf(message, messageTemplate, host, portno, url);
 
-    printf("Sending HTTPS request: %s \n", message);
-
     CURL* curl;
     CURLcode res;
 
@@ -74,8 +72,6 @@ HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int r
 
         long response_code;
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-
-        printf("Status code: %ld \n", response_code);
 
         curl_easy_cleanup(curl);
 
