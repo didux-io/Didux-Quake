@@ -37,8 +37,13 @@ size_t writefunc(void *ptr, size_t size, size_t nmemb, struct string *s) {
 }
 
 int
-HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int responseBufferSize) {
-    char *messageTemplate = "https://%s:%i/%s";
+HTTP_Get(char* host, char* url, int portno, char* responseBuffer, unsigned int responseBufferSize, int useHttps) {
+    char* messageTemplate;
+    if(useHttps)
+      messageTemplate = "https://%s:%i/%s";
+    else
+      messageTemplate = "http://%s:%i/%s";
+      
     char message[1024];
 
     sprintf(message, messageTemplate, host, portno, url);

@@ -18,7 +18,7 @@ void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     printf("URL: %s \n", url);
 
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         printf("  Agent response: %s\n", response);
         strncpy(buffer, "1", bufferSize);
     } else {
@@ -36,7 +36,7 @@ int CL_Smilo_GetBalance(char* publickey) {
     sprintf(url, urlTemplate, publickey);
 
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         printf("  Agent response: %s\n", response);
         return atoi(response);
     }
@@ -51,7 +51,7 @@ int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", "v1/client/publickey", clientPort, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", "v1/client/publickey", clientPort, response, sizeof(response), 1)) {
         printf("  Agent response: %s\n", response);
         
         // Copy response in buffer
@@ -77,7 +77,7 @@ int CL_Smilo_BetConfirmed(char* publickey, char* contractaddress) {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         printf("  Agent response: %s\n", response);
         if (!strcmp(response, "true")) {
             printf("  BET CONFIRMED: 1! \n");
@@ -108,7 +108,7 @@ gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress) {
     gamedetails.secondReward = -1;
     gamedetails.thirdReward = 1;
     gamedetails.playerCount = -1;
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
+    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         printf("  Agent response: %s\n", response);
         int count = 0;
         char *pt;

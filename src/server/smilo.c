@@ -21,7 +21,7 @@ SV_Smilo_EndMatch(char* score_list) {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get(host, url, port, response, sizeof(response))) {
+    if(HTTP_Get(host, url, port, response, sizeof(response), 0)) {
         printf("  Agent response: %s\n", response);
     }
     else {
@@ -39,7 +39,7 @@ int SV_Smilo_BetConfirmed(char publickey[1024], char* contractaddress) {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get(host, url, port, response, sizeof(response))) {
+    if(HTTP_Get(host, url, port, response, sizeof(response), 0)) {
         printf("  Agent response: %s\n", response);
         if (!strcmp(response, "true")) {
             printf("  (SV) BET CONFIRMED: 1! \n");
@@ -62,7 +62,7 @@ int SV_Smilo_GetContractAddress(char* buffer, int bufferSize) {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get(host, "v1/server/contractaddress", port, response, sizeof(response))) {
+    if(HTTP_Get(host, "v1/server/contractaddress", port, response, sizeof(response), 0)) {
         printf("  Agent response: %s\n", response);
         
         // Copy response in buffer
