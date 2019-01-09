@@ -14,7 +14,7 @@ INCLUDES=-I./static/inc
 LIBS=-L./static/lib-darwin
 
 CURL_CFLAGS=
-CURL_LIBS=-lcurl
+CURL_LIBS=-lcurl -framework CoreFoundation -framework Security
 
 PNG_CFLAGS=
 PNG_LIBS=-lpng

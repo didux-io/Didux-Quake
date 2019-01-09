@@ -752,7 +752,7 @@ static const char dm_statusbar[] =
 "xv 50 "
 "pic 0 "
 
-// smilopay 
+// smilo 
 "xv	-160 "
 "yb -24 "
 "picn icon.png "
