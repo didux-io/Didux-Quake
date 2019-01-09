@@ -1527,8 +1527,7 @@ void ClientThink(edict_t *ent, usercmd_t *ucmd)
     if (level.intermissiontime) {
         client->ps.pmove.pm_type = PM_FREEZE;
         // can exit intermission after five seconds
-        if (level.time > level.intermissiontime + 5.0f
-            && (ucmd->buttons & BUTTON_ANY))
+        if (level.time > level.intermissiontime + 5.0f)
             level.exitintermission = true;
         return;
     }
