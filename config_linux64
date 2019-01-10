@@ -9,10 +9,11 @@ CONFIG_MVD_CLIENT=y
 CPU=x86_64
 SYS=Linux
 
-CC=gcc -pthread
+CC=gcc -std=gnu99 -pthread -static-libgcc -static-libstdc++
+CFLAGS=-I./static/inc -I./static/inc/SDL2
 
 CURL_CFLAGS=
-CURL_LIBS=$(shell pwd)/static/lib-linux64/libcurl.a
+CURL_LIBS=$(shell pwd)/static/lib-linux64/libcurl.a $(shell pwd)/static/lib-linux64/libssl.a $(shell pwd)/static/lib-linux64/libcrypto.a
 
 PNG_CFLAGS=
 PNG_LIBS=$(shell pwd)/static/lib-linux64/libpng.a

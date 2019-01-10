@@ -1,10 +1,10 @@
-FROM ubuntu
+FROM ubuntu:trusty
 
 # Install dependencies
 RUN apt-get update
-RUN apt-get install build-essential libsdl2-dev libopenal-dev \
-                    libpng-dev libjpeg-dev zlib1g-dev mesa-common-dev \
-                    liblircclient-dev libcurl4-gnutls-dev wget coreutils -y
+RUN apt-get install build-essential libopenal-dev libsdl2-2.0-0 libglu1-mesa-dev libgles2-mesa-dev libsdl2-dev \
+                    mesa-common-dev \
+                    liblircclient-dev wget coreutils -y
 
 WORKDIR /q2pro
 
