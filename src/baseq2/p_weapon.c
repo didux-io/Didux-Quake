@@ -574,7 +574,7 @@ void Weapon_Grenade(edict_t *ent)
         if (ent->client->ps.gunframe == 11) {
             if (!ent->client->grenade_time) {
                 ent->client->grenade_time = level.time + GRENADE_TIMER + 0.2f;
-                ent->client->weapon_sound = gi.soundindex("weapons/Hgrenc1b.wav");
+                ent->client->weapon_sound = gi.soundindex("weapons/hgrenc1b.wav");
             }
 
             // they waited too long, detonate it in their hand
@@ -787,7 +787,7 @@ void Weapon_HyperBlaster_Fire(edict_t *ent)
     int     effect;
     int     damage;
 
-    ent->client->weapon_sound = gi.soundindex("weapons/Hyprbl1a.wav");
+    ent->client->weapon_sound = gi.soundindex("weapons/hyprbl1a.wav");
 
     if (!(ent->client->buttons & BUTTON_ATTACK)) {
         ent->client->ps.gunframe++;
@@ -956,7 +956,7 @@ void Chaingun_Fire(edict_t *ent)
         damage = 8;
 
     if (ent->client->ps.gunframe == 5)
-        gi.sound(ent, CHAN_AUTO, gi.soundindex("weapons/Chngnu1a.wav"), 1, ATTN_IDLE, 0);
+        gi.sound(ent, CHAN_AUTO, gi.soundindex("weapons/chngnu1a.wav"), 1, ATTN_IDLE, 0);
 
     if ((ent->client->ps.gunframe == 14) && !(ent->client->buttons & BUTTON_ATTACK)) {
         ent->client->ps.gunframe = 32;
@@ -971,9 +971,9 @@ void Chaingun_Fire(edict_t *ent)
 
     if (ent->client->ps.gunframe == 22) {
         ent->client->weapon_sound = 0;
-        gi.sound(ent, CHAN_AUTO, gi.soundindex("weapons/Chngnd1a.wav"), 1, ATTN_IDLE, 0);
+        gi.sound(ent, CHAN_AUTO, gi.soundindex("weapons/chngnd1a.wav"), 1, ATTN_IDLE, 0);
     } else {
-        ent->client->weapon_sound = gi.soundindex("weapons/Chngnl1a.wav");
+        ent->client->weapon_sound = gi.soundindex("weapons/chngnl1a.wav");
     }
 
     ent->client->anim_priority = ANIM_ATTACK;
