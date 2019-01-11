@@ -6,16 +6,18 @@
 #include "../../inc/client/smilo.h"
 
 int clientPort = 46290;
+char token[65];
 
 void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     printf("Client connected! Notifying Smilo Client Agent...\n");
 
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/client/participate?contractaddress=%s";
-    sprintf(url, urlTemplate, contractAddress);
+    char* urlTemplate = "v1/client/participate?contractaddress=%s&token=%s";
+    sprintf(url, urlTemplate, contractAddress, token);
 
     printf("URL: %s \n", url);
+    printf("Token: %s \n", token);
 
     char response[4096];
     if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
@@ -46,6 +48,25 @@ int CL_Smilo_GetBalance(char* publickey) {
     }
 }
 
+int CL_Smilo_CheckTokenFunds(char* contractAddress) {
+    printf("Get token funds!\n");
+
+    // Format url to contain query parameter
+    char url[1024];
+    char* urlTemplate = "v1/client/checkTokenFunds?contractaddress=%s&token=%s";
+    sprintf(url, urlTemplate, contractAddress, token);
+
+    char response[4096];
+    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
+        printf("  Agent response: %s\n", response);
+        return 1;
+    }
+    else {
+        printf("Failed to do HTTP call...\n");
+        return 0;
+    }
+}
+
 int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
     printf("Get client publickey!\n");
 
@@ -56,6 +77,25 @@ int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
         
         // Copy response in buffer
         strncpy(buffer, response, bufferSize);
+
+        return 1;
+    }
+    else {
+        printf("Failed to do HTTP call...\n");
+        return 0;
+    }
+}
+
+int CL_Smilo_RequestToken() {
+    printf("Get request token!\n");
+
+    // Notify Smilo server agent
+    char response[4096];
+    if(HTTP_Get("127.0.0.1", "v1/client/requestToken", clientPort, response, sizeof(response))) {
+        printf("  Agent response: %s\n", response);
+        
+        // Copy response in buffer
+        strncpy(token, response, sizeof(token) - 1);
 
         return 1;
     }

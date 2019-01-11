@@ -40,6 +40,7 @@ int frames;
 int amountOfSecondsForBet;
 extern int topFraggerAmount;
 extern int showScoreboardUI;
+extern int pastEnoughFunds;
 
 typedef enum {
     MTYPE_BAD,

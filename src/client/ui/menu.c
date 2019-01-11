@@ -1801,6 +1801,9 @@ static void UI_AddRectToBounds(const vrect_t *rc, int mins[2], int maxs[2])
     }
 }
 
+int firstTimeSmiloMenu = 1;
+int firstTimeTransactionMenu = 1;
+
 void Menu_Init(menuFrameWork_t *menu)
 {
     void *item;
@@ -1823,8 +1826,16 @@ void Menu_Init(menuFrameWork_t *menu)
     }
     menu->size(menu);
 
-    if (menu->title5 && strcmp(menu->title5, "timeremaining") == 0) {
+    if (firstTimeSmiloMenu == 1 && menu->title5 && strcmp(menu->title5, "timeremaining") == 0) {
+        Com_Printf("MENU DOWN SMILO MENU! \n");
         Menu_Keydown(menu, 129);
+        firstTimeSmiloMenu = 0;
+    }
+
+    if (firstTimeTransactionMenu == 1 && menu->title1 && strcmp(menu->title1, "You have reached your personal transaction amount limit.") == 0) {
+        Com_Printf("MENU DOWN TRANSACTION LIMIT MENU! \n");
+        Menu_Keydown(menu, 129);
+        firstTimeTransactionMenu = 0;
     }
 
     for (i = 0; i < menu->nitems; i++) {
@@ -2165,6 +2176,7 @@ int msec = 0;
 float pastTime = 0;
 int amountofplayers = 0;
 gameDetails_t gamedetails;
+int pastEnoughFunds;
 
 /*
 =================
@@ -2196,16 +2208,48 @@ void Menu_Draw(menuFrameWork_t *menu)
     if (frames == 50000) {
         frames = 0;
     }
-    if (frames % 2000 == 1) {
-        if (strcmp(menu->name, "smilo") == 0) {
-            Com_Printf("Refreshing gamedetails \n");
-            gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
+    if (frames % 1000 == 1 && strcmp(menu->name, "smilo") == 0) {
+        Com_Printf("Refreshing gamedetails \n");
+        gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
+    }
+    if (frames % 200 == 1 && (strcmp(menu->name, "smilo") == 0 || strcmp(menu->name, "smilonofunds") == 0)) {
+        Com_Printf("Re-Check Limit Funds! \n");
+        int enoughFunds = CL_Smilo_CheckTokenFunds(cls.contract_address);
+        int drawMenu = -1;
+        if (pastEnoughFunds != enoughFunds) {
+            Com_Printf("Yes new value! \n");
+            UI_PopMenu();
+            drawMenu = 1;
         }
+        menuFrameWork_t *menu;
+        char *s;
+        if (enoughFunds == 1 && drawMenu == 1) {
+            Com_Printf("Enough funds! \n");
+
+            s = "smilo";
+            menu = UI_FindMenu(s);
+            if (menu) {
+                UI_PushMenu(menu);
+            } else {
+                Com_Printf("Could not find smilo menu!");
+            }
+        } else if (enoughFunds == 0 && drawMenu == 1) {
+            Com_Printf("Not enough funds! \n");
+
+            s = "smilonofunds";
+            menu = UI_FindMenu(s);
+            if (menu) {
+                UI_PushMenu(menu);
+            } else {
+                Com_Printf("Could not find smilonofunds menu!");
+            }
+        }
+        pastEnoughFunds = enoughFunds;
     }
     // Main title
     if (menu->title1) {
         UI_DrawString(uis.width / 2, menu->y1 + 5,
-                      UI_CENTER | menu->color.u32, menu->title1);
+                    UI_CENTER | menu->color.u32, menu->title1);
     }
     // 1st place
     if (menu->title2) {
@@ -2285,7 +2329,7 @@ void Menu_Draw(menuFrameWork_t *menu)
         menu->title5 = result;
 
         UI_DrawString(uis.width / 2, menu->y1 + 60,
-                      UI_CENTER | menu->color.u32, menu->title5);
+                    UI_CENTER | menu->color.u32, menu->title5);
     }
     if (menu->title10) {
         char * result = NULL;

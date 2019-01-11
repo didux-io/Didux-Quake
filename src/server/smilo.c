@@ -6,7 +6,7 @@
 char confirmedPlayerPublickeys[128];
 int playeruidsIndex;
 int port = 46280;
-char* host = "agent";
+char* host = "127.0.0.1"; // agent
 
 void
 SV_Smilo_EndMatch(char* score_list) {

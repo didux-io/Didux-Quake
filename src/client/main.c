@@ -1759,6 +1759,7 @@ static void CL_PlaySound_f(void)
 }
 
 static int precache_spawncount;
+int pastEnoughFunds;
 
 /*
 =================
@@ -1802,12 +1803,34 @@ void CL_Begin(void)
     menuFrameWork_t *menu;
     char *s;
 
-    s = "smilo";
-    menu = UI_FindMenu(s);
-    if (menu) {
-        UI_PushMenu(menu);
+    int preJoinBalanceCheck = CL_Smilo_GetBalance(current_player_publickey);
+    gameDetails_t gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
+    if (preJoinBalanceCheck < gamedetails.deposit) {
+        Com_Error(ERR_DROP, "Not enough funds. Needed: %d XSM. Your balance: %d \n", gamedetails.deposit, preJoinBalanceCheck);
+        CL_Disconnect(ERR_DROP);
     } else {
-        Com_Printf("Could not find smilo menu!");
+        pastEnoughFunds = CL_Smilo_CheckTokenFunds(cls.contract_address);
+        if (pastEnoughFunds == 1) {
+            Com_Printf("Enough funds! \n");
+
+            s = "smilo";
+            menu = UI_FindMenu(s);
+            if (menu) {
+                UI_PushMenu(menu);
+            } else {
+                Com_Printf("Could not find smilo menu!");
+            }
+        } else {
+            Com_Printf("Not enough funds! \n");
+
+            s = "smilonofunds";
+            menu = UI_FindMenu(s);
+            if (menu) {
+                UI_PushMenu(menu);
+            } else {
+                Com_Printf("Could not find smilonofunds menu!");
+            }
+        }
     }
 }
 
@@ -3193,13 +3216,18 @@ void CL_Smilo_ConfirmedParticipate(void)
         Com_Error(ERR_DROP, "%s \n", buffer);
         CL_Disconnect(ERR_DROP);
     }
-    showScoreboardUI = 1;
+    // showScoreboardUI = 1;
     UI_PopMenu();
+}
+
+void CL_Smilo_ConfirmResetToken(void)
+{   
+    CL_Smilo_RequestToken();
 }
 
 static const cmdreg_t cl_smilo_commands[] = {
     { "confirmparticipate", CL_Smilo_ConfirmedParticipate },
-
+    { "confirmresettoken", CL_Smilo_ConfirmResetToken },
     { NULL }
 };
 
@@ -3427,6 +3455,7 @@ CL_Init
 */
 void CL_Init(void)
 {
+    CL_Smilo_RequestToken();
     if (dedicated->integer) {
         return; // nothing running on the client
     }
@@ -3439,7 +3468,6 @@ void CL_Init(void)
 
     // start with full screen console
     cls.key_dest = KEY_CONSOLE;
-
 #ifdef _WIN32
     CL_InitRefresh();
     S_Init();   // sound must be initialized after window is created
@@ -3471,6 +3499,7 @@ void CL_Init(void)
     cl_cmdbuf.maxsize = sizeof(cl_cmdbuf_text);
     cl_cmdbuf.exec = exec_server_string;
 
+    // Black screen if this not set
     Cvar_Set("cl_running", "1");
 }
 

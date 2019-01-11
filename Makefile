@@ -206,6 +206,7 @@ OBJS_s := \
     $(COMMON_OBJS)  \
     src/client/null.o       \
     src/server/smilo.o      \
+    src/client/smilo.o      \
     src/server/commands.o   \
     src/server/entities.o   \
     src/server/game.o       \
