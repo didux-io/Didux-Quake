@@ -68,7 +68,7 @@ void CL_RegisterTEntSounds(void)
     cl_sfx_spark6 = S_RegisterSound("world/spark6.wav");
     cl_sfx_spark7 = S_RegisterSound("world/spark7.wav");
     cl_sfx_railg = S_RegisterSound("weapons/railgf1a.wav");
-    cl_sfx_rockexp = S_RegisterSound("weapons/rocklx1a.wav");
+    cl_sfx_rockexp = S_RegisterSound("weapons/ROCKLX1A.WAV");
     cl_sfx_grenexp = S_RegisterSound("weapons/grenlx1a.wav");
     cl_sfx_watrexp = S_RegisterSound("weapons/xpld_wat.wav");
 

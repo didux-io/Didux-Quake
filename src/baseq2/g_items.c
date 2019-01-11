@@ -1330,7 +1330,7 @@ gitem_t itemlist[] = {
         WEAP_CHAINGUN,
         NULL,
         0,
-        /* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav` weapons/chngnd1a.wav"
+        /* precache */ "weapons/Chngnu1a.wav weapons/Chngnl1a.wav weapons/machgf3b.wav` weapons/Chngnd1a.wav"
     },
 
     /*QUAKED ammo_grenades (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1353,7 +1353,7 @@ gitem_t itemlist[] = {
         WEAP_GRENADES,
         NULL,
         AMMO_GRENADES,
-        /* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+        /* precache */ "weapons/HGRENT1A.WAV weapons/hgrena1b.wav weapons/Hgrenc1b.wav weapons/HGRENB1A.WAV weapons/HGRENB2A.WAV "
     },
 
     /*QUAKED weapon_grenadelauncher (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1376,7 +1376,7 @@ gitem_t itemlist[] = {
         WEAP_GRENADELAUNCHER,
         NULL,
         0,
-        /* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav"
+        /* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/Grenlb1b.wav"
     },
 
     /*QUAKED weapon_rocketlauncher (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1422,7 +1422,7 @@ gitem_t itemlist[] = {
         WEAP_HYPERBLASTER,
         NULL,
         0,
-        /* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
+        /* precache */ "weapons/hyprbu1a.wav weapons/Hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
     },
 
     /*QUAKED weapon_railgun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1468,7 +1468,7 @@ gitem_t itemlist[] = {
         WEAP_BFG,
         NULL,
         0,
-        /* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav"
+        /* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/Bfg__f1y.wav weapons/Bfg__l1a.wav weapons/Bfg__x1b.wav weapons/bfg_hum.wav"
     },
 
     //

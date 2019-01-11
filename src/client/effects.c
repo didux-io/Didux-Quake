@@ -360,7 +360,7 @@ void CL_MuzzleFlash(void)
         break;
     case MZ_BFG:
         DL_COLOR(0, 1, 0);
-        S_StartSound(NULL, mz.entity, CHAN_WEAPON, S_RegisterSound("weapons/bfg__f1y.wav"), volume, ATTN_NORM, 0);
+        S_StartSound(NULL, mz.entity, CHAN_WEAPON, S_RegisterSound("weapons/Bfg__f1y.wav"), volume, ATTN_NORM, 0);
         break;
 
     case MZ_LOGIN:
@@ -401,7 +401,7 @@ void CL_MuzzleFlash(void)
     case MZ_HEATBEAM:
         DL_COLOR(1, 1, 0);
         DL_DIE(100);
-//      S_StartSound (NULL, mz.entity, CHAN_WEAPON, S_RegisterSound("weapons/bfg__l1a.wav"), volume, ATTN_NORM, 0);
+//      S_StartSound (NULL, mz.entity, CHAN_WEAPON, S_RegisterSound("weapons/Bfg__l1a.wav"), volume, ATTN_NORM, 0);
         break;
     case MZ_BLASTER2:
         DL_COLOR(0, 1, 0);

@@ -434,11 +434,11 @@ void Grenade_Touch(edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *su
     if (!other->takedamage) {
         if (ent->spawnflags & 1) {
             if (random() > 0.5f)
-                gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/hgrenb1a.wav"), 1, ATTN_NORM, 0);
+                gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/HGRENB1A.WAV"), 1, ATTN_NORM, 0);
             else
-                gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/hgrenb2a.wav"), 1, ATTN_NORM, 0);
+                gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/HGRENB2A.WAV"), 1, ATTN_NORM, 0);
         } else {
-            gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/grenlb1b.wav"), 1, ATTN_NORM, 0);
+            gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/Grenlb1b.wav"), 1, ATTN_NORM, 0);
         }
         return;
     }
@@ -519,12 +519,12 @@ void fire_grenade2(edict_t *self, vec3_t start, vec3_t aimdir, int damage, int s
         grenade->spawnflags = 3;
     else
         grenade->spawnflags = 1;
-    grenade->s.sound = gi.soundindex("weapons/hgrenc1b.wav");
+    grenade->s.sound = gi.soundindex("weapons/Hgrenc1b.wav");
 
     if (timer <= 0.0f)
         Grenade_Explode(grenade);
     else {
-        gi.sound(self, CHAN_WEAPON, gi.soundindex("weapons/hgrent1a.wav"), 1, ATTN_NORM, 0);
+        gi.sound(self, CHAN_WEAPON, gi.soundindex("weapons/HGRENT1A.WAV"), 1, ATTN_NORM, 0);
         gi.linkentity(grenade);
     }
 }
@@ -738,7 +738,7 @@ void bfg_touch(edict_t *self, edict_t *other, cplane_t *plane, csurface_t *surf)
         T_Damage(other, self, self->owner, self->velocity, self->s.origin, plane->normal, 200, 0, 0, MOD_BFG_BLAST);
     T_RadiusDamage(self, self->owner, 200, other, 100, MOD_BFG_BLAST);
 
-    gi.sound(self, CHAN_VOICE, gi.soundindex("weapons/bfg__x1b.wav"), 1, ATTN_NORM, 0);
+    gi.sound(self, CHAN_VOICE, gi.soundindex("weapons/Bfg__x1b.wav"), 1, ATTN_NORM, 0);
     self->solid = SOLID_NOT;
     self->touch = NULL;
     VectorMA(self->s.origin, -1 * FRAMETIME, self->velocity, self->s.origin);
@@ -856,7 +856,7 @@ void fire_bfg(edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, fl
     bfg->radius_dmg = damage;
     bfg->dmg_radius = damage_radius;
     bfg->classname = "bfg blast";
-    bfg->s.sound = gi.soundindex("weapons/bfg__l1a.wav");
+    bfg->s.sound = gi.soundindex("weapons/Bfg__l1a.wav");
 
     bfg->think = bfg_think;
     bfg->nextthink = level.time + FRAMETIME;
