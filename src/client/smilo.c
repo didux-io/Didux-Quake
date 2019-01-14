@@ -18,7 +18,7 @@ void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         strncpy(buffer, "1", bufferSize);
     } else {
-        printf("Failed to do HTTP call. Error message: %s\n", response);
+        printf("CL_Smilo_Connected - Failed to do HTTP call. Error message: %s\n", response);
         strncpy(buffer, response, bufferSize);
     }
 }
@@ -34,7 +34,7 @@ int CL_Smilo_GetBalance(char* publickey) {
         return atoi(response);
     }
     else {
-        printf("Failed to do HTTP call...\n");
+        printf("CL_Smilo_GetBalance - Failed to do HTTP call...\n");
         return 0;
     }
 }
@@ -53,7 +53,7 @@ int CL_Smilo_CheckTokenFunds(char* contractAddress) {
         return 1;
     }
     else {
-        printf("Failed to do HTTP call...\n");
+        printf("CL_Smilo_CheckTokenFunds - Failed to do HTTP call...\n");
         return 0;
     }
 }
@@ -68,7 +68,7 @@ int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
         return 1;
     }
     else {
-        printf("Failed to do HTTP call...\n");
+        printf("CL_Smilo_GetPublicKey - Failed to do HTTP call...\n");
         return 0;
     }
 }
@@ -88,7 +88,7 @@ int CL_Smilo_RequestMoreFunds() {
         return 1;
     }
     else {
-        printf("Failed to do HTTP call...\n");
+        printf("CL_Smilo_RequestMoreFunds - Failed to do HTTP call...\n");
         return 0;
     }
 }
@@ -99,6 +99,9 @@ int CL_Smilo_RequestToken(char* gametoken) {
     char url[1024];
     char* urlTemplate = "v1/client/requestToken?uniqueCodeForToken=%s";
     sprintf(url, urlTemplate, gametoken);
+    
+
+    printf("Request token: %s \n", url);
     // Notify Smilo server agent
     char response[4096];
     if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
@@ -108,7 +111,7 @@ int CL_Smilo_RequestToken(char* gametoken) {
         return 1;
     }
     else {
-        printf("Failed to do HTTP call...\n");
+        printf("CL_Smilo_RequestToken - Failed to do HTTP call...\n");
         return 0;
     }
 }
@@ -129,7 +132,7 @@ int CL_Smilo_BetConfirmed(char* publickey, char* contractaddress) {
         }
     }
     else {
-        printf("Failed to do HTTP call...\n");
+        printf("CL_Smilo_BetConfirmed - Failed to do HTTP call...\n");
         return 0;
     }
 }
@@ -169,7 +172,7 @@ gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress) {
         }
         return gamedetails;
     } else {
-        printf("Failed to do HTTP call...\n");
+        printf("CL_Smilo_Get_Game_Details - Failed to do HTTP call...\n");
         return gamedetails;
     }
 }
