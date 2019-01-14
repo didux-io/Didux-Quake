@@ -2224,7 +2224,7 @@ void SV_Init(void)
     sv_ghostime->changed(sv_ghostime);
     int rookie = SV_Smilo_Is_Rookie(contractAddress);
     if (rookie) {
-        sv_idlekick = Cvar_Get("sv_idlekick", "10", 0);
+        sv_idlekick = Cvar_Get("sv_idlekick", "300", 0);
     } else {
         sv_idlekick = Cvar_Get("sv_idlekick", "0", 0);
     }
