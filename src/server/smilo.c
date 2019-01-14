@@ -6,7 +6,13 @@
 char confirmedPlayerPublickeys[128];
 int playeruidsIndex;
 int port = 46280;
-char* host = "agent"; // agent
+
+#if DEV_MODE
+char* host = "127.0.0.1";
+#else 
+char* host = "agent";
+#endif
+
 
 void
 SV_Smilo_EndMatch(char* score_list) {
@@ -73,6 +79,7 @@ int SV_Smilo_Is_Rookie(char* contractaddress) {
 }
 
 int SV_Smilo_GetContractAddress(char* buffer, int bufferSize) {
+    printf("Host: %s \n", host);
     // Notify Smilo server agent
     char response[4096];
     if(HTTP_Get(host, "v1/server/contractaddress", port, response, sizeof(response), 0)) {

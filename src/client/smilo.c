@@ -15,7 +15,7 @@ void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     sprintf(url, urlTemplate, contractAddress, token);
 
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
+    if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         strncpy(buffer, "1", bufferSize);
     } else {
         printf("CL_Smilo_Connected - Failed to do HTTP call. Error message: %s\n", response);
@@ -30,7 +30,7 @@ int CL_Smilo_GetBalance(char* publickey) {
     sprintf(url, urlTemplate, publickey);
 
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
+    if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         return atoi(response);
     }
     else {
@@ -48,7 +48,7 @@ int CL_Smilo_CheckTokenFunds(char* contractAddress) {
     sprintf(url, urlTemplate, contractAddress, token);
 
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
+    if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         printf("  Agent response: %s\n", response);
         return 1;
     }
@@ -61,7 +61,7 @@ int CL_Smilo_CheckTokenFunds(char* contractAddress) {
 int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", "v1/client/publickey", clientPort, response, sizeof(response), 1)) {
+    if (HTTP_Get("127.0.0.1", "v1/client/publickey", clientPort, response, sizeof(response), 1)) {
         // Copy response in buffer
         strncpy(buffer, response, bufferSize);
 
@@ -81,7 +81,7 @@ int CL_Smilo_RequestMoreFunds() {
     sprintf(url, urlTemplate, token);
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {      
+    if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {      
         // Copy response in buffer
         strncpy(token, response, sizeof(token) - 1);
 
@@ -93,18 +93,23 @@ int CL_Smilo_RequestMoreFunds() {
     }
 }
 
-int CL_Smilo_RequestToken(char* gametoken) {
+int CL_Smilo_RequestToken(char* gametokencode) {
     printf("Get request token!\n");
+
+    if (strlen(gametokencode) == 0) {
+        // Since the API will return a gametoken in devmode send it as a random string so the query parameter isn't empty for the API middleware 
+        gametokencode = "devmode";
+    } 
 
     char url[1024];
     char* urlTemplate = "v1/client/requestToken?uniqueCodeForToken=%s";
-    sprintf(url, urlTemplate, gametoken);
-    
+    sprintf(url, urlTemplate, gametokencode);
 
-    printf("Request token: %s \n", url);
+    printf("Url: %s \n", url);
+    
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
+    if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         // Copy response in buffer
         strncpy(token, response, sizeof(token) - 1);
 
@@ -112,6 +117,7 @@ int CL_Smilo_RequestToken(char* gametoken) {
     }
     else {
         printf("CL_Smilo_RequestToken - Failed to do HTTP call...\n");
+        printf("Response: %s \n", response);
         return 0;
     }
 }
@@ -124,7 +130,7 @@ int CL_Smilo_BetConfirmed(char* publickey, char* contractaddress) {
 
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
+    if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         if (!strcmp(response, "true")) {
             return 1;
         } else {
@@ -150,7 +156,7 @@ gameDetails_t CL_Smilo_Get_Game_Details(char* contractaddress) {
     gamedetails.secondReward = -1;
     gamedetails.thirdReward = 1;
     gamedetails.playerCount = -1;
-    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
+    if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         int count = 0;
         char *pt;
         pt = strtok (response, ":");

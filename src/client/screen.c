@@ -1675,6 +1675,10 @@ static void SCR_ExecuteLayoutString(const char *s)
             sprintf(timeRemainingText, "%.2d:%.2d", minute, second);
             width = strlen(timeRemainingText);
 
+            if (second == 0 && minute == 0) {
+                showScoreboardUI = 1;
+            }
+
             HUD_DrawChar(x, y, 0, width, timeRemainingText);
             continue;
 		}

@@ -3218,7 +3218,6 @@ void CL_Smilo_ConfirmedParticipate(void)
         Com_Error(ERR_DROP, "%s \n", buffer);
         CL_Disconnect(ERR_DROP);
     }
-    // showScoreboardUI = 1;
     UI_PopMenu();
 }
 

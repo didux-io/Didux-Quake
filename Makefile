@@ -51,6 +51,10 @@ LDFLAGS_g := -shared
 
 OUTPUT_DIR ?= ./
 
+ifdef DEV_MODE 
+    CFLAGS_s += -DDEV_MODE=1
+endif
+
 ifdef CONFIG_WINDOWS
     # Force i?86-netware calling convention on x86 Windows
     ifeq ($(CPU),x86)

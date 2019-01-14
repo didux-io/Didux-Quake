@@ -1827,13 +1827,11 @@ void Menu_Init(menuFrameWork_t *menu)
     menu->size(menu);
 
     if (firstTimeSmiloMenu == 1 && menu->title5 && strcmp(menu->title5, "timeremaining") == 0) {
-        Com_Printf("MENU DOWN SMILO MENU! \n");
         Menu_Keydown(menu, 129);
         firstTimeSmiloMenu = 0;
     }
 
     if (firstTimeTransactionMenu == 1 && menu->title1 && strcmp(menu->title1, "You have reached your personal transaction amount limit.") == 0) {
-        Com_Printf("MENU DOWN TRANSACTION LIMIT MENU! \n");
         Menu_Keydown(menu, 129);
         firstTimeTransactionMenu = 0;
     }
