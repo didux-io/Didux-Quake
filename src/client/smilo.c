@@ -86,14 +86,35 @@ int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
     }
 }
 
-int CL_Smilo_RequestToken() {
-    printf("Get request token!\n");
+int CL_Smilo_RequestMoreFunds() {
+    printf("Get request more funds!\n");
 
+    char url[1024];
+    char* urlTemplate = "v1/client/requestMoreFunds?token=%s";
+    sprintf(url, urlTemplate, token);
     // Notify Smilo server agent
     char response[4096];
-    if(HTTP_Get("127.0.0.1", "v1/client/requestToken", clientPort, response, sizeof(response))) {
-        printf("  Agent response: %s\n", response);
-        
+    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {      
+        // Copy response in buffer
+        strncpy(token, response, sizeof(token) - 1);
+
+        return 1;
+    }
+    else {
+        printf("Failed to do HTTP call...\n");
+        return 0;
+    }
+}
+
+int CL_Smilo_RequestToken(char* gametoken) {
+    printf("Get request token!\n");
+
+    char url[1024];
+    char* urlTemplate = "v1/client/requestToken?uniqueCodeForToken=%s";
+    sprintf(url, urlTemplate, gametoken);
+    // Notify Smilo server agent
+    char response[4096];
+    if(HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response))) {
         // Copy response in buffer
         strncpy(token, response, sizeof(token) - 1);
 

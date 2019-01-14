@@ -2585,11 +2585,11 @@ static menuSound_t Menu_DefaultKey(menuFrameWork_t *m, int key)
 
     switch (key) {
     case K_ESCAPE:
-        if (strcmp(m->name, "smilo") == 0) {
+        if (strcmp(m->name, "smilo") == 0 || strcmp(m->name, "smilonofunds") == 0) {
             return QMS_OUT;
         }
     case K_MOUSE2:
-        if (strcmp(m->name, "smilo") != 0) {
+        if (strcmp(m->name, "smilo") != 0 || strcmp(m->name, "smilonofunds") != 0) {
             UI_PopMenu();
         }
         return QMS_OUT;

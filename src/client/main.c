@@ -76,6 +76,7 @@ cvar_t  *cl_vwep;
 cvar_t  *info_password;
 cvar_t  *info_spectator;
 cvar_t  *info_name;
+cvar_t  *gametoken;
 cvar_t  *info_skin;
 cvar_t  *info_rate;
 cvar_t  *info_fov;
@@ -2808,6 +2809,7 @@ static void CL_InitLocal(void)
     info_password = Cvar_Get("password", "", CVAR_USERINFO);
     info_spectator = Cvar_Get("spectator", "1", CVAR_USERINFO);
     info_name = Cvar_Get("name", "unnamed", CVAR_USERINFO | CVAR_ARCHIVE);
+    gametoken = Cvar_Get("gametoken", "", CVAR_USERINFO | CVAR_ARCHIVE);
     info_skin = Cvar_Get("skin", "male/grunt", CVAR_USERINFO | CVAR_ARCHIVE);
     info_rate = Cvar_Get("rate", "5000", CVAR_USERINFO | CVAR_ARCHIVE);
     info_msg = Cvar_Get("msg", "1", CVAR_USERINFO | CVAR_ARCHIVE);
@@ -3222,7 +3224,7 @@ void CL_Smilo_ConfirmedParticipate(void)
 
 void CL_Smilo_ConfirmResetToken(void)
 {   
-    CL_Smilo_RequestToken();
+    CL_Smilo_RequestMoreFunds();
 }
 
 static const cmdreg_t cl_smilo_commands[] = {
@@ -3455,7 +3457,6 @@ CL_Init
 */
 void CL_Init(void)
 {
-    CL_Smilo_RequestToken();
     if (dedicated->integer) {
         return; // nothing running on the client
     }
@@ -3465,6 +3466,13 @@ void CL_Init(void)
     }
 
     // all archived variables will now be loaded
+
+    CL_InitLocal();
+    int result = CL_Smilo_RequestToken(gametoken->string);
+    if (!result) {
+        abort();
+        return;
+    }
 
     // start with full screen console
     cls.key_dest = KEY_CONSOLE;
@@ -3476,7 +3484,6 @@ void CL_Init(void)
     CL_InitRefresh();
 #endif
 
-    CL_InitLocal();
     IN_Init();
 
 #if USE_ZLIB
