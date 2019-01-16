@@ -2646,7 +2646,7 @@ static void cl_chat_sound_changed(cvar_t *self)
 
 void cl_timeout_changed(cvar_t *self)
 {
-    self->integer = 1000 * Cvar_ClampValue(self, 0, 24 * 24 * 60 * 60);
+    self->integer = 3000 * Cvar_ClampValue(self, 0, 24 * 24 * 60 * 60);
 }
 
 static const cmdreg_t c_client[] = {
@@ -3174,7 +3174,6 @@ CL_GetBalance(char* publickey) {
     }
 
     balance = CL_Smilo_GetBalance(publickey);
-    Com_Printf("Balance refreshed!\n");
     cls.balance_refreshed = true;
 }
 
@@ -3204,8 +3203,6 @@ CL_CheckBetConfirmed(char* publickey, char* contractaddress) {
 		}
 	}
 }
-
-int showScoreboardUI = 0;
 
 void CL_Smilo_ConfirmedParticipate(void)
 {   

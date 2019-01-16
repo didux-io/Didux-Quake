@@ -39,7 +39,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 int frames;
 int amountOfSecondsForBet;
 extern int topFraggerAmount;
-extern int showScoreboardUI;
 extern int pastEnoughFunds;
 
 typedef enum {

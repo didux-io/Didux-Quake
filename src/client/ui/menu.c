@@ -1814,8 +1814,8 @@ void Menu_Init(menuFrameWork_t *menu)
     if (strcmp(menu->name, "smilo") == 0) {
         frames = 0;
         topFraggerAmount = 0;
-        showScoreboardUI = 0;
         amountOfSecondsForBet = 59;
+        CL_ClientCommand("scorenoui");
     }
 
     menu->y1 = 0;
@@ -2211,18 +2211,15 @@ void Menu_Draw(menuFrameWork_t *menu)
         gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
     }
     if (frames % 200 == 1 && (strcmp(menu->name, "smilo") == 0 || strcmp(menu->name, "smilonofunds") == 0)) {
-        Com_Printf("Re-Check Limit Funds! \n");
         int enoughFunds = CL_Smilo_CheckTokenFunds(cls.contract_address);
         int drawMenu = -1;
         if (pastEnoughFunds != enoughFunds) {
-            Com_Printf("Yes new value! \n");
             UI_PopMenu();
             drawMenu = 1;
         }
         menuFrameWork_t *menu;
         char *s;
         if (enoughFunds == 1 && drawMenu == 1) {
-            Com_Printf("Enough funds! \n");
 
             s = "smilo";
             menu = UI_FindMenu(s);
@@ -2232,7 +2229,6 @@ void Menu_Draw(menuFrameWork_t *menu)
                 Com_Printf("Could not find smilo menu!");
             }
         } else if (enoughFunds == 0 && drawMenu == 1) {
-            Com_Printf("Not enough funds! \n");
 
             s = "smilonofunds";
             menu = UI_FindMenu(s);
@@ -2333,7 +2329,6 @@ void Menu_Draw(menuFrameWork_t *menu)
         char * result = NULL;
         asprintf(&result, "#1 Frags amount: %d", topFraggerAmount);
         menu->title10 = result;
-        CL_ClientCommand("score");
         UI_DrawString(uis.width / 2, menu->y1 + 80,
                     UI_CENTER | menu->color.u32, menu->title10);
     }

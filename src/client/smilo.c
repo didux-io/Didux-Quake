@@ -18,7 +18,6 @@ void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         strncpy(buffer, "1", bufferSize);
     } else {
-        printf("CL_Smilo_Connected - Failed to do HTTP call. Error message: %s\n", response);
         strncpy(buffer, response, bufferSize);
     }
 }
@@ -49,7 +48,7 @@ int CL_Smilo_CheckTokenFunds(char* contractAddress) {
 
     char response[4096];
     if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
-        printf("  Agent response: %s\n", response);
+        printf("CL_Smilo_CheckTokenFunds - Response: %s \n", response);
         return 1;
     }
     else {
@@ -102,10 +101,8 @@ int CL_Smilo_RequestToken(char* gametokencode) {
     } 
 
     char url[1024];
-    char* urlTemplate = "v1/client/requestToken?uniqueCodeForToken=%s";
+    char* urlTemplate = "v1/client/requestToken?startupToken=%s";
     sprintf(url, urlTemplate, gametokencode);
-
-    printf("Url: %s \n", url);
     
     // Notify Smilo server agent
     char response[4096];
@@ -117,7 +114,6 @@ int CL_Smilo_RequestToken(char* gametokencode) {
     }
     else {
         printf("CL_Smilo_RequestToken - Failed to do HTTP call...\n");
-        printf("Response: %s \n", response);
         return 0;
     }
 }
