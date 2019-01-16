@@ -2207,7 +2207,6 @@ void Menu_Draw(menuFrameWork_t *menu)
         frames = 0;
     }
     if (frames % 1000 == 1 && strcmp(menu->name, "smilo") == 0) {
-        Com_Printf("Refreshing gamedetails \n");
         gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
     }
     if (frames % 200 == 1 && (strcmp(menu->name, "smilo") == 0 || strcmp(menu->name, "smilonofunds") == 0)) {

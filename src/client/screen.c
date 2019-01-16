@@ -1746,7 +1746,6 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             if (frames % 2000 == 1) {
                 gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
-                Com_Printf("Refreshing gamedetails \n");
             }
 
             char *place = COM_Parse(&s); // 7. Place
