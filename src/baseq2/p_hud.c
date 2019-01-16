@@ -29,8 +29,10 @@ INTERMISSION
 
 void MoveClientToIntermission(edict_t *ent)
 {
-    if (deathmatch->value || coop->value)
+    if (deathmatch->value || coop->value) {
         ent->client->showscores = true;
+        ent->client->drawScoresUi = true;
+    }
     VectorCopy(level.intermission_origin, ent->s.origin);
     ent->client->ps.pmove.origin[0] = level.intermission_origin[0] * 8;
     ent->client->ps.pmove.origin[1] = level.intermission_origin[1] * 8;
@@ -61,7 +63,7 @@ void MoveClientToIntermission(edict_t *ent)
     // add the layout
 
     if (deathmatch->value || coop->value) {
-        DeathmatchScoreboardMessage(ent, NULL);
+        DeathmatchScoreboardMessage(ent, NULL, 1);
         gi.unicast(ent, true);
     }
 
@@ -146,7 +148,7 @@ DeathmatchScoreboardMessage
 
 ==================
 */
-void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer)
+void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer, int drawUi)
 {
     char    entry[1024];
     char    string[1400];
@@ -187,7 +189,7 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer)
 
     cl = &game.clients[sorted[0]];
 
-    Q_snprintf(entry, sizeof(entry), "topscore ");
+    Q_snprintf(entry, sizeof(entry), "topscore %d ", drawUi);
 
     j = strlen(entry);
     strcpy(string + stringlength, entry);
@@ -217,8 +219,8 @@ void DeathmatchScoreboardMessage(edict_t *ent, edict_t *killer)
         sprintf(place, "%d", (i + 1));
         // send the layout
         Q_snprintf(entry, sizeof(entry),
-                   "client %i %i %i %i %i %i %s %d ",
-                   x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe) / 600, place, total);
+                   "client %i %i %i %i %i %i %s %d %d ",
+                   x, y, sorted[i], cl->resp.score, cl->ping, (level.framenum - cl->resp.enterframe) / 600, place, total, drawUi);
         j = strlen(entry);
         if (stringlength + j > 1024)
             break;
@@ -239,9 +241,9 @@ Draw instead of help message.
 Note that it isn't that hard to overflow the 1400 byte message limit!
 ==================
 */
-void DeathmatchScoreboard(edict_t *ent)
+void DeathmatchScoreboard(edict_t *ent, int drawUi)
 {
-    DeathmatchScoreboardMessage(ent, ent->enemy);
+    DeathmatchScoreboardMessage(ent, ent->enemy, drawUi);
     gi.unicast(ent, true);
 }
 
@@ -253,7 +255,7 @@ Cmd_Score_f
 Display the scoreboard
 ==================
 */
-void Cmd_Score_f(edict_t *ent)
+void Cmd_Score_f(edict_t *ent, int drawUi)
 {
     ent->client->showinventory = false;
     ent->client->showhelp = false;
@@ -261,13 +263,15 @@ void Cmd_Score_f(edict_t *ent)
     if (!deathmatch->value && !coop->value)
         return;
 
-    if (ent->client->showscores) {
+    if (ent->client->showscores || ent->client->drawScoresUi ) {
         ent->client->showscores = false;
+        ent->client->drawScoresUi = false;
         return;
     }
 
     ent->client->showscores = true;
-    DeathmatchScoreboard(ent);
+    ent->client->drawScoresUi = drawUi;
+    DeathmatchScoreboard(ent, drawUi);
 }
 
 
@@ -326,12 +330,13 @@ void Cmd_Help_f(edict_t *ent)
 {
     // this is for backwards compatability
     if (deathmatch->value) {
-        Cmd_Score_f(ent);
+        Cmd_Score_f(ent, 1);
         return;
     }
 
     ent->client->showinventory = false;
     ent->client->showscores = false;
+    ent->client->drawScoresUi = false;
 
     if (ent->client->showhelp && (ent->client->pers.game_helpchanged == game.helpchanged)) {
         ent->client->showhelp = false;

@@ -1016,12 +1016,6 @@ char contractAddress[65];
 
 static void send_connect_packet(client_t *newcl, int nctype)
 {
-    /* Retrieve the Smart Contract address from the Server Game Agent */
-	SV_Smilo_GetContractAddress(contractAddress, sizeof(contractAddress) - 1);
-
-	// Ensure contract address is zero terminated.
-	contractAddress[sizeof(contractAddress) - 1] = 0;
-
 	/* send the special Smilo packet notifying the client the contract address */
 	Netchan_OutOfBand(NS_SERVER, &net_from, "client_smilo_id %s", contractAddress);
 
@@ -2185,6 +2179,12 @@ Only called at quake2.exe startup, not for each game
 */
 void SV_Init(void)
 {
+    /* Retrieve the Smart Contract address from the Server Game Agent */
+	SV_Smilo_GetContractAddress(contractAddress, sizeof(contractAddress) - 1);
+
+	// Ensure contract address is zero terminated.
+	contractAddress[sizeof(contractAddress) - 1] = 0;
+
     SV_InitOperatorCommands();
 
     SV_MvdRegister();
@@ -2222,7 +2222,12 @@ void SV_Init(void)
     sv_ghostime = Cvar_Get("sv_ghostime", "6", 0);
     sv_ghostime->changed = sv_sec_timeout_changed;
     sv_ghostime->changed(sv_ghostime);
-    sv_idlekick = Cvar_Get("sv_idlekick", "300", 0);
+    int rookie = SV_Smilo_Is_Rookie(contractAddress);
+    if (rookie) {
+        sv_idlekick = Cvar_Get("sv_idlekick", "300", 0);
+    } else {
+        sv_idlekick = Cvar_Get("sv_idlekick", "0", 0);
+    }
     sv_idlekick->changed = sv_sec_timeout_changed;
     sv_idlekick->changed(sv_idlekick);
     sv_enforcetime = Cvar_Get("sv_enforcetime", "1", 0);

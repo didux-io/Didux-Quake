@@ -589,7 +589,7 @@ extern  gitem_t itemlist[];
 // g_cmds.c
 //
 void Cmd_Help_f(edict_t *ent);
-void Cmd_Score_f(edict_t *ent);
+void Cmd_Score_f(edict_t *ent, int drawUi);
 
 //
 // g_items.c
@@ -773,7 +773,7 @@ void G_SetStats(edict_t *ent);
 void G_SetSpectatorStats(edict_t *ent);
 void G_CheckChaseStats(edict_t *ent);
 void ValidateSelectedItem(edict_t *ent);
-void DeathmatchScoreboardMessage(edict_t *client, edict_t *killer);
+void DeathmatchScoreboardMessage(edict_t *client, edict_t *killer, int drawUi);
 
 //
 // g_pweapon.c
@@ -879,6 +879,7 @@ struct gclient_s {
     pmove_state_t       old_pmove;  // for detecting out-of-pmove changes
 
     bool        showscores;         // set layout stat
+    bool        drawScoresUi;       // draw scores ui stat
     bool        showinventory;      // set layout stat
     bool        showhelp;           // really why should you name the scoreboard help... cmon. This is the scoreboard
     bool        showhelpicon;

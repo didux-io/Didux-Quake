@@ -610,6 +610,7 @@ Cmd_PutAway_f
 void Cmd_PutAway_f(edict_t *ent)
 {
     ent->client->showscores = false;
+    ent->client->drawScoresUi = false;
     ent->client->showhelp = false;
     ent->client->showinventory = false;
 }
@@ -865,7 +866,11 @@ void ClientCommand(edict_t *ent)
         return;
     }
     if (Q_stricmp(cmd, "score") == 0) {
-        Cmd_Score_f(ent);
+        Cmd_Score_f(ent, 1);
+        return;
+    }
+    if (Q_stricmp(cmd, "scorenoui") == 0) {
+        Cmd_Score_f(ent, 0);
         return;
     }
     if (Q_stricmp(cmd, "help") == 0) {

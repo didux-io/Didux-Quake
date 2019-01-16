@@ -800,6 +800,9 @@ void Cvar_WriteVariables(qhandle_t f, int mask, bool modified)
         if (strncmp(var->name, "name", 4) == 0) {
             continue;
         }
+        if (strncmp(var->name, "gametoken", 9) == 0) {
+            continue;
+        }
         FS_FPrintf(f, "set%s %s \"%s\"\n", a, var->name, s);
     }
 }

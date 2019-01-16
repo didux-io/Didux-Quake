@@ -76,6 +76,7 @@ cvar_t  *cl_vwep;
 cvar_t  *info_password;
 cvar_t  *info_spectator;
 cvar_t  *info_name;
+cvar_t  *gametoken;
 cvar_t  *info_skin;
 cvar_t  *info_rate;
 cvar_t  *info_fov;
@@ -1759,6 +1760,7 @@ static void CL_PlaySound_f(void)
 }
 
 static int precache_spawncount;
+int pastEnoughFunds;
 
 /*
 =================
@@ -1802,12 +1804,34 @@ void CL_Begin(void)
     menuFrameWork_t *menu;
     char *s;
 
-    s = "smilo";
-    menu = UI_FindMenu(s);
-    if (menu) {
-        UI_PushMenu(menu);
+    int preJoinBalanceCheck = CL_Smilo_GetBalance(current_player_publickey);
+    gameDetails_t gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
+    if (preJoinBalanceCheck < gamedetails.deposit) {
+        Com_Error(ERR_DROP, "Not enough funds. Needed: %d XSM. Your balance: %d \n", gamedetails.deposit, preJoinBalanceCheck);
+        CL_Disconnect(ERR_DROP);
     } else {
-        Com_Printf("Could not find smilo menu!");
+        pastEnoughFunds = CL_Smilo_CheckTokenFunds(cls.contract_address);
+        if (pastEnoughFunds == 1) {
+            Com_Printf("Enough funds! \n");
+
+            s = "smilo";
+            menu = UI_FindMenu(s);
+            if (menu) {
+                UI_PushMenu(menu);
+            } else {
+                Com_Error(ERR_DROP, "Could not find smilo menu! \n");
+            }
+        } else {
+            Com_Printf("Not enough funds! \n");
+
+            s = "smilonofunds";
+            menu = UI_FindMenu(s);
+            if (menu) {
+                UI_PushMenu(menu);
+            } else {
+                Com_Error(ERR_DROP, "Could not find smilonofunds menu! \n");
+            }
+        }
     }
 }
 
@@ -2622,7 +2646,7 @@ static void cl_chat_sound_changed(cvar_t *self)
 
 void cl_timeout_changed(cvar_t *self)
 {
-    self->integer = 1000 * Cvar_ClampValue(self, 0, 24 * 24 * 60 * 60);
+    self->integer = 3000 * Cvar_ClampValue(self, 0, 24 * 24 * 60 * 60);
 }
 
 static const cmdreg_t c_client[] = {
@@ -2785,6 +2809,7 @@ static void CL_InitLocal(void)
     info_password = Cvar_Get("password", "", CVAR_USERINFO);
     info_spectator = Cvar_Get("spectator", "1", CVAR_USERINFO);
     info_name = Cvar_Get("name", "unnamed", CVAR_USERINFO | CVAR_ARCHIVE);
+    gametoken = Cvar_Get("gametoken", "", CVAR_USERINFO | CVAR_ARCHIVE);
     info_skin = Cvar_Get("skin", "male/grunt", CVAR_USERINFO | CVAR_ARCHIVE);
     info_rate = Cvar_Get("rate", "5000", CVAR_USERINFO | CVAR_ARCHIVE);
     info_msg = Cvar_Get("msg", "1", CVAR_USERINFO | CVAR_ARCHIVE);
@@ -3149,7 +3174,6 @@ CL_GetBalance(char* publickey) {
     }
 
     balance = CL_Smilo_GetBalance(publickey);
-    Com_Printf("Balance refreshed!\n");
     cls.balance_refreshed = true;
 }
 
@@ -3180,8 +3204,6 @@ CL_CheckBetConfirmed(char* publickey, char* contractaddress) {
 	}
 }
 
-int showScoreboardUI = 0;
-
 void CL_Smilo_ConfirmedParticipate(void)
 {   
     // Put out of spectator mode
@@ -3193,13 +3215,17 @@ void CL_Smilo_ConfirmedParticipate(void)
         Com_Error(ERR_DROP, "%s \n", buffer);
         CL_Disconnect(ERR_DROP);
     }
-    showScoreboardUI = 1;
     UI_PopMenu();
+}
+
+void CL_Smilo_ConfirmResetToken(void)
+{   
+    CL_Smilo_RequestMoreFunds();
 }
 
 static const cmdreg_t cl_smilo_commands[] = {
     { "confirmparticipate", CL_Smilo_ConfirmedParticipate },
-
+    { "confirmresettoken", CL_Smilo_ConfirmResetToken },
     { NULL }
 };
 
@@ -3437,9 +3463,15 @@ void CL_Init(void)
 
     // all archived variables will now be loaded
 
+    CL_InitLocal();
+    int result = CL_Smilo_RequestToken(gametoken->string);
+    if (!result) {
+        abort();
+        return;
+    }
+
     // start with full screen console
     cls.key_dest = KEY_CONSOLE;
-
 #ifdef _WIN32
     CL_InitRefresh();
     S_Init();   // sound must be initialized after window is created
@@ -3448,7 +3480,6 @@ void CL_Init(void)
     CL_InitRefresh();
 #endif
 
-    CL_InitLocal();
     IN_Init();
 
 #if USE_ZLIB
@@ -3471,6 +3502,7 @@ void CL_Init(void)
     cl_cmdbuf.maxsize = sizeof(cl_cmdbuf_text);
     cl_cmdbuf.exec = exec_server_string;
 
+    // Black screen if this not set
     Cvar_Set("cl_running", "1");
 }
 

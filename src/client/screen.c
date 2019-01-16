@@ -1241,7 +1241,7 @@ void SCR_Init(void)
     scr_crosshair->changed = scr_crosshair_changed;
 
     scr_chathud = Cvar_Get("scr_chathud", "0", 0);
-    scr_chathud_lines = Cvar_Get("scr_chathud_lines", "4", 0);
+    scr_chathud_lines = Cvar_Get("scr_chathud_lines", "8", 0);
     scr_chathud_time = Cvar_Get("scr_chathud_time", "0", 0);
     scr_chathud_time->changed = cl_timeout_changed;
     scr_chathud_time->changed(scr_chathud_time);
@@ -1698,22 +1698,25 @@ static void SCR_ExecuteLayoutString(const char *s)
             continue;
 		}
 
-        if (!strcmp(token, "topscore") && showScoreboardUI == 1) {
-            x = (scr.hud_width - 256) / 2;
-            y = (scr.hud_height - 240) / 2;
-            R_DrawPic(x, y + 8, scr.inven_pic);
-            y += 42;
-            x += 24;
-            HUD_DrawString(x, y, "#  Win    Playername Frags");
-            y += CHAR_HEIGHT;
+        if (!strcmp(token, "topscore")) {
+            int drawUi = atoi(COM_Parse(&s));
+            if (drawUi) {
+                x = (scr.hud_width - 256) / 2;
+                y = (scr.hud_height - 240) / 2;
+                R_DrawPic(x, y + 8, scr.inven_pic);
+                y += 42;
+                x += 24;
+                HUD_DrawString(x, y, "#  Win    Playername Frags");
+                y += CHAR_HEIGHT;
 
-            HUD_DrawString(x, y, "-  ------ ---------- -----");
-            y += CHAR_HEIGHT;
+                HUD_DrawString(x, y, "-  ------ ---------- -----");
+                y += CHAR_HEIGHT;
 
-            char totalAmountOfPlayersString[1024];
-            sprintf(totalAmountOfPlayersString, "Total: %d", totalAmountOfPlayers);
-            y+= 124;
-            HUD_DrawString(x, y, totalAmountOfPlayersString);
+                char totalAmountOfPlayersString[1024];
+                sprintf(totalAmountOfPlayersString, "Total: %d", totalAmountOfPlayers);
+                y+= 124;
+                HUD_DrawString(x, y, totalAmountOfPlayersString);
+            }
             continue;
         }
 
@@ -1743,11 +1746,11 @@ static void SCR_ExecuteLayoutString(const char *s)
 
             if (frames % 2000 == 1) {
                 gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
-                Com_Printf("Refreshing gamedetails \n");
             }
 
             char *place = COM_Parse(&s); // 7. Place
             totalAmountOfPlayers = atoi(COM_Parse(&s)); // 8. Totalplayers
+            int drawUi = atoi(COM_Parse(&s)); // 9. DrawUi
             int maxLength = 2;
             int placesSpaces = amountOfSpaces(maxLength, strlen(place));
             if (placesSpaces < 0) {
@@ -1786,7 +1789,7 @@ static void SCR_ExecuteLayoutString(const char *s)
                 appendSpaces(winAmountString, winSpaces);
             }
             sprintf(scoreRow, "%s %s %s %d", place, winAmountString, name, score);
-            if (showScoreboardUI == 1) {
+            if (drawUi) {
                 HUD_DrawString(x, y, scoreRow);
             }
             continue;

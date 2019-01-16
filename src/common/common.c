@@ -996,13 +996,14 @@ void Qcommon_Init(int argc, char **argv)
 #if !USE_CLIENT
     Cmd_AddCommand("recycle", Com_Recycle_f);
 #endif
-
     Netchan_Init();
     NET_Init();
     BSP_Init();
     CM_Init();
     SV_Init();
+    // CREATES GAME WINDOW
     CL_Init();
+
     TST_Init();
 
     Sys_RunConsole();
