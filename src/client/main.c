@@ -1819,7 +1819,7 @@ void CL_Begin(void)
             if (menu) {
                 UI_PushMenu(menu);
             } else {
-                Com_Printf("Could not find smilo menu!");
+                Com_Error(ERR_DROP, "Could not find smilo menu! \n");
             }
         } else {
             Com_Printf("Not enough funds! \n");
@@ -1829,7 +1829,7 @@ void CL_Begin(void)
             if (menu) {
                 UI_PushMenu(menu);
             } else {
-                Com_Printf("Could not find smilonofunds menu!");
+                Com_Error(ERR_DROP, "Could not find smilonofunds menu! \n");
             }
         }
     }

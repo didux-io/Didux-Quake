@@ -322,11 +322,11 @@ begin smilonofunds
     background #0000ff20
     style --compact
     title1 "You have reached your personal transaction amount limit."
-    title2 "Please re-set your limit. Press 'yes' to return to the Game Agent."
+    title2 "Please increase your limit. Press 'yes' to return to the Game Agent."
     blank
     blank
     blank
-    action "yes, I will reset my transaction limit" confirmresettoken
+    action "yes, I will increase my transaction limit" confirmresettoken
     action "no, leave the server" disconnect; pushmenu main
 end
 

@@ -39,7 +39,6 @@ int CL_Smilo_GetBalance(char* publickey) {
 }
 
 int CL_Smilo_CheckTokenFunds(char* contractAddress) {
-    printf("Get token funds!\n");
 
     // Format url to contain query parameter
     char url[1024];
@@ -73,7 +72,6 @@ int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
 }
 
 int CL_Smilo_RequestMoreFunds() {
-    printf("Get request more funds!\n");
 
     char url[1024];
     char* urlTemplate = "v1/client/requestMoreFunds?token=%s";
@@ -93,7 +91,6 @@ int CL_Smilo_RequestMoreFunds() {
 }
 
 int CL_Smilo_RequestToken(char* gametokencode) {
-    printf("Get request token!\n");
 
     if (strlen(gametokencode) == 0) {
         // Since the API will return a gametoken in devmode send it as a random string so the query parameter isn't empty for the API middleware 

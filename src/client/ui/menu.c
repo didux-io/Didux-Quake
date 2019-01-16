@@ -2226,7 +2226,7 @@ void Menu_Draw(menuFrameWork_t *menu)
             if (menu) {
                 UI_PushMenu(menu);
             } else {
-                Com_Printf("Could not find smilo menu!");
+                Com_Error(ERR_DROP, "Could not find smilo menu! \n");
             }
         } else if (enoughFunds == 0 && drawMenu == 1) {
 
@@ -2235,7 +2235,7 @@ void Menu_Draw(menuFrameWork_t *menu)
             if (menu) {
                 UI_PushMenu(menu);
             } else {
-                Com_Printf("Could not find smilonofunds menu!");
+                Com_Error(ERR_DROP, "Could not find smilonofunds menu! \n");
             }
         }
         pastEnoughFunds = enoughFunds;
