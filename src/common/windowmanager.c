@@ -17,11 +17,13 @@
 #endif
 
 void RaiseWindow() {
+    // Below code is disabled to prevent any bugs from popping up.
+    // This is part of the overlay and has not been tested very well yet...
     #ifdef _WIN32
         // This is Windows
-        SetForegroundWindow(windowsHandler);
+        // SetForegroundWindow(windowsHandler);
     #else
         // Unix (like) system which uses SDL
-        SDL_RaiseWindow(unixWindow);
+        // SDL_RaiseWindow(unixWindow);
     #endif
 }
