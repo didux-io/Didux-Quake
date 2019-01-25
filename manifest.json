@@ -171,6 +171,13 @@
             ]
         },
         {
+            "name": "HitmanDaz Collins",
+            "description": "creating the Marine player model",
+            "links": [
+                "http://tastyspleen.net/~quake2/baseq2/players/marine/"
+            ]
+        },
+        {
             "name": "libcurl",
             "description": "easy http/https calls",
             "links": [
