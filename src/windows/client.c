@@ -1050,7 +1050,7 @@ void Win_Init(void)
     win.wnd = CreateWindow(
                   _T(WINDOW_CLASS_NAME),
                   _T(PRODUCT),
-                  0, //style
+                  WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX, //style
                   0, 0, 0, 0,
                   NULL,
                   NULL,
