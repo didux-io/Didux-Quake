@@ -1,6 +1,6 @@
 {
     "id": "SmiloQuake",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "title": "Smilo Quake",
     "subTitle": "Shoot, kill and earn Smilo",
     "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
@@ -168,6 +168,13 @@
             "description": "creating the Ryla player model",
             "links": [
                 "http://tastyspleen.net/"
+            ]
+        },
+        {
+            "name": "HitmanDaz Collins",
+            "description": "creating the Marine player model",
+            "links": [
+                "http://tastyspleen.net/~quake2/baseq2/players/marine/"
             ]
         },
         {

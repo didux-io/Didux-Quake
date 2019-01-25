@@ -2177,14 +2177,8 @@ SV_Init
 Only called at quake2.exe startup, not for each game
 ===============
 */
-void SV_Init(void)
+void SV_Init(int server)
 {
-    /* Retrieve the Smart Contract address from the Server Game Agent */
-	SV_Smilo_GetContractAddress(contractAddress, sizeof(contractAddress) - 1);
-
-	// Ensure contract address is zero terminated.
-	contractAddress[sizeof(contractAddress) - 1] = 0;
-
     SV_InitOperatorCommands();
 
     SV_MvdRegister();
@@ -2196,6 +2190,17 @@ void SV_Init(void)
     AC_Register();
 
     SV_RegisterSavegames();
+
+    if (server) {
+        /* Retrieve the Smart Contract address from the Server Game Agent */
+        if(!SV_Smilo_GetContractAddress(contractAddress, sizeof(contractAddress) - 1)) {
+            Com_Printf("ERROR JO!\n");
+            SV_Shutdown("Failed to connect agent while retrieving contract address...", ERR_FATAL);
+        }
+
+        // Ensure contract address is zero terminated.
+        contractAddress[sizeof(contractAddress) - 1] = 0;
+    }
 
     Cvar_Get("protocol", STRINGIFY(PROTOCOL_VERSION_DEFAULT), CVAR_SERVERINFO | CVAR_ROM);
 
@@ -2222,11 +2227,19 @@ void SV_Init(void)
     sv_ghostime = Cvar_Get("sv_ghostime", "6", 0);
     sv_ghostime->changed = sv_sec_timeout_changed;
     sv_ghostime->changed(sv_ghostime);
-    int rookie = SV_Smilo_Is_Rookie(contractAddress);
-    if (rookie) {
-        sv_idlekick = Cvar_Get("sv_idlekick", "300", 0);
+    if (server) {
+        int rookie = SV_Smilo_Is_Rookie(contractAddress);
+        if(rookie == -1) {
+            // Failed to connect with agent...just die
+            SV_Shutdown("Failed to connect agent while retrieving rookie status...", ERR_FATAL);
+        }
+        else if (rookie) {
+            sv_idlekick = Cvar_Get("sv_idlekick", "300", 0);
+        } else {
+            sv_idlekick = Cvar_Get("sv_idlekick", "0", 0);
+        }
     } else {
-        sv_idlekick = Cvar_Get("sv_idlekick", "0", 0);
+        sv_idlekick = Cvar_Get("sv_idlekick", "300", 0);
     }
     sv_idlekick->changed = sv_sec_timeout_changed;
     sv_idlekick->changed(sv_idlekick);

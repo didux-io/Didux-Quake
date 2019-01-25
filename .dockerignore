@@ -2,4 +2,4 @@ baseq2
 docker
 .git
 output
-!output/debian_*.tar.gz
+!output/linux_*.tar.gz

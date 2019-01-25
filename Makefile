@@ -174,6 +174,7 @@ COMMON_OBJS := \
 
 OBJS_c := \
     $(COMMON_OBJS)          \
+    src/common/windowmanager.o \
     src/shared/m_flash.o    \
     src/client/smilo.o      \
     src/client/ascii.o      \
