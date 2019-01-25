@@ -197,8 +197,16 @@ static void change_string_value(cvar_t *var, const char *value, from_t from)
     }
 }
 
-static bool validate_info_cvar(const char *s)
+static bool validate_info_cvar(char *s)
 {
+    int index = 0;
+    while(s[index] != 0) {
+        if(s[index] == '^')
+            s[index] = ' ';
+
+        index++;
+    }
+
     size_t len = Info_SubValidate(s);
 
     if (len == SIZE_MAX) {
