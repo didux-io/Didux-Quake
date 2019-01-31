@@ -1,6 +1,6 @@
 {
     "id": "SmiloQuake",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "title": "Smilo Quake",
     "subTitle": "Shoot, kill and earn Smilo",
     "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
