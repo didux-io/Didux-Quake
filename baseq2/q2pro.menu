@@ -292,11 +292,11 @@ begin smilo
     style --compact
     title1 "Welcome to Smilo Quake!"
     blank
-    title2 "1st price"
+    title2 "1st prize"
     blank
-    title3 "2nd price"
+    title3 "2nd prize"
     blank
-    title4 "3rd price"
+    title4 "3rd prize"
     blank
     blank
     title8 "bettimeremaining"
