@@ -7,12 +7,13 @@
 
 int clientPort = 46290;
 char token[65];
+char _publickey[65];
 
 void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/client/participate?contractaddress=%s&token=%s";
-    sprintf(url, urlTemplate, contractAddress, token);
+    char* urlTemplate = "v1/client/participate?contractaddress=%s&token=%s&publickey=%s";
+    sprintf(url, urlTemplate, contractAddress, token, _publickey);
 
     char response[4096];
     if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
@@ -22,11 +23,16 @@ void CL_Smilo_Connected(char* contractAddress, char* buffer, int bufferSize) {
     }
 }
 
-int CL_Smilo_GetBalance(char* publickey) {
+void CL_Smilo_SetPublicKey(char* publickey) {
+    sprintf(_publickey, "%s", publickey);
+}
+
+int CL_Smilo_GetBalance() {
     // Format url to contain query parameter
     char url[1024];
+    printf("Getting balance for publickey %s \n", _publickey);
     char* urlTemplate = "v1/client/balanceNonBigInt?publickey=%s";
-    sprintf(url, urlTemplate, publickey);
+    sprintf(url, urlTemplate, _publickey);
 
     char response[4096];
     if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
@@ -56,20 +62,20 @@ int CL_Smilo_CheckTokenFunds(char* contractAddress) {
     }
 }
 
-int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
-    // Notify Smilo server agent
-    char response[4096];
-    if (HTTP_Get("127.0.0.1", "v1/client/publickey", clientPort, response, sizeof(response), 1)) {
-        // Copy response in buffer
-        strncpy(buffer, response, bufferSize);
+// int CL_Smilo_GetPublicKey(char* buffer, int bufferSize) {
+//     // Notify Smilo server agent
+//     char response[4096];
+//     if (HTTP_Get("127.0.0.1", "v1/client/publickey", clientPort, response, sizeof(response), 1)) {
+//         // Copy response in buffer
+//         strncpy(buffer, response, bufferSize);
 
-        return 1;
-    }
-    else {
-        printf("CL_Smilo_GetPublicKey - Failed to do HTTP call...\n");
-        return 0;
-    }
-}
+//         return 1;
+//     }
+//     else {
+//         printf("CL_Smilo_GetPublicKey - Failed to do HTTP call...\n");
+//         return 0;
+//     }
+// }
 
 int CL_Smilo_RequestMoreFunds() {
 
@@ -115,11 +121,11 @@ int CL_Smilo_RequestToken(char* gametokencode) {
     }
 }
 
-int CL_Smilo_BetConfirmed(char* publickey, char* contractaddress) {
+int CL_Smilo_BetConfirmed(char* contractaddress) {
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/client/betconfirmed?publickey=%s&contractaddress=%s";
-    sprintf(url, urlTemplate, publickey, contractaddress);
+    char* urlTemplate = "v1/client/betconfirmed?contractaddress=%s";
+    sprintf(url, urlTemplate, contractaddress);
 
     // Notify Smilo server agent
     char response[4096];
