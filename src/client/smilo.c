@@ -121,11 +121,11 @@ int CL_Smilo_RequestToken(char* gametokencode) {
     }
 }
 
-int CL_Smilo_BetConfirmed(char* contractaddress) {
+int CL_Smilo_IsValidParticipant(char* contractaddress) {
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/client/betconfirmed?contractaddress=%s";
-    sprintf(url, urlTemplate, contractaddress);
+    char* urlTemplate = "v1/client/isValidParticipant?contractaddress=%s&publickey=%s";
+    sprintf(url, urlTemplate, contractaddress, _publickey);
 
     // Notify Smilo server agent
     char response[4096];
@@ -137,7 +137,7 @@ int CL_Smilo_BetConfirmed(char* contractaddress) {
         }
     }
     else {
-        printf("CL_Smilo_BetConfirmed - Failed to do HTTP call...\n");
+        printf("CL_Smilo_IsValidParticipant - Failed to do HTTP call...\n");
         return 0;
     }
 }

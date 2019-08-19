@@ -3170,12 +3170,12 @@ void CL_UpdateFrameTimes(void)
 }
 
 void
-CL_GetBalance(char* publickey) {
+CL_GetBalance() {
 	if(cls.balance_refreshed) {
 		return;
     }
 
-    balance = CL_Smilo_GetBalance(publickey);
+    balance = CL_Smilo_GetBalance();
     cls.balance_refreshed = true;
 }
 
@@ -3194,15 +3194,14 @@ CL_CheckBetConfirmed(char* contractaddress) {
 	if(elapsed >= 2000) {
 		cls.last_bet_check_time = cls.realtime;
 		cls.bet_check_count++;
-        // int betConfirmed = CL_Smilo_BetConfirmed(publickey, contractaddress);
-		// if(betConfirmed) {
-		// 	Com_Printf("Your bet has been confirmed by the Smilo Blockchain!\n");
-		// 	cls.bet_confirmed = true;
-        //     CL_GetBalance(publickey);
-		// }
-		// else {
-		// 	Com_Printf("Your bet has NOT yet been confirmed...\n");
-		// }
+        int betConfirmed = CL_Smilo_IsValidParticipant(contractaddress);
+		if (betConfirmed) {
+			Com_Printf("Your bet has been confirmed by the Smilo Blockchain!\n");
+			cls.bet_confirmed = true;
+            CL_GetBalance();
+		} else {
+			Com_Printf("Your bet has NOT yet been confirmed...\n");
+		}
 	}
 }
 
@@ -3472,6 +3471,8 @@ void CL_Init(void)
         abort();
         return;
     }
+
+    CL_Smilo_SetPublicKey(publickey->string);
 
     CL_Smilo_SetPublicKey(publickey->string);
 
