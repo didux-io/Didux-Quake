@@ -1901,6 +1901,7 @@ SV_KickNonBetting() {
 
 		if (!client->betConfirmed) {
 			// Bet was not yet confirmed
+            Com_Printf("Checking user publickey: %s", client->publickey);
 			if (SV_Smilo_BetConfirmed(client->publickey, contractAddress)) {
 				// Client was confirmed!
 				client->betConfirmed = 1;

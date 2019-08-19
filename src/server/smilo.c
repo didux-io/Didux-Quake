@@ -38,8 +38,8 @@ SV_Smilo_EndMatch(char* score_list) {
 int SV_Smilo_BetConfirmed(char publickey[1024], char* contractaddress) {
     // Format url to contain query parameter
     char url[1024];
-    char* urlTemplate = "v1/server/isvalidparticipant?publickey=%s&contractaddress=%s";
-    sprintf(url, urlTemplate, publickey, contractaddress);
+    char* urlTemplate = "v1/server/isValidParticipant?contractaddress=%s&publickey=%s";
+    sprintf(url, urlTemplate, contractaddress, publickey);
 
     // Notify Smilo server agent
     char response[4096];
