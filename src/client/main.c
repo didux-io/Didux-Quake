@@ -3466,11 +3466,6 @@ void CL_Init(void)
     // all archived variables will now be loaded
 
     CL_InitLocal();
-    int result = CL_Smilo_RequestToken(gametoken->string);
-    if (!result) {
-        abort();
-        return;
-    }
 
     CL_Smilo_SetPublicKey(publickey->string);
 
@@ -3507,6 +3502,12 @@ void CL_Init(void)
     cl_cmdbuf.text = cl_cmdbuf_text;
     cl_cmdbuf.maxsize = sizeof(cl_cmdbuf_text);
     cl_cmdbuf.exec = exec_server_string;
+
+    int result = CL_Smilo_RequestToken(gametoken->string);
+    if (!result) {
+        abort();
+        return;
+    }
 
     // Black screen if this not set
     Cvar_Set("cl_running", "1");

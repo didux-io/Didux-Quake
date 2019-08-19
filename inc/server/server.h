@@ -32,7 +32,7 @@ typedef enum {
 #if USE_ICMP
 void SV_ErrorEvent(netadr_t *from, int ee_errno, int ee_info);
 #endif
-void SV_Init(void);
+void SV_Init(int server);
 void SV_Shutdown(const char *finalmsg, error_type_t type);
 unsigned SV_Frame(unsigned msec);
 #if USE_SYSCON

@@ -6,6 +6,10 @@
 char confirmedPlayerPublickeys[128];
 int playeruidsIndex;
 int port = 46280;
+// The max amount of times a HTTP may be repeated before it fails.
+// Does not apply to all HTTP calls.
+// Effectively each try is about one second. 
+int maxHttpTries = 120;
 
 #if DEV_MODE
 char* host = "127.0.0.1";
@@ -63,33 +67,44 @@ int SV_Smilo_Is_Rookie(char* contractaddress) {
     char* urlTemplate = "v1/server/isRookie?contractaddress=%s";
     sprintf(url, urlTemplate, contractaddress);
 
-    // Notify Smilo server agent
-    char response[4096];
-    if(HTTP_Get(host, url, port, response, sizeof(response), 0)) {
-        if (strcmp(response, "false") == 0) {
-            return 0;
-        } else {
-            return 1;
+    int callsRemaining = maxHttpTries;
+    while(1) {
+        // Notify Smilo server agent
+        char response[4096];
+        if(HTTP_Get(host, url, port, response, sizeof(response), 0)) {
+            if (strcmp(response, "false") == 0) {
+                return 0;
+            } else {
+                return 1;
+            }
         }
-    }
-    else {
-        printf("SV_Smilo_Is_Rookie - Failed to do HTTP call...\n");
-        return 1;
+        else {
+            printf("SV_Smilo_Is_Rookie - Failed to do HTTP call...\n");
+            if(--callsRemaining == 0)
+                return -1;
+        }
+
+        sleep(1);
     }
 }
 
 int SV_Smilo_GetContractAddress(char* buffer, int bufferSize) {
-    printf("Host: %s \n", host);
-    // Notify Smilo server agent
-    char response[4096];
-    if(HTTP_Get(host, "v1/server/contractaddress", port, response, sizeof(response), 0)) {
-        // Copy response in buffer
-        strncpy(buffer, response, bufferSize);
+    int callsRemaining = maxHttpTries;
+    while(1) {
+        // Notify Smilo server agent
+        char response[4096];
+        if(HTTP_Get(host, "v1/server/contractaddress", port, response, sizeof(response), 0)) {
+            // Copy response in buffer
+            strncpy(buffer, response, bufferSize);
 
-        return 1;
-    }
-    else {
-        printf("SV_Smilo_GetContractAddress - Failed to do HTTP call...\n");
-        return 0;
+            return 1;
+        }
+        else {
+            printf("SV_Smilo_GetContractAddress - Failed to do HTTP call...\n");
+            if(--callsRemaining == 0)
+                return 0;
+        }
+
+        sleep(1);
     }
 }

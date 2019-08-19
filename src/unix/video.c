@@ -34,6 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "system/system.h"
 #include "res/q2pro.xbm"
 #include <SDL.h>
+#include "common/windowmanager.h"
 
 static SDL_Window       *sdl_window;
 static SDL_GLContext    *sdl_context;
@@ -294,6 +295,8 @@ bool VID_Init(void)
     }
 
     sdl_window = SDL_CreateWindow(PRODUCT, rc.x, rc.y, rc.width, rc.height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+    SetSDLWindow(sdl_window);
+    
     if (!sdl_window) {
         Com_EPrintf("Couldn't create SDL window: %s\n", SDL_GetError());
         goto fail;

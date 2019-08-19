@@ -2247,7 +2247,7 @@ void Menu_Draw(menuFrameWork_t *menu)
     // 1st place
     if (menu->title2) {
         char* draw = menu->title2;
-        if (strcmp(menu->title2, "1st price") == 0) {
+        if (strcmp(menu->title2, "1st prize") == 0) {
             if (gamedetails.playerCount < 1) {
                 draw = "";
             } else {
@@ -2263,7 +2263,7 @@ void Menu_Draw(menuFrameWork_t *menu)
     // 2nd place
     if (menu->title3) {
         char* draw = menu->title3;
-        if (strcmp(menu->title3, "2nd price") == 0) {
+        if (strcmp(menu->title3, "2nd prize") == 0) {
             if (gamedetails.playerCount < 2) {
                 draw = "";
             } else {
@@ -2280,7 +2280,7 @@ void Menu_Draw(menuFrameWork_t *menu)
     // 3rd place
     if (menu->title4) {
         char* draw = menu->title4;
-        if (strcmp(menu->title4, "3rd price") == 0) {
+        if (strcmp(menu->title4, "3rd prize") == 0) {
             if (gamedetails.playerCount < 3) {
                 draw = "";
             } else {

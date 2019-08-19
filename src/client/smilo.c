@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "../../inc/common/http.h"
 #include "../../inc/client/smilo.h"
+#include "common/windowmanager.h"
 
 int clientPort = 46290;
 char token[65];
@@ -88,6 +89,8 @@ int CL_Smilo_RequestMoreFunds() {
         // Copy response in buffer
         strncpy(token, response, sizeof(token) - 1);
 
+        RaiseWindow();
+
         return 1;
     }
     else {
@@ -112,6 +115,8 @@ int CL_Smilo_RequestToken(char* gametokencode) {
     if (HTTP_Get("127.0.0.1", url, clientPort, response, sizeof(response), 1)) {
         // Copy response in buffer
         strncpy(token, response, sizeof(token) - 1);
+
+        RaiseWindow();
 
         return 1;
     }

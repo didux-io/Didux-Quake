@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 //
 
 #include "client.h"
+#include "common/windowmanager.h"
 
 #define WINDOW_CLASS_NAME   "Quake 2 Pro"
 
@@ -1049,12 +1050,14 @@ void Win_Init(void)
     win.wnd = CreateWindow(
                   _T(WINDOW_CLASS_NAME),
                   _T(PRODUCT),
-                  0, //style
+                  WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX, //style
                   0, 0, 0, 0,
                   NULL,
                   NULL,
                   hGlobalInstance,
                   NULL);
+
+    SetWindowsWindow(win.wnd);
 
     if (!win.wnd) {
         Com_Error(ERR_FATAL, "Couldn't create main window");

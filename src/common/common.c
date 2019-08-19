@@ -993,14 +993,16 @@ void Qcommon_Init(int argc, char **argv)
     Cmd_AddCommand("lasterror", Com_LastError_f);
 
     Cmd_AddCommand("quit", Com_Quit_f);
-#if !USE_CLIENT
-    Cmd_AddCommand("recycle", Com_Recycle_f);
-#endif
     Netchan_Init();
     NET_Init();
     BSP_Init();
     CM_Init();
-    SV_Init();
+#if !USE_CLIENT
+    Cmd_AddCommand("recycle", Com_Recycle_f);
+    SV_Init(1);
+#else 
+    SV_Init(0);
+#endif
     // CREATES GAME WINDOW
     CL_Init();
 
