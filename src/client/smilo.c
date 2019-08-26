@@ -32,7 +32,7 @@ int CL_Smilo_GetBalance() {
     // Format url to contain query parameter
     char url[1024];
     printf("Getting balance for publickey %s \n", _publickey);
-    char* urlTemplate = "v1/client/balanceNonBigInt?publickey=%s";
+    char* urlTemplate = "v1/client/balance?publickey=%s";
     sprintf(url, urlTemplate, _publickey);
 
     char response[4096];

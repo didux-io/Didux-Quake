@@ -471,11 +471,11 @@ void CL_CheckForResend(void)
         cls.quakePort = net_qport->integer;
         break;
     }
-    char publickey[65];
+    // char publickey[65];
 	// CL_Smilo_GetPublicKey(publickey, sizeof(publickey) - 1);
-    Com_Printf("Using publickey %s \n", publickey);
+    // Com_Printf("Using publickey %s \n", publickey);
     // sprintf(current_player_publickey, "%s", publickey);
-    sprintf(cls.publickey, "%s", publickey);
+    sprintf(cls.publickey, "%s", publickey->string);
     Cvar_BitInfo(userinfo, CVAR_USERINFO);
     Netchan_OutOfBand(NS_CLIENT, &cls.serverAddress,
                       "connect %i %i %i \"%s\"%s\"%s\n", cls.serverProtocol, cls.quakePort,
@@ -3466,8 +3466,6 @@ void CL_Init(void)
     // all archived variables will now be loaded
 
     CL_InitLocal();
-
-    CL_Smilo_SetPublicKey(publickey->string);
 
     CL_Smilo_SetPublicKey(publickey->string);
 
