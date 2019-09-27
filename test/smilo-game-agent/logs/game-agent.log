@@ -1,0 +1,670 @@
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T09:14:11.794Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T09:14:11.807Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T09:14:11.833Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T09:14:11.837Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T09:15:29.636Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T09:15:29.646Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T09:15:29.672Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T09:15:29.675Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:44:11.369Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:44:11.379Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:44:11.405Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:44:11.408Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:44:28.513Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:44:28.523Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:44:28.550Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:44:28.554Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:54:00.021Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:54:00.032Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:54:00.062Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:54:00.065Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:55:27.891Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:27.902Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:27.932Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:27.935Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:55:36.711Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:36.723Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:36.754Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:36.758Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:55:43.817Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:43.828Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:43.855Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:55:43.860Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:57:16.115Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:57:16.128Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:57:16.165Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:57:16.171Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:59:24.884Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:24.894Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:24.922Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:24.926Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:59:34.821Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:34.831Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:34.858Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:34.863Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T12:59:57.171Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:57.182Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:57.208Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T12:59:57.211Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T13:00:37.224Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T13:00:37.235Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T13:00:37.269Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T13:00:37.274Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T13:12:20.774Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T13:12:20.785Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T13:12:20.811Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T13:12:20.815Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T13:16:49.708Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T13:16:49.720Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T13:16:49.746Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T13:16:49.749Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T13:17:02.256Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T13:17:02.267Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T13:17:02.295Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T13:17:02.299Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T13:23:26.152Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T13:23:26.162Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T13:23:26.186Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T13:23:26.189Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T13:24:22.372Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T13:24:22.383Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T13:24:22.412Z' }
+{ message:
+   '2. This instance never deployed a smart contract before. deploying contract now',
+  level: 'info',
+  timestamp: '2019-09-24T13:24:22.415Z' }
+{ message:
+   '3. Saved smart contract address 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3',
+  level: 'info',
+  timestamp: '2019-09-24T13:24:24.819Z' }
+{ '0':
+   { outputAddress: '0x577DB2F2E42388109Be8Fb2048B2C339cB79a6c4',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 3, 6 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 4 },
+  '1':
+   { outputAddress: '0xef2aea71651784FA82d7fFDf565011d00a9eCcD9',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 2, 4 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 3 },
+  level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T13:39:24.376Z' }
+{ level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T13:56:28.164Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T14:03:36.455Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T14:03:36.466Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T14:03:36.492Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T14:03:36.500Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T14:04:22.392Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T14:04:22.402Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T14:04:22.431Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T14:04:22.445Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T14:13:28.444Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T14:13:28.455Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T14:13:28.481Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T14:13:28.490Z' }
+{ message:
+   '3. The contract on address 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3 has been updated',
+  level: 'info',
+  timestamp: '2019-09-24T14:13:30.960Z' }
+{ '0':
+   { outputAddress: '0xef2aea71651784FA82d7fFDf565011d00a9eCcD9',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 3, 6 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 19 },
+  '1':
+   { outputAddress: '0x577DB2F2E42388109Be8Fb2048B2C339cB79a6c4',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 2, 4 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 5 },
+  level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T14:28:28.197Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T14:38:15.054Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:15.065Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:15.093Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:15.106Z' }
+{ message:
+   '3. The contract on address 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3 has been updated',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:17.525Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T14:38:54.649Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:54.662Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:54.704Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:54.716Z' }
+{ message:
+   '3. The contract on address 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3 has been updated',
+  level: 'info',
+  timestamp: '2019-09-24T14:38:57.157Z' }
+{ '0':
+   { outputAddress: '0x577DB2F2E42388109Be8Fb2048B2C339cB79a6c4',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 3 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 1 },
+  '1':
+   { outputAddress: '0xef2aea71651784FA82d7fFDf565011d00a9eCcD9',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 3 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 1 },
+  level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T14:41:55.209Z' }
+{ level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T14:47:00.754Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T14:52:04.240Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T14:52:04.251Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T14:52:04.280Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T14:52:04.287Z' }
+{ message:
+   '3. The contract on address 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3 has been updated',
+  level: 'info',
+  timestamp: '2019-09-24T14:52:06.719Z' }
+{ '0':
+   { outputAddress: '0x577DB2F2E42388109Be8Fb2048B2C339cB79a6c4',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 3 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 1 },
+  '1':
+   { outputAddress: '0xef2aea71651784FA82d7fFDf565011d00a9eCcD9',
+     outputAmount:
+      i {
+        invalidNumber: false,
+        big:
+         Big {
+           s: 1,
+           e: 0,
+           c: [ 3 ],
+           constructor:
+            { [Function: Big]
+              DP: 20,
+              RM: 1,
+              NE: -7,
+              PE: 21,
+              version: '5.2.2',
+              Big: [Circular],
+              default: [Circular] } },
+        decimals: 18 },
+     score: 1 },
+  level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T14:55:15.681Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T16:28:43.667Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T16:28:43.686Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T16:28:43.716Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T16:28:43.724Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T16:37:01.275Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T16:37:01.294Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T16:37:01.340Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T16:37:01.357Z' }
+{ message:
+   '3. The saved contract address was not a smart contract. Deploying contract.',
+  level: 'info',
+  timestamp: '2019-09-24T16:37:01.514Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T16:40:47.108Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T16:40:47.118Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T16:40:47.147Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T16:40:47.161Z' }
+{ message:
+   '3. The saved contract address was not a smart contract. Deploying contract.',
+  level: 'info',
+  timestamp: '2019-09-24T16:40:47.229Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T16:47:01.874Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T16:47:01.885Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T16:47:01.915Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T16:47:01.931Z' }
+{ message:
+   '3. The saved contract address was not a smart contract. Deploying contract.',
+  level: 'info',
+  timestamp: '2019-09-24T16:47:02.099Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T16:48:26.731Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T16:48:26.743Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T16:48:26.788Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T16:48:26.800Z' }
+{ message:
+   '3. The saved contract address was not a smart contract. Deploying contract.',
+  level: 'info',
+  timestamp: '2019-09-24T16:48:27.093Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T16:51:53.302Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T16:51:53.313Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T16:51:53.348Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T16:51:53.355Z' }
+{ message:
+   '3. The contract on address 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3 has been updated',
+  level: 'info',
+  timestamp: '2019-09-24T16:51:55.754Z' }
+{ level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T16:54:53.933Z' }
+{ level: 'info',
+  message: 'Winners array',
+  timestamp: '2019-09-24T16:57:59.879Z' }
+{ message: "Starting game agent as 'game-server'",
+  level: 'info',
+  timestamp: '2019-09-24T17:02:43.749Z' }
+{ message: '1. Server game agent config input all good',
+  level: 'info',
+  timestamp: '2019-09-24T17:02:43.761Z' }
+{ message:
+   'ASYNC - Smilo Server Game Manager API is running on port 46280',
+  level: 'info',
+  timestamp: '2019-09-24T17:02:43.788Z' }
+{ message:
+   '2. This instance saved a smart contract on address: 0x24c51B275Bff2135f4e2cf97c18cfc8194D723B3. Checking if address is still a smart contract',
+  level: 'info',
+  timestamp: '2019-09-24T17:02:43.797Z' }
+{ message:
+   '3. The saved contract address was not a smart contract. Deploying contract.',
+  level: 'info',
+  timestamp: '2019-09-24T17:02:43.921Z' }

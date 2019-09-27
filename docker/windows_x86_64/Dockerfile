@@ -1,6 +1,7 @@
 FROM debian
 
 # Install dependencies
+RUN apt-get clean
 RUN apt-get update
 RUN apt-get install build-essential libsdl2-dev libopenal-dev \
                     libpng-dev libjpeg-dev zlib1g-dev mesa-common-dev \

@@ -26,4 +26,4 @@ ZLIB_LIBS=$(shell pwd)/static/lib-linux64/libz.a
 
 SDL_LIBS=$(shell pwd)/static/lib-linux64/libSDL2.a $(shell sdl2-config --static-libs | cut -d " " -f3-)
 
-OUTPUT_DIR=./output
+OUTPUT_DIR=./output/linux64
