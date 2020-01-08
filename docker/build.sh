@@ -1,3 +1,4 @@
+#!/bin/bash
 PLATFORM=${1:-all}
 
 # Make sure all containers are build and up to date

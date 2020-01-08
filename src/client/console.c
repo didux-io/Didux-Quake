@@ -940,7 +940,7 @@ static void Con_DrawSolidConsole(void)
                     UI_DRAWCURSOR, con.charsetImage);
     }
 
-#define APP_VERSION "Smilo Quake"
+#define APP_VERSION "Didux Quake"
 #define VER_WIDTH ((int)(sizeof(APP_VERSION) + 1) * CHAR_WIDTH)
 
     y = vislines - CON_PRESTEP + CHAR_HEIGHT;

@@ -2252,7 +2252,7 @@ void Menu_Draw(menuFrameWork_t *menu)
                 draw = "";
             } else {
                 char * result = NULL;
-                asprintf(&result, "%s %d Smilo", menu->title2, gamedetails.firstReward);
+                asprintf(&result, "%s %d Didux", menu->title2, gamedetails.firstReward);
                 draw = result;
             }
         } 
@@ -2268,7 +2268,7 @@ void Menu_Draw(menuFrameWork_t *menu)
                 draw = "";
             } else {
                 char * result = NULL;
-                asprintf(&result, "%s %d Smilo", menu->title3, gamedetails.secondReward);
+                asprintf(&result, "%s %d Didux", menu->title3, gamedetails.secondReward);
                 draw = result;
             }
         } 
@@ -2285,7 +2285,7 @@ void Menu_Draw(menuFrameWork_t *menu)
                 draw = "";
             } else {
                 char * result = NULL;
-                asprintf(&result, "%s %d Smilo", menu->title4, gamedetails.thirdReward);
+                asprintf(&result, "%s %d Didux", menu->title4, gamedetails.thirdReward);
                 draw = result;
             }
         } 
@@ -2388,7 +2388,7 @@ void Menu_Draw(menuFrameWork_t *menu)
         char* draw = menu->title7;
         if (strcmp(menu->title7, "playamount") == 0) {
             char * result = NULL;
-            asprintf(&result, "Transaction (to play): %d Smilo", gamedetails.deposit);
+            asprintf(&result, "Transaction (to play): %d Didux", gamedetails.deposit);
             draw = result;
         } 
         UI_DrawString(uis.width / 2, menu->y1 + 130,

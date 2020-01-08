@@ -197,7 +197,7 @@ end
 
 begin multiplayer
     banner m_banner_multiplayer
-    action "browse official Smilo servers" pushmenu servers "favorites://" "file:///servers.lst" "broadcast://"
+    action "browse official Didux servers" pushmenu servers "favorites://" "file:///servers.lst" "broadcast://"
 end
 
 begin loadgame
@@ -251,7 +251,7 @@ end
 begin game
     background #0000ff20
     style --compact
-    action "browse official Smilo servers" pushmenu servers "favorites://" "file:///servers.lst" "broadcast://"
+    action "browse official Didux servers" pushmenu servers "favorites://" "file:///servers.lst" "broadcast://"
     action "options" pushmenu options
     action "disconnect" disconnect
     action "quit" quit
@@ -290,7 +290,7 @@ end
 begin smilo
     background #0000ff20
     style --compact
-    title1 "Welcome to Smilo Quake!"
+    title1 "Welcome to Didux Quake!"
     blank
     title2 "1st prize"
     blank

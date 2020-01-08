@@ -525,12 +525,12 @@ endif
 ### Targets ###
 
 ifdef CONFIG_WINDOWS
-    TARG_s := $(OUTPUT_DIR)/SmiloQuakeDedicated.exe
-    TARG_c := $(OUTPUT_DIR)/SmiloQuake.exe
+    TARG_s := $(OUTPUT_DIR)/DiduxQuakeDedicated.exe
+    TARG_c := $(OUTPUT_DIR)/DiduxQuake.exe
     TARG_g := $(OUTPUT_DIR)/baseq2/game$(CPU).dll
 else
-    TARG_s := $(OUTPUT_DIR)/SmiloQuakeDedicated
-    TARG_c := $(OUTPUT_DIR)/SmiloQuake
+    TARG_s := $(OUTPUT_DIR)/DiduxQuakeDedicated
+    TARG_c := $(OUTPUT_DIR)/DiduxQuake
     TARG_g := $(OUTPUT_DIR)/baseq2/game$(CPU).so
 endif
 

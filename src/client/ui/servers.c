@@ -286,7 +286,7 @@ void UI_StatusEvent(const serverStatus_t *status)
             strcpy(value, "<MISSING VALUE>");
 
         if (strcmp(key, "version") == 0) {
-            sprintf(value, "%s", "Smilo Quake Edition");
+            sprintf(value, "%s", "Didux Quake Edition");
         }    
 
         slot->rules[slot->numRules++] =

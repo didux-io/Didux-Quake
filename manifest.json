@@ -1,71 +1,71 @@
 {
-    "id": "SmiloQuake",
+    "id": "DiduxQuake",
     "version": "1.0.12",
-    "title": "Smilo Quake",
-    "subTitle": "Shoot, kill and earn Smilo",
-    "manifestUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/manifest.json",
-    "description": "The classic first person shooter Quake II now reimagined by the Smilo team! Win Smilo by playing against strangers or your friends. Compete in high stake matches to earn even more Smilo!",
+    "title": "Didux Quake",
+    "subTitle": "Shoot, kill and earn Didux",
+    "manifestUrl": "https://didux-quake.s3.eu-central-1.amazonaws.com/manifest.json",
+    "description": "The classic first person shooter Quake II now reimagined by the Didux team! Win Didux by playing against strangers or your friends. Compete in high stake matches to earn even more Didux!",
     "tags": ["shooter", "old school", "fps"],
-    "thumbnailUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/thumbnail.png",
+    "thumbnailUrl": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/thumbnail.png",
     "beta": true,
     "art": [
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen1.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen1.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen2.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen2.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen3.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen3.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen4.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen4.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen5.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen5.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen6.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen6.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen7.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen7.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen8.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen8.png"
         },
         {
             "type": "image",
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/art/screen9.png"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/art/screen9.png"
         }
     ],
     "platforms": [
         {
             "name": "darwin",
-            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/darwin_x86_64.tar.gz",
+            "downloadUrl": "https://didux-quake.s3.eu-central-1.amazonaws.com/darwin_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "./SmiloQuake",
+            "binary": "./DiduxQuake",
             "args": "+set name ${PROFILE_NAME} ${GAME_SERVERS}"
         },
         {
             "name": "win32",
-            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/windows_x86_64.tar.gz",
+            "downloadUrl": "https://didux-quake.s3.eu-central-1.amazonaws.com/windows_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "SmiloQuake.exe",
+            "binary": "DiduxQuake.exe",
             "args": "+set name ${PROFILE_NAME} ${GAME_SERVERS}"
         },
         {
             "name": "linux",
-            "downloadUrl": "https://s3-eu-west-1.amazonaws.com/smilo-quake/linux_x86_64.tar.gz",
+            "downloadUrl": "https://didux-quake.s3.eu-central-1.amazonaws.com/linux_x86_64.tar.gz",
             "baseDir": ".",
-            "binary": "./SmiloQuake",
+            "binary": "./DiduxQuake",
             "args": "+set name ${PROFILE_NAME} ${GAME_SERVERS}"
         }
     ],
@@ -75,7 +75,7 @@
     ],
     "params": {
         "GAME_SERVERS": {
-            "url": "https://s3-eu-west-1.amazonaws.com/smilo-quake/servers.lst"
+            "url": "https://didux-quake.s3.eu-central-1.amazonaws.com/servers.lst"
         }
     },
     "copyright": [

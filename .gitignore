@@ -17,3 +17,4 @@ game*.dll
 /.vscode
 /output
 .DS_Store
+.idea

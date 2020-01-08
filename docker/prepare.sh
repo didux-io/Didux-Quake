@@ -1,3 +1,4 @@
+#!/bin/bash
 PLATFORM=${1:-all}
 
 if [ $PLATFORM = linux64 ] || [ $PLATFORM = all ] ; then

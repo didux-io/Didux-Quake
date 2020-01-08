@@ -1,10 +1,11 @@
+#!/bin/bash
 PLATFORM=${1:-all}
 
 # Make sure all builds are run
 ./docker/build.sh $PLATFORM
 
 # Remove previous packages
-rm ./output/*.tar.gz
+rm -f ./output/*.tar.gz
 
 # IMPORTANT! The order in which the contents are put into the tar.gz matter!
 # Don't just go switching around this order... you will most likely break things.

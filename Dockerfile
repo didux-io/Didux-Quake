@@ -17,4 +17,4 @@ COPY ./output/linux_x86_64.tar.gz .
 
 RUN tar -zxf linux_x86_64.tar.gz
 
-ENTRYPOINT ./SmiloQuakeDedicated $QUAKE_ARGS
+ENTRYPOINT ./DiduxQuakeDedicated $QUAKE_ARGS
