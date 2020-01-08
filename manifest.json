@@ -1,6 +1,6 @@
 {
     "id": "DiduxQuake",
-    "version": "1.0.12",
+    "version": "1.0.17",
     "title": "Didux Quake",
     "subTitle": "Shoot, kill and earn Didux",
     "manifestUrl": "https://didux-quake.s3.eu-central-1.amazonaws.com/manifest.json",

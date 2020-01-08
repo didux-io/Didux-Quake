@@ -77,6 +77,7 @@ cvar_t  *info_password;
 cvar_t  *info_spectator;
 cvar_t  *info_name;
 cvar_t  *gametoken;
+cvar_t  *publickey;
 cvar_t  *info_skin;
 cvar_t  *info_rate;
 cvar_t  *info_fov;
@@ -124,7 +125,7 @@ static request_t    clientRequests[MAX_REQUESTS];
 static unsigned     nextRequest;
 
 char contract_address[1024];
-char current_player_publickey[1024];
+// char current_player_publickey[1024];
 int balance = -1;
 bool participateCommandDefined = false;
 bool confirmedParticipate = false;
@@ -470,11 +471,11 @@ void CL_CheckForResend(void)
         cls.quakePort = net_qport->integer;
         break;
     }
-    char publickey[65];
-	CL_Smilo_GetPublicKey(publickey, sizeof(publickey) - 1);
-    Com_Printf("Retrieved publickey %s \n", publickey);
-    sprintf(current_player_publickey, "%s", publickey);
-    sprintf(cls.publickey, "%s", publickey);
+    // char publickey[65];
+	// CL_Smilo_GetPublicKey(publickey, sizeof(publickey) - 1);
+    // Com_Printf("Using publickey %s \n", publickey);
+    // sprintf(current_player_publickey, "%s", publickey);
+    sprintf(cls.publickey, "%s", publickey->string);
     Cvar_BitInfo(userinfo, CVAR_USERINFO);
     Netchan_OutOfBand(NS_CLIENT, &cls.serverAddress,
                       "connect %i %i %i \"%s\"%s\"%s\n", cls.serverProtocol, cls.quakePort,
@@ -1804,7 +1805,7 @@ void CL_Begin(void)
     menuFrameWork_t *menu;
     char *s;
 
-    int preJoinBalanceCheck = CL_Smilo_GetBalance(current_player_publickey);
+    int preJoinBalanceCheck = CL_Smilo_GetBalance();
     gameDetails_t gamedetails = CL_Smilo_Get_Game_Details(cls.contract_address);
     if (preJoinBalanceCheck < gamedetails.deposit) {
         Com_Error(ERR_DROP, "Not enough funds. Needed: %d XSM. Your balance: %d \n", gamedetails.deposit, preJoinBalanceCheck);
@@ -2810,6 +2811,7 @@ static void CL_InitLocal(void)
     info_spectator = Cvar_Get("spectator", "1", CVAR_USERINFO);
     info_name = Cvar_Get("name", "unnamed", CVAR_USERINFO | CVAR_ARCHIVE);
     gametoken = Cvar_Get("gametoken", "", CVAR_USERINFO | CVAR_ARCHIVE);
+    publickey = Cvar_Get("publickey", "", CVAR_USERINFO | CVAR_ARCHIVE);
     info_skin = Cvar_Get("skin", "male/grunt", CVAR_USERINFO | CVAR_ARCHIVE);
     info_rate = Cvar_Get("rate", "5000", CVAR_USERINFO | CVAR_ARCHIVE);
     info_msg = Cvar_Get("msg", "1", CVAR_USERINFO | CVAR_ARCHIVE);
@@ -3168,12 +3170,12 @@ void CL_UpdateFrameTimes(void)
 }
 
 void
-CL_GetBalance(char* publickey) {
+CL_GetBalance() {
 	if(cls.balance_refreshed) {
 		return;
     }
 
-    balance = CL_Smilo_GetBalance(publickey);
+    balance = CL_Smilo_GetBalance();
     cls.balance_refreshed = true;
 }
 
@@ -3184,7 +3186,7 @@ CL_GetBalance(char* publickey) {
 	every second a message (count down) is posted.
 */
 void
-CL_CheckBetConfirmed(char* publickey, char* contractaddress) {
+CL_CheckBetConfirmed(char* contractaddress) {
 	if(cls.bet_confirmed)
 		return;
 
@@ -3192,13 +3194,12 @@ CL_CheckBetConfirmed(char* publickey, char* contractaddress) {
 	if(elapsed >= 2000) {
 		cls.last_bet_check_time = cls.realtime;
 		cls.bet_check_count++;
-        int betConfirmed = CL_Smilo_BetConfirmed(publickey, contractaddress);
-		if(betConfirmed) {
+        int betConfirmed = CL_Smilo_IsValidParticipant(contractaddress);
+		if (betConfirmed) {
 			Com_Printf("Your bet has been confirmed by the Smilo Blockchain!\n");
 			cls.bet_confirmed = true;
-            CL_GetBalance(publickey);
-		}
-		else {
+            CL_GetBalance();
+		} else {
 			Com_Printf("Your bet has NOT yet been confirmed...\n");
 		}
 	}
@@ -3405,7 +3406,7 @@ run_fx:
     main_extra = 0;
 
     if (confirmedParticipate) {
-		CL_CheckBetConfirmed(current_player_publickey, contract_address);
+		CL_CheckBetConfirmed(contract_address);
     }
 
     if (!participateCommandDefined) {
@@ -3453,6 +3454,7 @@ CL_Init
 */
 void CL_Init(void)
 {
+    Com_Printf("CL_Init starting the Smilo Quake Game Client \n");
     if (dedicated->integer) {
         return; // nothing running on the client
     }
@@ -3464,6 +3466,8 @@ void CL_Init(void)
     // all archived variables will now be loaded
 
     CL_InitLocal();
+
+    CL_Smilo_SetPublicKey(publickey->string);
 
     // start with full screen console
     cls.key_dest = KEY_CONSOLE;

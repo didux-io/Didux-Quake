@@ -1,0 +1,22 @@
+version: "3.2"
+services:
+  game:
+    image: smilo/smilo-quake-server:latest
+    restart: always
+    env_file:
+      - game.env
+    ports:
+      - '27910:27910/udp'
+    depends_on:
+      - agent
+  agent:
+    image: smilo/game-agent-server:latest
+    restart: always
+    env_file:
+      - game-agent.env
+    ports:
+      - '46280:46280/tcp'
+    volumes:
+      - type: bind
+        source: ./smilo-game-agent
+        target: /app/data
