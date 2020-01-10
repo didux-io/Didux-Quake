@@ -290,7 +290,7 @@ end
 begin smilo
     background #0000ff20
     style --compact
-    title1 "Welcome to Didux Quake!"
+    title1 "Welcome to Didux Quakeee!"
     blank
     title2 "1st prize"
     blank

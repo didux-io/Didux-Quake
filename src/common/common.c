@@ -1034,7 +1034,7 @@ void Qcommon_Init(int argc, char **argv)
 
     Com_AddConfigFile(COM_POSTINIT_CFG, FS_TYPE_REAL);
 
-    Com_Printf("====== Smilo Quake initialized ======\n\n");
+    Com_Printf("====== Didux Quake initialized ======\n\n");
     Com_Printf("https://github.com/didux-io/Didux-Quake\n\n");
 
     time(&com_startTime);

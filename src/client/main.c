@@ -3196,7 +3196,7 @@ CL_CheckBetConfirmed(char* contractaddress) {
 		cls.bet_check_count++;
         int betConfirmed = CL_Smilo_IsValidParticipant(contractaddress);
 		if (betConfirmed) {
-			Com_Printf("Your bet has been confirmed by the Smilo Blockchain!\n");
+			Com_Printf("Your bet has been confirmed by the Didux Blockchain!\n");
 			cls.bet_confirmed = true;
             CL_GetBalance();
 		} else {
@@ -3454,7 +3454,7 @@ CL_Init
 */
 void CL_Init(void)
 {
-    Com_Printf("CL_Init starting the Smilo Quake Game Client \n");
+    Com_Printf("CL_Init starting the Didux Quake Game Client \n");
     if (dedicated->integer) {
         return; // nothing running on the client
     }
